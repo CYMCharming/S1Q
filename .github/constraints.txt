@@ -1,0 +1,15 @@
+# Direct dependency pins for Python 3.12 CPU CI and a fresh reference install.
+# Select the matching GPU PyTorch wheel index when reusing these pins for CUDA.
+# Transitive dependencies are resolved by pip and recorded by pip freeze in CI.
+torch==2.7.1
+numpy==2.5.3
+transformers==5.17.0
+peft==0.21.0
+accelerate==1.15.0
+pydantic==2.13.5
+huggingface-hub==1.29.0
+safetensors==0.8.0
+datasets==5.0.1
+einops==0.8.2
+tiktoken==0.14.0
+pytest==9.1.1

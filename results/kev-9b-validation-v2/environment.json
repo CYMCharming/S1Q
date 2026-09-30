@@ -1,0 +1,82 @@
+{
+  "model": {
+    "name": "kev-9b",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "jaredpalmer/kev-9b",
+    "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+    "base": "Qwen/Qwen3.5-9B-Base",
+    "base_revision": "68c46c4b3498877f3ef123c856ecfde50c39f404",
+    "native_temperature": 2.2973967099940698,
+    "hybrid": true,
+    "context": {
+      "max_state": 384,
+      "max_branch": 1024,
+      "max_packed": 2048
+    },
+    "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+  },
+  "packages": {
+    "torch": "2.7.1+cu118",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "datasets": "5.0.1",
+    "huggingface-hub": "1.29.0",
+    "numpy": "2.5.2"
+  },
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "seed": 20261001,
+  "data_manifest_sha256": "fcefaf5a1cfc81b65f487bb48207e32aa11601a890c4a32028f3c6a55038b132",
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "source_files_sha256": {
+    "data.py": "2b6fe792bba6c05348f94baf6b4517da8dd8d33ea9f5765e616cce22b7373546",
+    "models.py": "6295ed746830a619aa66dd9f4452b6266e3b0f8d576e4f0c674493677e5f948e",
+    "metrics.py": "71d67c824e1cdca51de08967c20e7a620ee94ba143cc83aacc50387c1b04f76e",
+    "decision_stats.py": "fb3cac473728050e990cd9b6f6511390d38f5b6fe3c3ce14c563a1f4150d2210",
+    "__init__.py": "1f7b749e5bc62881c4b60d05a0da409cb9613ec4520a9ca8ba8c094fe75c5a53",
+    "experiment.py": "b012ef8053575b31f226e7ef47185b72a1d0713dd456ea7357e8592045894574",
+    "cli.py": "2557edf8d2e08f0c6bc7f2e9c5b30c24cb2a9f4a53b1d67aef63b6d50acd5116",
+    "packed.py": "b66c96ca14c68e3d94f9fed95bfd93d2631c5afb6488beb924156125cd7cea32",
+    "quantization.py": "3a89d9ecce59891f6ccd63de6606844c3fabee03f133eb3dc982daa026fd6f21"
+  },
+  "split_files_sha256": {
+    "calibration": "be17333bff1f4b3c284ed9f37d97f55acf4edd8e4847732bdf4e65f7206b9f4d",
+    "development": "6308e110d61479226e1c893b89bd71f9989563a24faf0d5315dcfc28ba06397c",
+    "temperature_calibration": "b099008f846d980712b209eea1efadf789d30bb18e0d90348e5693493a1290cb",
+    "test": "2f48f00dda6bdd06e90da8acc4cab88c1581714853bfc2653e7d30a287530bab",
+    "transfer_development": "9b388c3f89b6527016628d72579a446c565542b107b8dcbecb465f6ad5482c68",
+    "transfer_test": "cf0d367e87d802162447676dc364643cc1d2e9dbbb32dae1ee7da6f168dd5c28"
+  },
+  "reused_baseline_environment": {
+    "model": {
+      "name": "kev-9b",
+      "dtype": "torch.bfloat16",
+      "device": "cuda",
+      "raw_logits": true,
+      "repo": "jaredpalmer/kev-9b",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "base": "Qwen/Qwen3.5-9B-Base",
+      "base_revision": "68c46c4b3498877f3ef123c856ecfde50c39f404",
+      "native_temperature": 2.2973967099940698,
+      "hybrid": true,
+      "context": {
+        "max_state": 384,
+        "max_branch": 1024,
+        "max_packed": 2048
+      },
+      "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+    },
+    "packages": {
+      "torch": "2.7.1+cu118",
+      "transformers": "5.16.1",
+      "peft": "0.20.0",
+      "datasets": "5.0.1",
+      "huggingface-hub": "1.29.0"
+    },
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "seed": 20261001,
+    "data_manifest_sha256": "fcefaf5a1cfc81b65f487bb48207e32aa11601a890c4a32028f3c6a55038b132",
+    "gpu": "NVIDIA A100 80GB PCIe"
+  }
+}

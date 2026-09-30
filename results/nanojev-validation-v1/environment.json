@@ -1,0 +1,25 @@
+{
+  "model": {
+    "name": "nanojev",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "C-Tianyu/NanoJev",
+    "revision": "047b927b30882a1138fc504821b82ac145a4b81a",
+    "native_temperature": 1.0,
+    "max_len": 8192,
+    "set_head": "attention",
+    "source_revision": "76fdfc9ecdca45a9bcef17991a07d3041a87685a"
+  },
+  "packages": {
+    "torch": "2.9.1+cu126",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "datasets": "2.14.6",
+    "huggingface-hub": "1.29.0"
+  },
+  "platform": "Linux-6.8.0-111-generic-x86_64-with-glibc2.35",
+  "seed": 20261001,
+  "data_manifest_sha256": "ab9841fb64ae597dc25fef471ea2d796003730fed7026385d4a96d2b13fa1d49",
+  "gpu": "NVIDIA A800 80GB PCIe"
+}

@@ -1,0 +1,14 @@
+{
+  "objective": "categorical_teacher_fisher_random_projection",
+  "seed": 20261001,
+  "temperature": 1.0,
+  "probes_per_record": 2,
+  "records": 32,
+  "backward_probes": 64,
+  "failed_records": 0,
+  "question_normalization": "sum_div_sqrt_question_count",
+  "gradient_reduction": "mean_square_over_output_token_rows",
+  "uses_gold_labels": false,
+  "autograd_fallback": "none_fail_loudly",
+  "failed_request_statistics": "discarded_atomically"
+}

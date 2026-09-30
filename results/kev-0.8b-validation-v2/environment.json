@@ -1,0 +1,43 @@
+{
+  "model": {
+    "name": "kev-0.8b",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "jaredpalmer/kev-0.8b",
+    "revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+    "base": "Qwen/Qwen3.5-0.8B-Base",
+    "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+    "native_temperature": 2.3510958125672174,
+    "hybrid": true,
+    "context": {
+      "max_state": 384,
+      "max_branch": 1024,
+      "max_packed": 2048
+    },
+    "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+  },
+  "packages": {
+    "torch": "2.7.1+cu118",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "datasets": "5.0.1",
+    "huggingface-hub": "1.29.0",
+    "numpy": "2.5.2"
+  },
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "seed": 20261001,
+  "data_manifest_sha256": "fcefaf5a1cfc81b65f487bb48207e32aa11601a890c4a32028f3c6a55038b132",
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "source_files_sha256": {
+    "data.py": "2b6fe792bba6c05348f94baf6b4517da8dd8d33ea9f5765e616cce22b7373546",
+    "models.py": "6295ed746830a619aa66dd9f4452b6266e3b0f8d576e4f0c674493677e5f948e",
+    "metrics.py": "71d67c824e1cdca51de08967c20e7a620ee94ba143cc83aacc50387c1b04f76e",
+    "decision_stats.py": "fb3cac473728050e990cd9b6f6511390d38f5b6fe3c3ce14c563a1f4150d2210",
+    "__init__.py": "1f7b749e5bc62881c4b60d05a0da409cb9613ec4520a9ca8ba8c094fe75c5a53",
+    "experiment.py": "495dbc6a5427777962391363dff262ae533534a301a5fd5c82400366ac72013b",
+    "cli.py": "2557edf8d2e08f0c6bc7f2e9c5b30c24cb2a9f4a53b1d67aef63b6d50acd5116",
+    "packed.py": "b66c96ca14c68e3d94f9fed95bfd93d2631c5afb6488beb924156125cd7cea32",
+    "quantization.py": "3a89d9ecce59891f6ccd63de6606844c3fabee03f133eb3dc982daa026fd6f21"
+  }
+}

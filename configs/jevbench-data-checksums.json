@@ -1,0 +1,71 @@
+{
+  "schema": "s1q.jevbench-source.v1",
+  "repo": "fstandhartinger/jevbench",
+  "revision": "bb05a335bc809e61b20c0f745d25499a82b326fc",
+  "source_url": "https://github.com/fstandhartinger/jevbench",
+  "role": "external_test_only",
+  "selected_source_splits": ["original", "hard"],
+  "source_records": 183,
+  "source_license": "MIT",
+  "copyright": "Copyright (c) 2026 Florian Standhartinger and contributors",
+  "label_provenance": {
+    "original": "Explicit rubric, reviewed before inference; scripts/build_public.py states labelled before model calls.",
+    "hard": "Authored with rationale; cross-model review before any system run. Model-assisted scenario authorship, not a claim of independent human annotations.",
+    "probability": "gold_probs are derivable from explicit countable evidence; expected is the modal label, not a sampled observed outcome."
+  },
+  "transport": "Standard TLS-verified GitHub clone; checksums below are exact raw Git blob bytes, before checkout newline conversion.",
+  "files": {
+    "datasets/public/original.jsonl": {
+      "bytes": 57237,
+      "records": 72,
+      "sha256": "5c2414edb3006b8bfcb70fda433f0f9ca015759433849f8d3104328a1f7c4180"
+    },
+    "datasets/public/hard.jsonl": {
+      "bytes": 651848,
+      "records": 111,
+      "sha256": "89e9e6becb33ed88c1de7d42dcc87531b2fb64cfaef4e1986faf7c37b3f80ebb"
+    },
+    "datasets/manifest.json": {
+      "bytes": 2891,
+      "sha256": "0983ad3e73a34e7c55b02b5d09ed983aeccabef0253bb31be43a2e6230d58f7b"
+    },
+    "LICENSE": {
+      "bytes": 1096,
+      "sha256": "3e5beed774bb0bcbfb2fcf24ba9554212c6ae112937d308040989465ab0c5784"
+    },
+    "THIRD-PARTY.md": {
+      "bytes": 2654,
+      "sha256": "396422e29055bba4073f4a9e5a7163cc724f13e970a34ef58e8ea1fb439b9b38"
+    },
+    "datasets/HARD-TIER.md": {
+      "bytes": 11235,
+      "sha256": "0c5a042b6b283f777366769c380f6aa8e16a5d2f24eae7e56bc5bc2a20cb4a4d"
+    },
+    "jevbench/scoring.py": {
+      "bytes": 5743,
+      "sha256": "6aa17d212ea20a3eeb6876149367842e8462c11dcb54d73df062fb406368331e"
+    },
+    "jevbench/tasks.py": {
+      "bytes": 4339,
+      "sha256": "b9c2f8ba9a7301519656d79d47c31b8ab0542a5545498ce3b339d5e93b976812"
+    }
+  },
+  "unavailable_or_excluded_sources": [
+    "Private held-out original/hard tasks",
+    "Imported router and judge tasks with separate upstream terms",
+    "Public easy tier, outside the declared original+hard source cohort"
+  ],
+  "default_eligibility": {
+    "max_choices": 10,
+    "max_chars": 1000,
+    "character_measure": "Complete public request serialized as UTF-8 JSON text with ensure_ascii=false and compact separators; count Unicode characters.",
+    "selection_basis": "Input format/length only; no model predictions used."
+  },
+  "upstream_scoring_contract": {
+    "noul": "Exact yes/no classification; maps no=false and yes=true.",
+    "choice": "Exact declared string key.",
+    "score": "Integer ordinal level; scorer also computes ordinal expected value and exact argmax accuracy.",
+    "ties": "Upstream argmax uses lexicographically smallest candidate key; S1Q runner tie behavior must be reported separately.",
+    "probability": "Preserve original gold_probs separately from the hard modal label."
+  }
+}

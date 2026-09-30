@@ -1,0 +1,38 @@
+{
+  "model": {
+    "name": "laya",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "convaiinnovations/laya",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "native_temperature": [
+      1.6369030475616455,
+      1.2514300346374512,
+      1.983399510383606
+    ],
+    "native_temperature_by_options": {
+      "choice:3-5": 1.7601518630981445,
+      "choice:6-10": 1.0000158548355103,
+      "score:3-5": 1.2514300346374512,
+      "noul:2": 1.983399510383606,
+      "choice:11+": 0.5,
+      "choice:2": 1.9063563346862793
+    },
+    "subfolder": null,
+    "max_len": 512,
+    "head_max_len": 192,
+    "source_revision": "6d942c92081fbc139e736bbd9ac0023223c29b7f"
+  },
+  "packages": {
+    "torch": "2.7.1+cu118",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "datasets": "5.0.1",
+    "huggingface-hub": "1.29.0"
+  },
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "seed": 20261001,
+  "data_manifest_sha256": "be103a98723e2de9b9b572659927ca1cbd8b8854ae9fbc6355d757367fc9e98d",
+  "gpu": "NVIDIA A100 80GB PCIe"
+}

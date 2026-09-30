@@ -1,0 +1,270 @@
+{
+  "schema": "s1q-release-v1",
+  "tag": "v0.1.0",
+  "base_url": "https://github.com/CYMCharming/S1Q/releases/download/v0.1.0/",
+  "artifacts": [
+    {
+      "model": "kev-0.8b",
+      "run": "kev-0.8b-validation-v2",
+      "profile": {
+        "name": "s1q-fisher",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0,
+        "fisher": true
+      },
+      "bits": 4,
+      "group_size": 128,
+      "model_metadata": {
+        "name": "kev-0.8b",
+        "dtype": "torch.bfloat16",
+        "device": "cuda",
+        "raw_logits": true,
+        "repo": "jaredpalmer/kev-0.8b",
+        "revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+        "base": "Qwen/Qwen3.5-0.8B-Base",
+        "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+        "native_temperature": 2.3510958125672174,
+        "hybrid": true,
+        "context": {
+          "max_state": 384,
+          "max_branch": 1024,
+          "max_packed": 2048
+        },
+        "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+      },
+      "summary_sha256": "cedd8c70b3b77231b788d1507b5d9568c24dccd66e9f7f3d9d066714d7daf1ba",
+      "artifact_sha256": "034b445df6f1b03943e54cce2f98e6cd27ff96ccec28aa58d32a08583bb88ca2",
+      "artifact_bytes": 265645007,
+      "filename": "kev-0.8b-s1q-fisher-w4.pt",
+      "parts": [
+        {
+          "name": "kev-0.8b-s1q-fisher-w4.pt.part001",
+          "bytes": 265645007,
+          "sha256": "034b445df6f1b03943e54cce2f98e6cd27ff96ccec28aa58d32a08583bb88ca2"
+        }
+      ],
+      "scope": "linears only; same pinned base/head/tokenizer required; research floating execution",
+      "storage": {
+        "quantized_parameter_count": 497614848,
+        "total_parameter_count": 752917824,
+        "quantized_parameter_fraction": 0.6609152182854952,
+        "packed_linears_bytes": 265463808,
+        "retained_native_parameters_bytes": 511655552,
+        "estimated_complete_packed_parameters_bytes": 777119360,
+        "native_parameters_bytes": 1506885248,
+        "estimated_parameter_storage_ratio": 0.5157123682983988,
+        "note": "Storage estimate, not measured GPU memory or integer-kernel speedup. Retained embeddings, heads, biases and recurrent parameters included."
+      }
+    },
+    {
+      "model": "kev-4b",
+      "run": "kev-4b-validation-v2",
+      "profile": {
+        "name": "s1q-local",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0
+      },
+      "bits": 4,
+      "group_size": 128,
+      "model_metadata": {
+        "name": "kev-4b",
+        "dtype": "torch.bfloat16",
+        "device": "cuda",
+        "raw_logits": true,
+        "repo": "jaredpalmer/kev-4b",
+        "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+        "base": "Qwen/Qwen3.5-4B-Base",
+        "base_revision": "1001bb4d826a52d1f399e183466143f4da7b741b",
+        "native_temperature": 2.406050072164233,
+        "hybrid": true,
+        "context": {
+          "max_state": 384,
+          "max_branch": 1024,
+          "max_packed": 2048
+        },
+        "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+      },
+      "summary_sha256": "9f0ada3ab8a8b341e96e4b3f8c46f3fbd6833408dee474bb2238f194ece641b5",
+      "artifact_sha256": "e2155c63589356dd81577bfdca0a29a2ffc4ca36c2beafd69a789d88231110b1",
+      "artifact_bytes": 1899909169,
+      "filename": "kev-4b-s1q-local-w4.pt",
+      "parts": [
+        {
+          "name": "kev-4b-s1q-local-w4.pt.part001",
+          "bytes": 1572864000,
+          "sha256": "be9b54645fc9e54b1280a18e478700bffe966551f4a4d26ad5366a2f76433a5b"
+        },
+        {
+          "name": "kev-4b-s1q-local-w4.pt.part002",
+          "bytes": 327045169,
+          "sha256": "531bd54961930d94218ebfca8aadd0db2d76a574e4e08092a9fa899ab779661c"
+        }
+      ],
+      "scope": "linears only; same pinned base/head/tokenizer required; research floating execution",
+      "storage": {
+        "quantized_parameter_count": 3569090560,
+        "total_parameter_count": 4207062528,
+        "quantized_parameter_fraction": 0.8483569084714112,
+        "packed_linears_bytes": 1899667456,
+        "retained_native_parameters_bytes": 1278566400,
+        "estimated_complete_packed_parameters_bytes": 3178233856,
+        "native_parameters_bytes": 8416747520,
+        "estimated_parameter_storage_ratio": 0.3776083158545309,
+        "note": "Storage estimate, not measured GPU memory or integer-kernel speedup. Retained embeddings, heads, biases and recurrent parameters included."
+      }
+    },
+    {
+      "model": "kev-9b",
+      "run": "kev-9b-validation-v2",
+      "profile": {
+        "name": "s1q-a8",
+        "method": "s1q",
+        "activation_bits": 8,
+        "sensitive_fraction": 0
+      },
+      "bits": 4,
+      "group_size": 128,
+      "model_metadata": {
+        "name": "kev-9b",
+        "dtype": "torch.bfloat16",
+        "device": "cuda",
+        "raw_logits": true,
+        "repo": "jaredpalmer/kev-9b",
+        "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+        "base": "Qwen/Qwen3.5-9B-Base",
+        "base_revision": "68c46c4b3498877f3ef123c856ecfde50c39f404",
+        "native_temperature": 2.2973967099940698,
+        "hybrid": true,
+        "context": {
+          "max_state": 384,
+          "max_branch": 1024,
+          "max_packed": 2048
+        },
+        "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+      },
+      "summary_sha256": "142c8ae115ef6eff9e3ae4c2133ea97bb61eca1b3e223d1143762af54064e340",
+      "artifact_sha256": "0ebddda5a9799b5e9e9e46998b46416cd9bd1a55383d2c1bbf790eb208018f04",
+      "artifact_bytes": 3680809201,
+      "filename": "kev-9b-s1q-a8-w4.pt",
+      "parts": [
+        {
+          "name": "kev-9b-s1q-a8-w4.pt.part001",
+          "bytes": 1572864000,
+          "sha256": "51c15d1b7485154cdaf8ee1e3c2b9b2323697d6ace6beed70d7facbf7e434351"
+        },
+        {
+          "name": "kev-9b-s1q-a8-w4.pt.part002",
+          "bytes": 1572864000,
+          "sha256": "7c0acfeae87b07085bdc7a200776bdfe5d9d0a3c06efe13c2e1649290f145278"
+        },
+        {
+          "name": "kev-9b-s1q-a8-w4.pt.part003",
+          "bytes": 535081201,
+          "sha256": "50186ed3c06d3b2a320644c17c66bffadbf934300e1d6707dcb88576054b8ce9"
+        }
+      ],
+      "scope": "linears only; same pinned base/head/tokenizer required; research floating execution",
+      "storage": {
+        "quantized_parameter_count": 6918504448,
+        "total_parameter_count": 7938782208,
+        "quantized_parameter_fraction": 0.8714818301764401,
+        "packed_linears_bytes": 3680567296,
+        "retained_native_parameters_bytes": 2044750848,
+        "estimated_complete_packed_parameters_bytes": 5725318144,
+        "native_parameters_bytes": 15881759744,
+        "estimated_parameter_storage_ratio": 0.360496458596975,
+        "note": "Storage estimate, not measured GPU memory or integer-kernel speedup. Retained embeddings, heads, biases and recurrent parameters included."
+      }
+    },
+    {
+      "model": "laya",
+      "run": "laya-validation-v2",
+      "profile": {
+        "name": "s1q-local",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0
+      },
+      "bits": 4,
+      "group_size": 128,
+      "model_metadata": {
+        "name": "laya",
+        "dtype": "torch.bfloat16",
+        "device": "cuda",
+        "raw_logits": true,
+        "repo": "convaiinnovations/laya",
+        "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+        "native_temperature": [
+          1.6369030475616455,
+          1.2514300346374512,
+          1.983399510383606
+        ],
+        "native_temperature_by_options": {
+          "choice:3-5": 1.7601518630981445,
+          "choice:6-10": 1.0000158548355103,
+          "score:3-5": 1.2514300346374512,
+          "noul:2": 1.983399510383606,
+          "choice:11+": 0.5,
+          "choice:2": 1.9063563346862793
+        },
+        "subfolder": null,
+        "max_len": 512,
+        "head_max_len": 192,
+        "source_revision": "6d942c92081fbc139e736bbd9ac0023223c29b7f"
+      },
+      "summary_sha256": "00d8fe82e73a06619bf45e1721d4fab2f56f86804f983cd9775807f461fb7ace",
+      "artifact_sha256": "23d0db195a58cd76c7a8c10ef3b04f048e84d4e6c036c41000d905085711c192",
+      "artifact_bytes": 183100345,
+      "filename": "laya-s1q-local-w4.pt",
+      "parts": [
+        {
+          "name": "laya-s1q-local-w4.pt.part001",
+          "bytes": 183100345,
+          "sha256": "23d0db195a58cd76c7a8c10ef3b04f048e84d4e6c036c41000d905085711c192"
+        }
+      ],
+      "scope": "linears only; same pinned base/head/tokenizer required; research floating execution",
+      "storage": {
+        "quantized_parameter_count": 343146496,
+        "total_parameter_count": 421293827,
+        "quantized_parameter_fraction": 0.8145063468969366,
+        "packed_linears_bytes": 182991872,
+        "retained_native_parameters_bytes": 312589324,
+        "estimated_complete_packed_parameters_bytes": 495581196,
+        "native_parameters_bytes": 1685175308,
+        "estimated_parameter_storage_ratio": 0.2940828729493822,
+        "note": "Storage estimate, not measured GPU memory or integer-kernel speedup. Retained embeddings, heads, biases and recurrent parameters included."
+      }
+    }
+  ],
+  "recipe_only": [
+    {
+      "model": "nanojev",
+      "run": "nanojev-validation-v2",
+      "profile": {
+        "name": "s1q-local",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0
+      },
+      "model_metadata": {
+        "name": "nanojev",
+        "dtype": "torch.bfloat16",
+        "device": "cuda",
+        "raw_logits": true,
+        "repo": "C-Tianyu/NanoJev",
+        "revision": "047b927b30882a1138fc504821b82ac145a4b81a",
+        "native_temperature": 1.0,
+        "max_len": 8192,
+        "set_head": "attention",
+        "source_revision": "76fdfc9ecdca45a9bcef17991a07d3041a87685a"
+      },
+      "evaluated_artifact_sha256": "76488ff07df9ab2cc77abb286799882f160725c6a7b77ecd69c56e4d6d93d5cb",
+      "artifact_bytes": 235301413,
+      "scope": "linears only; same pinned base/head/tokenizer required; research floating execution",
+      "reason": "The audited model card does not give a separate explicit fine-tuned weight redistribution grant; source, recipes and results are public."
+    }
+  ]
+}

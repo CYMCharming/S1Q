@@ -1,0 +1,3920 @@
+{
+  "profile": {
+    "name": "rtn",
+    "method": "rtn",
+    "activation_bits": null,
+    "sensitive_fraction": 0
+  },
+  "development": {
+    "raw": {
+      "n": 311,
+      "accuracy": 0.8456591639871383,
+      "nll": 0.5568353248165722,
+      "brier": 0.2501273363337768,
+      "ece_15": 0.10548930003433872,
+      "mean_confidence": 0.9501679368255416,
+      "coverage_at_risk": {
+        "0.01": 0.2379421221864952,
+        "0.05": 0.7395498392282959,
+        "0.1": 0.842443729903537
+      },
+      "calibration_bins": [
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 1,
+          "accuracy": 0.0,
+          "confidence": 0.4356950486292323
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 6,
+          "accuracy": 0.3333333333333333,
+          "confidence": 0.4991427353588982
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 5,
+          "accuracy": 0.6,
+          "confidence": 0.5695056042064095
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 4,
+          "accuracy": 0.5,
+          "confidence": 0.6369200451352839
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 8,
+          "accuracy": 0.375,
+          "confidence": 0.7070187626599951
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 6,
+          "accuracy": 0.5,
+          "confidence": 0.771515219018676
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 11,
+          "accuracy": 0.8181818181818182,
+          "confidence": 0.8456230887401773
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 20,
+          "accuracy": 0.55,
+          "confidence": 0.9104494071183463
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 250,
+          "accuracy": 0.92,
+          "confidence": 0.995521540625947
+        }
+      ],
+      "score_mae": 0.4729981349768013,
+      "macro_source_accuracy": 0.881303163211058
+    },
+    "temperature_calibrated": {
+      "n": 311,
+      "accuracy": 0.8456591639871383,
+      "nll": 0.5568353248165722,
+      "brier": 0.2501273363337768,
+      "ece_15": 0.10548930003433872,
+      "mean_confidence": 0.9501679368255416,
+      "coverage_at_risk": {
+        "0.01": 0.2379421221864952,
+        "0.05": 0.7395498392282959,
+        "0.1": 0.842443729903537
+      },
+      "calibration_bins": [
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 1,
+          "accuracy": 0.0,
+          "confidence": 0.4356950486292323
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 6,
+          "accuracy": 0.3333333333333333,
+          "confidence": 0.4991427353588982
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 5,
+          "accuracy": 0.6,
+          "confidence": 0.5695056042064095
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 4,
+          "accuracy": 0.5,
+          "confidence": 0.6369200451352839
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 8,
+          "accuracy": 0.375,
+          "confidence": 0.7070187626599951
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 6,
+          "accuracy": 0.5,
+          "confidence": 0.771515219018676
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 11,
+          "accuracy": 0.8181818181818182,
+          "confidence": 0.8456230887401773
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 20,
+          "accuracy": 0.55,
+          "confidence": 0.9104494071183463
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 250,
+          "accuracy": 0.92,
+          "confidence": 0.995521540625947
+        }
+      ],
+      "score_mae": 0.4729981349768013,
+      "macro_source_accuracy": 0.881303163211058
+    },
+    "temperatures": {}
+  },
+  "paired": {
+    "n": 311,
+    "js_to_reference": 0.012139939551486843,
+    "decision_flip_rate": 0.03215434083601286,
+    "harmful_flip_rate": 0.01929260450160772,
+    "mean_confidence_drift": 0.03195407973925351,
+    "selection_objective": 0.014946155351114591
+  },
+  "quantization": {
+    "execution": "dequantized_weights_with_optional_fake_activation",
+    "activation_bits": null,
+    "activation_scheme": null,
+    "quantized_linear_count": 248,
+    "preserved_layers": {},
+    "layers": {
+      "layers.0.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 57.527015441686814,
+        "relative_error": 0.028385570406626405,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009677192586053294
+      },
+      "layers.0.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 141.48457097339679,
+        "relative_error": 0.013616602982494768,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0022579764828263293
+      },
+      "layers.0.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 70.39857156189447,
+        "relative_error": 0.010578097678907645,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.003146636360007366
+      },
+      "layers.0.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.1357148203238892,
+        "relative_error": 0.011779748045611419,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0014865433036992325
+      },
+      "layers.0.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.1737656297929497,
+        "relative_error": 0.015183597938721736,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0027934012051787824
+      },
+      "layers.0.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 92.10765436093524,
+        "relative_error": 0.014488557278676487,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009059691040601347
+      },
+      "layers.0.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 79.58949572038387,
+        "relative_error": 0.014503425090364097,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0131396834128194
+      },
+      "layers.0.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 87.1801338880379,
+        "relative_error": 0.01421942130996235,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01277174411025218
+      },
+      "layers.1.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 63.770674517067405,
+        "relative_error": 0.015398052783142496,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0037074398835247988
+      },
+      "layers.1.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 110.6942487601968,
+        "relative_error": 0.025265191392523357,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015645912563214105
+      },
+      "layers.1.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 68.37462629967385,
+        "relative_error": 0.024011963143053854,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016519021263996465
+      },
+      "layers.1.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.8162539735729557,
+        "relative_error": 0.007950883214617201,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005784329161072109
+      },
+      "layers.1.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 2.744837103275801,
+        "relative_error": 0.02935723020652073,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01745836698854034
+      },
+      "layers.1.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 95.06364922927068,
+        "relative_error": 0.014585798859324883,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009096002680740229
+      },
+      "layers.1.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 84.82836570292041,
+        "relative_error": 0.015031877474528232,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014178329272994093
+      },
+      "layers.1.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 96.10207101084094,
+        "relative_error": 0.015958325192974125,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012229736558896781
+      },
+      "layers.2.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 66.65346199251957,
+        "relative_error": 0.01748913636820279,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.008768175316329872
+      },
+      "layers.2.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 111.53224809664344,
+        "relative_error": 0.028411963107535212,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018997278839491837
+      },
+      "layers.2.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 68.4022033127069,
+        "relative_error": 0.021235179933736196,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013758029116675856
+      },
+      "layers.2.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.696932339740484,
+        "relative_error": 0.013624927506249716,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013430874710984135
+      },
+      "layers.2.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.7844599266261123,
+        "relative_error": 0.029549675621707377,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015999801093676606
+      },
+      "layers.2.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 96.30942982819965,
+        "relative_error": 0.014395915326879935,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.010998231791471415
+      },
+      "layers.2.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 80.90247926361968,
+        "relative_error": 0.015244605572868997,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015122855883407622
+      },
+      "layers.2.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 83.91281177363001,
+        "relative_error": 0.01468494082526207,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011041126964785151
+      },
+      "layers.3.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 159.83397043911617,
+        "relative_error": 0.009010326819707237,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004046370486397505
+      },
+      "layers.3.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 12.939982722278147,
+        "relative_error": 0.02857583464559693,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.019961230831593478
+      },
+      "layers.3.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 8.793505753015594,
+        "relative_error": 0.03346627315706584,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.02545113784694555
+      },
+      "layers.3.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 63.68768521707498,
+        "relative_error": 0.016613248280248263,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0025671756750094317
+      },
+      "layers.3.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 96.11080783810847,
+        "relative_error": 0.014265563226595673,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.010291956331010413
+      },
+      "layers.3.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 87.07715196530664,
+        "relative_error": 0.015022017367632564,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013426113504455344
+      },
+      "layers.3.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 88.50090816958593,
+        "relative_error": 0.014768024463546806,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012231011393489534
+      },
+      "layers.4.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 63.58711749444623,
+        "relative_error": 0.01723611358506114,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01144516987446942
+      },
+      "layers.4.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 128.0853848666752,
+        "relative_error": 0.024441201768820486,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016559575750268177
+      },
+      "layers.4.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 75.82555183145567,
+        "relative_error": 0.022968270800288407,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014603508478843712
+      },
+      "layers.4.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.3820892752452447,
+        "relative_error": 0.009018081375916979,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014001357643069996
+      },
+      "layers.4.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 3.103191806487699,
+        "relative_error": 0.03097157178374442,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.027203124514025748
+      },
+      "layers.4.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 97.97896410232678,
+        "relative_error": 0.01685658647073617,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012019329668978278
+      },
+      "layers.4.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 80.11614345349211,
+        "relative_error": 0.01861414107479568,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016990225223270077
+      },
+      "layers.4.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 87.82471831106548,
+        "relative_error": 0.014867120627062882,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012841673145654483
+      },
+      "layers.5.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 61.27432704420811,
+        "relative_error": 0.023099352388753887,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017539670782417065
+      },
+      "layers.5.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 123.93991629368156,
+        "relative_error": 0.02669707810657913,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016062017439140704
+      },
+      "layers.5.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 70.40316145761277,
+        "relative_error": 0.01661326367529868,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012232624725540953
+      },
+      "layers.5.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.143914510427171,
+        "relative_error": 0.010570911653487862,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013357518722049605
+      },
+      "layers.5.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 2.634794225035384,
+        "relative_error": 0.047087101562397385,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.024103711738222854
+      },
+      "layers.5.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 103.38363271527965,
+        "relative_error": 0.017342773807525066,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009937175329189831
+      },
+      "layers.5.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 77.36731281397554,
+        "relative_error": 0.02070570095321363,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017983380218103525
+      },
+      "layers.5.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 88.22247397982241,
+        "relative_error": 0.015115493150820775,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012378421119619178
+      },
+      "layers.6.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 63.93594389810819,
+        "relative_error": 0.020201973866208145,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014534485538609596
+      },
+      "layers.6.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 127.08881648830798,
+        "relative_error": 0.027776833017173905,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01734312590864026
+      },
+      "layers.6.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 62.181955871412704,
+        "relative_error": 0.01077357281875293,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00782631456296231
+      },
+      "layers.6.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.2337980122854393,
+        "relative_error": 0.011279461132738752,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.010959366207222647
+      },
+      "layers.6.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 2.7003805846723683,
+        "relative_error": 0.05316870225007333,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.026116948273570254
+      },
+      "layers.6.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 107.21338600661929,
+        "relative_error": 0.021678278960906544,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014177333152589738
+      },
+      "layers.6.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 63.71825588174107,
+        "relative_error": 0.02246240830955314,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01966254674329748
+      },
+      "layers.6.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 92.23240719907179,
+        "relative_error": 0.01765325407782112,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014514635691001771
+      },
+      "layers.7.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 124.62284728711435,
+        "relative_error": 0.011178628175509246,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005389675325659852
+      },
+      "layers.7.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 15.214009592346756,
+        "relative_error": 0.02718716145157091,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018986580782865227
+      },
+      "layers.7.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 9.335632788402513,
+        "relative_error": 0.02911180152802856,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018579292060108433
+      },
+      "layers.7.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.633551957985134,
+        "relative_error": 0.016969707741793294,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01882647986020032
+      },
+      "layers.7.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 110.41114196964891,
+        "relative_error": 0.016279481873478323,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009178887064068638
+      },
+      "layers.7.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 74.47103654911416,
+        "relative_error": 0.02082571340197582,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018341594817266195
+      },
+      "layers.7.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 86.98231434664632,
+        "relative_error": 0.014910655293761718,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01278496141705536
+      },
+      "layers.8.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 61.49531017008761,
+        "relative_error": 0.017259174251507328,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016402457887555053
+      },
+      "layers.8.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 139.8620216819754,
+        "relative_error": 0.023955729073924126,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014824490245970079
+      },
+      "layers.8.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 64.85509158789964,
+        "relative_error": 0.015764879485675953,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01043647797791816
+      },
+      "layers.8.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.4102553358407173,
+        "relative_error": 0.01814396813316183,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01802783770778894
+      },
+      "layers.8.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 2.0448871137595797,
+        "relative_error": 0.032778986975835755,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0240842274929287
+      },
+      "layers.8.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 107.2133372684349,
+        "relative_error": 0.016809744845378144,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009938903881332662
+      },
+      "layers.8.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 70.78777512681029,
+        "relative_error": 0.0201795947298873,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0181081024426896
+      },
+      "layers.8.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 86.87762275912124,
+        "relative_error": 0.014627141351284005,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013087937973668697
+      },
+      "layers.9.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 61.03925716956488,
+        "relative_error": 0.019893095483464556,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01824793206605197
+      },
+      "layers.9.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 134.37894459556315,
+        "relative_error": 0.02243326937392651,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014668053444546374
+      },
+      "layers.9.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.48810882739204,
+        "relative_error": 0.010389592570897683,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007109562574260351
+      },
+      "layers.9.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.8737988893750206,
+        "relative_error": 0.011539466282189182,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01102857363325582
+      },
+      "layers.9.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.3236271499265055,
+        "relative_error": 0.023096360976837482,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01438389912897666
+      },
+      "layers.9.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 105.36687787971074,
+        "relative_error": 0.017514607873550914,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011125943867960066
+      },
+      "layers.9.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 75.1844643922083,
+        "relative_error": 0.020761622368226096,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01829339153549842
+      },
+      "layers.9.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 89.86476852770008,
+        "relative_error": 0.014870415060512772,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013071670607846014
+      },
+      "layers.10.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 61.75724295428947,
+        "relative_error": 0.019055509752599824,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016327541341561586
+      },
+      "layers.10.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 129.82252153577667,
+        "relative_error": 0.023753472766134747,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014863592591664573
+      },
+      "layers.10.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 58.77934765940357,
+        "relative_error": 0.009516390601540352,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006820118757191521
+      },
+      "layers.10.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.9806189454906498,
+        "relative_error": 0.010388953307054563,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.010838807735832245
+      },
+      "layers.10.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 2.2551217001146284,
+        "relative_error": 0.043552908023978806,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.03008457841857093
+      },
+      "layers.10.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 101.55539629621119,
+        "relative_error": 0.018530480580144972,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012321001365751027
+      },
+      "layers.10.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 76.61550589244143,
+        "relative_error": 0.021749009850396638,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018711183842547517
+      },
+      "layers.10.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 91.77125323572781,
+        "relative_error": 0.01616506091438062,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014542826834774047
+      },
+      "layers.11.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 112.3481461726249,
+        "relative_error": 0.014893879572792267,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007137686842798772
+      },
+      "layers.11.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 15.999779966905422,
+        "relative_error": 0.024856343504860382,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012514384144042094
+      },
+      "layers.11.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 10.41542522471443,
+        "relative_error": 0.02659231981218836,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015984758395162727
+      },
+      "layers.11.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.30804518175094,
+        "relative_error": 0.01667001800848358,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.027138560857724345
+      },
+      "layers.11.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 96.41997365909697,
+        "relative_error": 0.016815677642254768,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.010677379359449056
+      },
+      "layers.11.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 83.7418496966889,
+        "relative_error": 0.022268667463853312,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01773673439501039
+      },
+      "layers.11.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 92.75948256785874,
+        "relative_error": 0.014599386217291713,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013076181594483618
+      },
+      "layers.12.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 58.99386598998939,
+        "relative_error": 0.01801775280173506,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.019501289307902635
+      },
+      "layers.12.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 133.99927492388133,
+        "relative_error": 0.022077432286805997,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015304851949149337
+      },
+      "layers.12.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 56.49521128711591,
+        "relative_error": 0.010363431192482146,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007156461029056736
+      },
+      "layers.12.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.7312464370612626,
+        "relative_error": 0.008771020649392194,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007601756316628641
+      },
+      "layers.12.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.594134843537582,
+        "relative_error": 0.026110022467766794,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01780379315573932
+      },
+      "layers.12.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 92.2844082583841,
+        "relative_error": 0.016935199820489587,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01030351879678346
+      },
+      "layers.12.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 87.40770596190146,
+        "relative_error": 0.022534973200552387,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018520973288201483
+      },
+      "layers.12.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 93.09300897883013,
+        "relative_error": 0.014945903016158816,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013433294404922975
+      },
+      "layers.13.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.58944212627389,
+        "relative_error": 0.017337112066387165,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016716097507743125
+      },
+      "layers.13.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 119.8613736614855,
+        "relative_error": 0.022524056587480492,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015121443298084592
+      },
+      "layers.13.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 55.12322808831546,
+        "relative_error": 0.007535152543591652,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005158547308671437
+      },
+      "layers.13.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.0010104546741299,
+        "relative_error": 0.015716190229780075,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012675979053861322
+      },
+      "layers.13.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.5011642480905718,
+        "relative_error": 0.04242060204373715,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017527149274108658
+      },
+      "layers.13.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 89.60168046319214,
+        "relative_error": 0.017199434401694906,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011423661742652866
+      },
+      "layers.13.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 87.0048895696482,
+        "relative_error": 0.0226542046354521,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01817473580941465
+      },
+      "layers.13.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 91.19173193668146,
+        "relative_error": 0.014907287304335713,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0132916899033141
+      },
+      "layers.14.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.215229445409776,
+        "relative_error": 0.018649314976651003,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016438361944412432
+      },
+      "layers.14.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 127.15315640995054,
+        "relative_error": 0.022867268732482383,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014457364705491305
+      },
+      "layers.14.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 55.86877500958463,
+        "relative_error": 0.009924455861654002,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006502165777320432
+      },
+      "layers.14.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.9968328141252194,
+        "relative_error": 0.019802963371189326,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011493735879319851
+      },
+      "layers.14.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.3395809394653226,
+        "relative_error": 0.03610512679742142,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017746716526815032
+      },
+      "layers.14.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 85.76532583052818,
+        "relative_error": 0.018434966443989734,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012760781267510242
+      },
+      "layers.14.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 84.52230260525076,
+        "relative_error": 0.022894342435350195,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018138810966091785
+      },
+      "layers.14.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 91.8614252572929,
+        "relative_error": 0.015280005070455778,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013459593274920882
+      },
+      "layers.15.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 106.4727083122978,
+        "relative_error": 0.015398739913769829,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006655419163354001
+      },
+      "layers.15.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 16.595217477245633,
+        "relative_error": 0.02049534011603677,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012486259590731812
+      },
+      "layers.15.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 12.3222565124611,
+        "relative_error": 0.02213529276967358,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013481109700761884
+      },
+      "layers.15.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 60.28209441543707,
+        "relative_error": 0.017169015343608023,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.02764548617403875
+      },
+      "layers.15.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 85.45039251889716,
+        "relative_error": 0.017086239272445392,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011470983727060187
+      },
+      "layers.15.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 91.12696451037812,
+        "relative_error": 0.02266557950950205,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017851716810508456
+      },
+      "layers.15.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 93.71991956201057,
+        "relative_error": 0.015425932850114416,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013254903429422791
+      },
+      "layers.16.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 56.24135912775459,
+        "relative_error": 0.01853741876427467,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017235368463260358
+      },
+      "layers.16.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 123.08283686958416,
+        "relative_error": 0.020327725383078726,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014237902154176838
+      },
+      "layers.16.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 53.027830024539185,
+        "relative_error": 0.009408400032058967,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006189244767028039
+      },
+      "layers.16.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.6287155045943287,
+        "relative_error": 0.01041218021398485,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007783353020367932
+      },
+      "layers.16.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.1538463849434804,
+        "relative_error": 0.022592764309187895,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015523682589501781
+      },
+      "layers.16.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 86.89470582961164,
+        "relative_error": 0.016768552031584807,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009956489407959727
+      },
+      "layers.16.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 93.15387636815657,
+        "relative_error": 0.021622921957577593,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017413754532403982
+      },
+      "layers.16.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 95.69723197958754,
+        "relative_error": 0.01579130854908865,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014542423451697
+      },
+      "layers.17.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.64602381670061,
+        "relative_error": 0.017395341296440783,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016058318276635244
+      },
+      "layers.17.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 138.12878710623892,
+        "relative_error": 0.020664625542955412,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013408112956618881
+      },
+      "layers.17.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 49.02397844206038,
+        "relative_error": 0.007494523206311707,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004110554650436276
+      },
+      "layers.17.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.5725516083992677,
+        "relative_error": 0.015396081731052984,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009489878206494003
+      },
+      "layers.17.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.9515592613314956,
+        "relative_error": 0.026768691594626567,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012133585491637199
+      },
+      "layers.17.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 85.60577374102178,
+        "relative_error": 0.016782268480385748,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009832957381628
+      },
+      "layers.17.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 95.23443140884646,
+        "relative_error": 0.021322413442871068,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017773114950065533
+      },
+      "layers.17.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 96.82430343115863,
+        "relative_error": 0.015969500274608178,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014409971163257328
+      },
+      "layers.18.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 58.10818147935375,
+        "relative_error": 0.01929635586013007,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016236407549684168
+      },
+      "layers.18.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 136.85424121210218,
+        "relative_error": 0.020259746923316807,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012514013427760998
+      },
+      "layers.18.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 53.477417806485406,
+        "relative_error": 0.010300855276493876,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005137463911123954
+      },
+      "layers.18.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.609810172339483,
+        "relative_error": 0.01580364998242081,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.008687748243923701
+      },
+      "layers.18.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.8593802810427067,
+        "relative_error": 0.020960587503350878,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0077901995953430425
+      },
+      "layers.18.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 92.97700320946944,
+        "relative_error": 0.016542466370430272,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00893784444243949
+      },
+      "layers.18.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 97.6548315926637,
+        "relative_error": 0.021707542559606136,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016306608375845646
+      },
+      "layers.18.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 102.86565200272148,
+        "relative_error": 0.01841830976305221,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01605817958633129
+      },
+      "layers.19.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 100.73976992972112,
+        "relative_error": 0.01492448264060118,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005768632970671209
+      },
+      "layers.19.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 15.368448620119036,
+        "relative_error": 0.013829922736520674,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0084184138778773
+      },
+      "layers.19.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 24.843393995988905,
+        "relative_error": 0.021028438822981083,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01598601564320133
+      },
+      "layers.19.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 77.23315976717679,
+        "relative_error": 0.018621706247919367,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01658169995451812
+      },
+      "layers.19.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 93.40300788943512,
+        "relative_error": 0.01561797244008242,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0076492033672979085
+      },
+      "layers.19.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 105.09242917490192,
+        "relative_error": 0.019884975453664522,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.016396991247790562
+      },
+      "layers.19.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 104.90089814833954,
+        "relative_error": 0.016820207954725712,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015054817123723883
+      },
+      "layers.20.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.598652042224124,
+        "relative_error": 0.018192033877022517,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017688958977399704
+      },
+      "layers.20.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 167.27159389029046,
+        "relative_error": 0.01583495228814852,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007328980754141474
+      },
+      "layers.20.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 60.40165017625225,
+        "relative_error": 0.01384209788279515,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004884400935495556
+      },
+      "layers.20.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.46564956758916687,
+        "relative_error": 0.01501437823289632,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006890661259402921
+      },
+      "layers.20.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.490044096316625,
+        "relative_error": 0.021332498646489267,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00949049054197488
+      },
+      "layers.20.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 106.34399133703339,
+        "relative_error": 0.015114506984505238,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006542070539958268
+      },
+      "layers.20.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 102.0424977748516,
+        "relative_error": 0.018525619367802698,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015263231405777088
+      },
+      "layers.20.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 99.07057904298036,
+        "relative_error": 0.015747214289222593,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015498780805637965
+      },
+      "layers.21.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 61.42017618114261,
+        "relative_error": 0.019452572195470693,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.018043049216580297
+      },
+      "layers.21.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 164.15951460858298,
+        "relative_error": 0.016075940167197655,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007532748315849224
+      },
+      "layers.21.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 62.89318673374774,
+        "relative_error": 0.01463937762749652,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00480731635814836
+      },
+      "layers.21.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.5803519021059305,
+        "relative_error": 0.016757471113288912,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0066254690141425805
+      },
+      "layers.21.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.7802066652874071,
+        "relative_error": 0.023915865073849202,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011641790264159171
+      },
+      "layers.21.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 112.7986697195588,
+        "relative_error": 0.015364317881588726,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006961329666744808
+      },
+      "layers.21.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 101.66627226864532,
+        "relative_error": 0.017987962774129326,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014312251588525046
+      },
+      "layers.21.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 98.82573681761974,
+        "relative_error": 0.01565450067464195,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015100732525111937
+      },
+      "layers.22.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 62.57196113841116,
+        "relative_error": 0.018695907935309182,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.017867683796526524
+      },
+      "layers.22.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 157.25231065604942,
+        "relative_error": 0.016410011331635155,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00807598673278373
+      },
+      "layers.22.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 69.10817431585605,
+        "relative_error": 0.014526012966043276,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004615073657930514
+      },
+      "layers.22.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.5764478061860057,
+        "relative_error": 0.022468705329937753,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013455276568567537
+      },
+      "layers.22.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 1.9728265156151303,
+        "relative_error": 0.02640665294089392,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.010387124979736189
+      },
+      "layers.22.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 127.05901487476955,
+        "relative_error": 0.015200645264960778,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0057886346360097405
+      },
+      "layers.22.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 103.00214610626294,
+        "relative_error": 0.018205473617258137,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011644517708828414
+      },
+      "layers.22.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 101.02592881958807,
+        "relative_error": 0.01729905522235376,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014444900818886091
+      },
+      "layers.23.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 110.16019562299033,
+        "relative_error": 0.01501116517636633,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004806548182863934
+      },
+      "layers.23.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 17.397771000289396,
+        "relative_error": 0.012175856974420717,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009142200447346911
+      },
+      "layers.23.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 29.668726350285304,
+        "relative_error": 0.019007418553789502,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01386369847022873
+      },
+      "layers.23.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 84.87019729997984,
+        "relative_error": 0.01983544438117981,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.02228779602889858
+      },
+      "layers.23.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 117.18745910361108,
+        "relative_error": 0.014471653760386718,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0057817211410050575
+      },
+      "layers.23.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 104.16301755434654,
+        "relative_error": 0.016993019241598177,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014258269326502516
+      },
+      "layers.23.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 101.40077190148088,
+        "relative_error": 0.01578428991339339,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01514644893238353
+      },
+      "layers.24.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 63.0728684049094,
+        "relative_error": 0.019023540294904905,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01633803284555569
+      },
+      "layers.24.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 172.29122716746053,
+        "relative_error": 0.015749930021224576,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00650529099311532
+      },
+      "layers.24.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 67.10334229035215,
+        "relative_error": 0.0146289957620911,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004937080886629655
+      },
+      "layers.24.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.56832006161243,
+        "relative_error": 0.016050864383783742,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.007183338167483331
+      },
+      "layers.24.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 2.5294543988185443,
+        "relative_error": 0.02698518872712114,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013176494258543824
+      },
+      "layers.24.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 123.08664724341176,
+        "relative_error": 0.014249102611137394,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005789647083561676
+      },
+      "layers.24.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 103.75721373012138,
+        "relative_error": 0.01688552529578478,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013955435956093921
+      },
+      "layers.24.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 101.03927982305302,
+        "relative_error": 0.015076050024102002,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014228114749355248
+      },
+      "layers.25.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 65.50182502070228,
+        "relative_error": 0.019319857996161524,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01578105783599727
+      },
+      "layers.25.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 175.947005755982,
+        "relative_error": 0.01577895430556252,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0059076847043222965
+      },
+      "layers.25.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 69.23096013822706,
+        "relative_error": 0.014127710582288172,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005220982599941484
+      },
+      "layers.25.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.550214263565016,
+        "relative_error": 0.014546038984258785,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.008747662665571
+      },
+      "layers.25.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 2.834615008596286,
+        "relative_error": 0.03121796764543555,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012937147940656712
+      },
+      "layers.25.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 130.8573777423165,
+        "relative_error": 0.014178459037476915,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004734522529562626
+      },
+      "layers.25.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 105.44224921790298,
+        "relative_error": 0.017174356532741776,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014207257023669045
+      },
+      "layers.25.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 102.49220453584833,
+        "relative_error": 0.015136563074715892,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.014374314679054364
+      },
+      "layers.26.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 67.11496583480158,
+        "relative_error": 0.018327425675413414,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01647984091159187
+      },
+      "layers.26.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 165.42360330409477,
+        "relative_error": 0.015909031785556055,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006965624279213941
+      },
+      "layers.26.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 74.95928812536432,
+        "relative_error": 0.013438788661864277,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004889580799062315
+      },
+      "layers.26.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.6718321085253467,
+        "relative_error": 0.01755148925392246,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005784997017186471
+      },
+      "layers.26.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 3.3877264163408793,
+        "relative_error": 0.030812023111801548,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.02312985563890212
+      },
+      "layers.26.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 138.82544155346125,
+        "relative_error": 0.014563588155139242,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004416410091086466
+      },
+      "layers.26.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 108.52324691285229,
+        "relative_error": 0.017766284161177884,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013514562020944521
+      },
+      "layers.26.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 102.65341631618517,
+        "relative_error": 0.017962029905080813,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012593885555969494
+      },
+      "layers.27.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 109.34682579152407,
+        "relative_error": 0.014451441760594076,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005547911706702031
+      },
+      "layers.27.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 19.76506223803917,
+        "relative_error": 0.01332930666200065,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.009147535227701266
+      },
+      "layers.27.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 55.3623990691649,
+        "relative_error": 0.016302582203778053,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0064571328174926595
+      },
+      "layers.27.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 97.601934208285,
+        "relative_error": 0.02617800275127889,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.02121893774947803
+      },
+      "layers.27.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 136.32500371906895,
+        "relative_error": 0.014830874324994579,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004585420289071904
+      },
+      "layers.27.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 109.87292350837097,
+        "relative_error": 0.017491674781778894,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.012623216014885481
+      },
+      "layers.27.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 108.11024125236665,
+        "relative_error": 0.016529398494400296,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013349993005322896
+      },
+      "layers.28.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 66.84880225561375,
+        "relative_error": 0.02222847029542177,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01742479884878926
+      },
+      "layers.28.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 183.5178240832533,
+        "relative_error": 0.01581267717024975,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005120282613478117
+      },
+      "layers.28.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 72.71668219904102,
+        "relative_error": 0.013713562528623704,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.003300107098731999
+      },
+      "layers.28.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.5100965815047475,
+        "relative_error": 0.019316196235954982,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011255493130961467
+      },
+      "layers.28.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 3.235905182993169,
+        "relative_error": 0.03306280440768961,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.015278546437340584
+      },
+      "layers.28.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 138.36871997593198,
+        "relative_error": 0.014453065320411601,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.003959028484961914
+      },
+      "layers.28.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 113.50014794755329,
+        "relative_error": 0.0174295799501419,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011649230124073416
+      },
+      "layers.28.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 110.2954752550738,
+        "relative_error": 0.016201880842901285,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01499265350098791
+      },
+      "layers.29.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 69.52097110127848,
+        "relative_error": 0.01812140939016571,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01736087678519885
+      },
+      "layers.29.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 160.14977429631585,
+        "relative_error": 0.01608922873175643,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006552276204846553
+      },
+      "layers.29.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 76.17475609990858,
+        "relative_error": 0.013487460189144153,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.003507008496421032
+      },
+      "layers.29.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.6045481381290903,
+        "relative_error": 0.016970424236804855,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0058477960417306265
+      },
+      "layers.29.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 3.7647002450393368,
+        "relative_error": 0.029661678056038792,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01146717480196602
+      },
+      "layers.29.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 145.17430879966477,
+        "relative_error": 0.014754703198146374,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.004011000562818723
+      },
+      "layers.29.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 117.88105727456707,
+        "relative_error": 0.017670093478954176,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.010165292105827414
+      },
+      "layers.29.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 112.87372561500263,
+        "relative_error": 0.017784237477743516,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01559395125518916
+      },
+      "layers.30.linear_attn.out_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 78.6071298423793,
+        "relative_error": 0.02405502978407009,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.019935221017118712
+      },
+      "layers.30.linear_attn.in_proj_qkv": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 170.0024139900336,
+        "relative_error": 0.016947038285470038,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.005553095239932209
+      },
+      "layers.30.linear_attn.in_proj_z": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 76.15172847721081,
+        "relative_error": 0.015468113869533017,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0038499346687477457
+      },
+      "layers.30.linear_attn.in_proj_b": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 0.6079913115773388,
+        "relative_error": 0.02169948410522265,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00579238757032209
+      },
+      "layers.30.linear_attn.in_proj_a": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          32,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 4.157033733846508,
+        "relative_error": 0.04268796875303564,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.020074615524789473
+      },
+      "layers.30.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 145.270855062463,
+        "relative_error": 0.015569318211348231,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0037106891835029963
+      },
+      "layers.30.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 120.25073519018704,
+        "relative_error": 0.017655648209484693,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006829394289205322
+      },
+      "layers.30.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 117.16416808614619,
+        "relative_error": 0.019138366253777253,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.013530883174004327
+      },
+      "layers.31.self_attn.q_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          8192,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 116.65863346891226,
+        "relative_error": 0.01511444084555235,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0039025035517729735
+      },
+      "layers.31.self_attn.k_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 21.61858815604047,
+        "relative_error": 0.01556957801203478,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.011519713416730006
+      },
+      "layers.31.self_attn.v_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          1024,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 59.45631599837944,
+        "relative_error": 0.02215819081146557,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0034684168117151424
+      },
+      "layers.31.self_attn.o_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 106.55923517237764,
+        "relative_error": 0.031762166905154286,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.01791086475313539
+      },
+      "layers.31.mlp.gate_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 159.61554668310808,
+        "relative_error": 0.016956866320787967,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.00297668113571633
+      },
+      "layers.31.mlp.up_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          12288,
+          4096
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 129.97231150797614,
+        "relative_error": 0.018656494754700083,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.0043051618128160385
+      },
+      "layers.31.mlp.down_proj": {
+        "method": "rtn",
+        "bits": 4,
+        "group_size": 128,
+        "shape": [
+          4096,
+          12288
+        ],
+        "alpha": 0.0,
+        "clipping_ratio": 1.0,
+        "weighted_error": 114.28997738371794,
+        "relative_error": 0.034912904141185815,
+        "calibration_rows": 17864,
+        "reservoir_relative_error": 0.006720434835887278
+      }
+    }
+  },
+  "storage": {
+    "quantized_parameter_count": 6918504448,
+    "total_parameter_count": 7938782208,
+    "quantized_parameter_fraction": 0.8714818301764401,
+    "packed_linears_bytes": 3680567296,
+    "retained_native_parameters_bytes": 2044750848,
+    "estimated_complete_packed_parameters_bytes": 5725318144,
+    "native_parameters_bytes": 15881759744,
+    "estimated_parameter_storage_ratio": 0.360496458596975,
+    "note": "Storage estimate, not measured GPU memory or integer-kernel speedup. Retained embeddings, heads, biases and recurrent parameters included."
+  },
+  "candidate_seconds": 36.831850294955075
+}

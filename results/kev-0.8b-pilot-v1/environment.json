@@ -1,0 +1,31 @@
+{
+  "model": {
+    "name": "kev-0.8b",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "jaredpalmer/kev-0.8b",
+    "revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+    "base": "Qwen/Qwen3.5-0.8B-Base",
+    "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+    "native_temperature": 2.3510958125672174,
+    "hybrid": true,
+    "context": {
+      "max_state": 384,
+      "max_branch": 1024,
+      "max_packed": 2048
+    },
+    "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+  },
+  "packages": {
+    "torch": "2.7.1+cu118",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "datasets": "5.0.1",
+    "huggingface-hub": "1.29.0"
+  },
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "seed": 20261001,
+  "data_manifest_sha256": "be103a98723e2de9b9b572659927ca1cbd8b8854ae9fbc6355d757367fc9e98d",
+  "gpu": "NVIDIA A100 80GB PCIe"
+}

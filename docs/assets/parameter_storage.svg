@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="605.592pt" height="329.98375pt" viewBox="0 0 605.592 329.98375" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>S1Q complete parameter storage ratios</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>S1Q complete parameter storage ratios</dc:title>
+    <dc:description>Selected mixed precision profiles. Native parameter bytes are the denominator; retained parameters and scale metadata included. Storage estimates, no speedup inference.</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>S1Q</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 329.98375 
+L 605.592 329.98375 
+L 605.592 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 80.424 256.32 
+L 594.072 256.32 
+L 594.072 57.6 
+L 80.424 57.6 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 80.424 256.32 
+L 80.424 57.6 
+" clip-path="url(#p2acb3e8d61)" style="fill: none; stroke: #e6e6e6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m35a85267a6" d="M 0 0 
+L 0 3.5 
+" style="stroke: #252525; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m35a85267a6" x="80.424" y="256.32" style="fill: #252525; stroke: #252525; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: middle" x="80.424" y="269.39875" transform="rotate(-0 80.424 269.39875)">0.0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 173.814545 256.32 
+L 173.814545 57.6 
+" clip-path="url(#p2acb3e8d61)" style="fill: none; stroke: #e6e6e6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m35a85267a6" x="173.814545" y="256.32" style="fill: #252525; stroke: #252525; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: middle" x="173.814545" y="269.39875" transform="rotate(-0 173.814545 269.39875)">0.2</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 267.205091 256.32 
+L 267.205091 57.6 
+" clip-path="url(#p2acb3e8d61)" style="fill: none; stroke: #e6e6e6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m35a85267a6" x="267.205091" y="256.32" style="fill: #252525; stroke: #252525; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: middle" x="267.205091" y="269.39875" transform="rotate(-0 267.205091 269.39875)">0.4</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 360.595636 256.32 
+L 360.595636 57.6 
+" clip-path="url(#p2acb3e8d61)" style="fill: none; stroke: #e6e6e6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m35a85267a6" x="360.595636" y="256.32" style="fill: #252525; stroke: #252525; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: middle" x="360.595636" y="269.39875" transform="rotate(-0 360.595636 269.39875)">0.6</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 453.986182 256.32 
+L 453.986182 57.6 
+" clip-path="url(#p2acb3e8d61)" style="fill: none; stroke: #e6e6e6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m35a85267a6" x="453.986182" y="256.32" style="fill: #252525; stroke: #252525; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: middle" x="453.986182" y="269.39875" transform="rotate(-0 453.986182 269.39875)">0.8</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 547.376727 256.32 
+L 547.376727 57.6 
+" clip-path="url(#p2acb3e8d61)" style="fill: none; stroke: #e6e6e6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m35a85267a6" x="547.376727" y="256.32" style="fill: #252525; stroke: #252525; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: middle" x="547.376727" y="269.39875" transform="rotate(-0 547.376727 269.39875)">1.0</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="fill: #252525; font: 9px 'DejaVu Sans'; text-anchor: middle" x="337.248" y="286.901094" transform="rotate(-0 337.248 286.901094)">Estimated complete parameter bytes / native parameter bytes</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13"/>
+     <g id="text_8">
+      <text style="fill: #252525; font: 9px 'DejaVu Sans'; text-anchor: end" x="72.424" y="79.729946" transform="rotate(-0 72.424 79.729946)">Kev-0.8B</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_14"/>
+     <g id="text_9">
+      <text style="fill: #252525; font: 9px 'DejaVu Sans'; text-anchor: end" x="72.424" y="120.054622" transform="rotate(-0 72.424 120.054622)">Kev-4B</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_15"/>
+     <g id="text_10">
+      <text style="fill: #252525; font: 9px 'DejaVu Sans'; text-anchor: end" x="72.424" y="160.379297" transform="rotate(-0 72.424 160.379297)">Kev-9B</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_16"/>
+     <g id="text_11">
+      <text style="fill: #252525; font: 9px 'DejaVu Sans'; text-anchor: end" x="72.424" y="200.703972" transform="rotate(-0 72.424 200.703972)">NanoJev</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_17"/>
+     <g id="text_12">
+      <text style="fill: #252525; font: 9px 'DejaVu Sans'; text-anchor: end" x="72.424" y="241.028648" transform="rotate(-0 72.424 241.028648)">Laya</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 80.424 66.632727 
+L 321.237297 66.632727 
+L 321.237297 85.988571 
+L 80.424 85.988571 
+z
+" clip-path="url(#p2acb3e8d61)" style="fill: #245a81"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 80.424 106.957403 
+L 256.749233 106.957403 
+L 256.749233 126.313247 
+L 80.424 126.313247 
+z
+" clip-path="url(#p2acb3e8d61)" style="fill: #245a81"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 80.424 147.282078 
+L 248.758805 147.282078 
+L 248.758805 166.637922 
+L 80.424 166.637922 
+z
+" clip-path="url(#p2acb3e8d61)" style="fill: #245a81"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 80.424 187.606753 
+L 248.508185 187.606753 
+L 248.508185 206.962597 
+L 80.424 206.962597 
+z
+" clip-path="url(#p2acb3e8d61)" style="fill: #245a81"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 80.424 227.931429 
+L 217.7468 227.931429 
+L 217.7468 247.287273 
+L 80.424 247.287273 
+z
+" clip-path="url(#p2acb3e8d61)" style="fill: #245a81"/>
+   </g>
+   <g id="line2d_18">
+    <path d="M 547.376727 256.32 
+L 547.376727 57.6 
+" clip-path="url(#p2acb3e8d61)" style="fill: none; stroke-dasharray: 2.7,2.7; stroke-dashoffset: 0; stroke: #252525; stroke-width: 0.9"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 80.424 256.32 
+L 80.424 57.6 
+" style="fill: none; stroke: #8a8a8a; stroke-width: 0.6; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 80.424 256.32 
+L 594.072 256.32 
+" style="fill: none; stroke: #8a8a8a; stroke-width: 0.6; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_13">
+    <text style="fill: #737373; font: 8px 'DejaVu Sans'; text-anchor: middle" x="547.376727" y="53.516851" transform="rotate(-0 547.376727 53.516851)">native = 1</text>
+   </g>
+   <g id="text_14">
+    <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: start" x="332.911115" y="78.518149" transform="rotate(-0 332.911115 78.518149)">0.516   (66.1% of parameters quantized)</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: start" x="268.423051" y="118.842825" transform="rotate(-0 268.423051 118.842825)">0.378   (84.8% of parameters quantized)</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: start" x="260.432623" y="159.1675" transform="rotate(-0 260.432623 159.1675)">0.360   (87.1% of parameters quantized)</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: start" x="260.182003" y="199.492175" transform="rotate(-0 260.182003 199.492175)">0.360   (73.9% of parameters quantized)</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #252525; font: 8px 'DejaVu Sans'; text-anchor: start" x="229.420618" y="239.816851" transform="rotate(-0 229.420618 239.816851)">0.294   (81.5% of parameters quantized)</text>
+   </g>
+  </g>
+  <g id="text_19">
+   <text style="fill: #252525; font: 12px 'DejaVu Sans'; text-anchor: start" x="11.52" y="20.638125" transform="rotate(-0 11.52 20.638125)">Parameter storage estimates for the selected profiles</text>
+  </g>
+  <g id="text_20">
+   <text style="fill: #737373; font: 8px 'DejaVu Sans'" transform="translate(11.52 307.84175)">Includes scales and retained embeddings, heads, biases and recurrent parameters.</text>
+   <text style="fill: #737373; font: 8px 'DejaVu Sans'" transform="translate(11.52 316.8)">These estimates describe parameter storage; measured CUDA allocation is reported separately. Floating point execution remains.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p2acb3e8d61">
+   <rect x="80.424" y="57.6" width="513.648" height="198.72"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,338 @@
+{
+  "schema": "s1q-paper-figures.v1",
+  "aggregate_sha256": "8c75a1ecd0e3a8698b1773006c907096d95ab350f8e9dc9523a6665beb294d3d",
+  "plotter_sha256": "145e47666d98e740553f01b9e743d15f6e55d0bd097a7831a0e62117cb7c734a",
+  "matplotlib_version": "3.8.4",
+  "bootstrap_samples": 2000,
+  "seed": 20261001,
+  "figures": [
+    {
+      "name": "paired_accuracy",
+      "files": {
+        "paired_accuracy.svg": {
+          "sha256": "06d8d10afa7395c850a2f264ccbb0818faa4a723b80b93b6be457856dd5e7286",
+          "bytes": 26317
+        },
+        "paired_accuracy.pdf": {
+          "sha256": "154928bfc71b4f4c5c5bdcb3fa8c63ca42c92c89261f9f0749fe4de1b0ac1623",
+          "bytes": 18491
+        },
+        "paired_accuracy.png": {
+          "sha256": "ff24c1609e668c0f1badae58723845bfdf6047c9d95657f90675ea332524f19d",
+          "bytes": 178211
+        }
+      },
+      "chart_points": [
+        {
+          "model": "kev-0.8b",
+          "run": "kev-0.8b-validation-v2",
+          "split": "test",
+          "selected": "s1q-fisher",
+          "matched_rtn": "rtn",
+          "n": 914,
+          "n_clusters": 631,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 0.5470459518599562,
+          "lower_95_pp": -1.0673789969815088,
+          "upper_95_pp": 2.178649237472767,
+          "summary_sha256": "cedd8c70b3b77231b788d1507b5d9568c24dccd66e9f7f3d9d066714d7daf1ba"
+        },
+        {
+          "model": "kev-4b",
+          "run": "kev-4b-validation-v2",
+          "split": "test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn",
+          "n": 914,
+          "n_clusters": 631,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 0.0,
+          "lower_95_pp": -1.3606334454033449,
+          "upper_95_pp": 1.303073682415751,
+          "summary_sha256": "9f0ada3ab8a8b341e96e4b3f8c46f3fbd6833408dee474bb2238f194ece641b5"
+        },
+        {
+          "model": "kev-9b",
+          "run": "kev-9b-validation-v2",
+          "split": "test",
+          "selected": "s1q-a8",
+          "matched_rtn": "rtn-matched",
+          "n": 914,
+          "n_clusters": 631,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 2.1881838074398248,
+          "lower_95_pp": 0.7599817392162669,
+          "upper_95_pp": 3.707843832889667,
+          "summary_sha256": "142c8ae115ef6eff9e3ae4c2133ea97bb61eca1b3e223d1143762af54064e340"
+        },
+        {
+          "model": "nanojev",
+          "run": "nanojev-validation-v2",
+          "split": "test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn",
+          "n": 1023,
+          "n_clusters": 102,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 0.9775171065493646,
+          "lower_95_pp": -0.10864715654766656,
+          "upper_95_pp": 2.305490608328953,
+          "summary_sha256": "b4c1492d012a99d219e54ca47961b4c80745656d773da088e539592c07de79f0"
+        },
+        {
+          "model": "laya",
+          "run": "laya-validation-v2",
+          "split": "test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn",
+          "n": 914,
+          "n_clusters": 631,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 0.87527352297593,
+          "lower_95_pp": -1.2673953582421533,
+          "upper_95_pp": 3.0985247872733988,
+          "summary_sha256": "00d8fe82e73a06619bf45e1721d4fab2f56f86804f983cd9775807f461fb7ace"
+        },
+        {
+          "model": "kev-0.8b",
+          "run": "kev-0.8b-validation-v2",
+          "split": "transfer_test",
+          "selected": "s1q-fisher",
+          "matched_rtn": "rtn",
+          "n": 630,
+          "n_clusters": 518,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": -2.380952380952381,
+          "lower_95_pp": -5.379837177607533,
+          "upper_95_pp": 0.4792716269353647,
+          "summary_sha256": "cedd8c70b3b77231b788d1507b5d9568c24dccd66e9f7f3d9d066714d7daf1ba"
+        },
+        {
+          "model": "kev-4b",
+          "run": "kev-4b-validation-v2",
+          "split": "transfer_test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn",
+          "n": 630,
+          "n_clusters": 518,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 2.0634920634920633,
+          "lower_95_pp": 0.15746795386840381,
+          "upper_95_pp": 4.098587263356899,
+          "summary_sha256": "9f0ada3ab8a8b341e96e4b3f8c46f3fbd6833408dee474bb2238f194ece641b5"
+        },
+        {
+          "model": "kev-9b",
+          "run": "kev-9b-validation-v2",
+          "split": "transfer_test",
+          "selected": "s1q-a8",
+          "matched_rtn": "rtn-matched",
+          "n": 630,
+          "n_clusters": 518,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": -0.15873015873015872,
+          "lower_95_pp": -1.788763776707914,
+          "upper_95_pp": 1.5675213422448289,
+          "summary_sha256": "142c8ae115ef6eff9e3ae4c2133ea97bb61eca1b3e223d1143762af54064e340"
+        },
+        {
+          "model": "nanojev",
+          "run": "nanojev-validation-v2",
+          "split": "ood",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn",
+          "n": 1024,
+          "n_clusters": 150,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 0.87890625,
+          "lower_95_pp": -0.09328358208955223,
+          "upper_95_pp": 1.857083864125366,
+          "summary_sha256": "b4c1492d012a99d219e54ca47961b4c80745656d773da088e539592c07de79f0"
+        },
+        {
+          "model": "laya",
+          "run": "laya-validation-v2",
+          "split": "transfer_test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn",
+          "n": 630,
+          "n_clusters": 518,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 0.9523809523809524,
+          "lower_95_pp": -1.9332382988833452,
+          "upper_95_pp": 3.9252148227712107,
+          "summary_sha256": "00d8fe82e73a06619bf45e1721d4fab2f56f86804f983cd9775807f461fb7ace"
+        }
+      ],
+      "axis_limits_pp": [
+        -6.517248110523266,
+        5.2359981962726305
+      ],
+      "interpretation": "Exploratory paired changes; no significance annotations or pooled cross-model rate."
+    },
+    {
+      "name": "parameter_storage",
+      "files": {
+        "parameter_storage.svg": {
+          "sha256": "d5d54239f76b9b6524386be80a4c917a207b787cf70192759e8dc212f8e7827d",
+          "bytes": 10402
+        },
+        "parameter_storage.pdf": {
+          "sha256": "5f129c32b8410d082275111dc2eabb0170415da35099f3862fef8862091d0bda",
+          "bytes": 15514
+        },
+        "parameter_storage.png": {
+          "sha256": "49c49dcbba16e9c6afd67659247dda682ae18bc74fc88ce64ee791d24750632c",
+          "bytes": 148581
+        }
+      },
+      "chart_points": [
+        {
+          "model": "kev-0.8b",
+          "run": "kev-0.8b-validation-v2",
+          "selected": "s1q-fisher",
+          "ratio": 0.5157123682983988,
+          "quantized_parameter_fraction": 0.6609152182854952,
+          "native_parameters_bytes": 1506885248,
+          "estimated_complete_packed_parameters_bytes": 777119360,
+          "summary_sha256": "cedd8c70b3b77231b788d1507b5d9568c24dccd66e9f7f3d9d066714d7daf1ba"
+        },
+        {
+          "model": "kev-4b",
+          "run": "kev-4b-validation-v2",
+          "selected": "s1q-local",
+          "ratio": 0.3776083158545309,
+          "quantized_parameter_fraction": 0.8483569084714112,
+          "native_parameters_bytes": 8416747520,
+          "estimated_complete_packed_parameters_bytes": 3178233856,
+          "summary_sha256": "9f0ada3ab8a8b341e96e4b3f8c46f3fbd6833408dee474bb2238f194ece641b5"
+        },
+        {
+          "model": "kev-9b",
+          "run": "kev-9b-validation-v2",
+          "selected": "s1q-a8",
+          "ratio": 0.360496458596975,
+          "quantized_parameter_fraction": 0.8714818301764401,
+          "native_parameters_bytes": 15881759744,
+          "estimated_complete_packed_parameters_bytes": 5725318144,
+          "summary_sha256": "142c8ae115ef6eff9e3ae4c2133ea97bb61eca1b3e223d1143762af54064e340"
+        },
+        {
+          "model": "nanojev",
+          "run": "nanojev-validation-v2",
+          "selected": "s1q-local",
+          "ratio": 0.35995974631454314,
+          "quantized_parameter_fraction": 0.7386189554176271,
+          "native_parameters_bytes": 2385001992,
+          "estimated_complete_packed_parameters_bytes": 858504712,
+          "summary_sha256": "b4c1492d012a99d219e54ca47961b4c80745656d773da088e539592c07de79f0"
+        },
+        {
+          "model": "laya",
+          "run": "laya-validation-v2",
+          "selected": "s1q-local",
+          "ratio": 0.2940828729493822,
+          "quantized_parameter_fraction": 0.8145063468969366,
+          "native_parameters_bytes": 1685175308,
+          "estimated_complete_packed_parameters_bytes": 495581196,
+          "summary_sha256": "00d8fe82e73a06619bf45e1721d4fab2f56f86804f983cd9775807f461fb7ace"
+        }
+      ],
+      "interpretation": "Parameter estimate only; no measured memory or speedup inference."
+    },
+    {
+      "name": "external_accuracy",
+      "files": {
+        "external_accuracy.svg": {
+          "sha256": "6fc51d39c074f2db47202091e7fe657ffb763b14bbf8b3a75e6bc887a4a3765d",
+          "bytes": 13320
+        },
+        "external_accuracy.pdf": {
+          "sha256": "c8820da3af58b715e21cfc908805d6b8d8513fe1422eb0b0469fa875e1f0f7cd",
+          "bytes": 16638
+        },
+        "external_accuracy.png": {
+          "sha256": "0df9ad885b05b0c87e2f02db5ba2b43c3794613f46847341bb4ba7841d6d66dc",
+          "bytes": 116172
+        }
+      },
+      "chart_points": [
+        {
+          "model": "kev-0.8b",
+          "run": "kev-0.8b-external-v2",
+          "split": "external_test",
+          "selected": "s1q-fisher",
+          "matched_rtn": "rtn-matched",
+          "n": 85,
+          "n_clusters": 49,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 3.5294117647058822,
+          "lower_95_pp": -4.597701149425287,
+          "upper_95_pp": 11.766287160025293,
+          "summary_sha256": "a49fd10000451e9a3e6801cf3784bb6d612afae67cc828c8ed8486af38871d6c"
+        },
+        {
+          "model": "kev-4b",
+          "run": "kev-4b-external-v2",
+          "split": "external_test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn-matched",
+          "n": 85,
+          "n_clusters": 49,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 0.0,
+          "lower_95_pp": -6.668539325842697,
+          "upper_95_pp": 6.097560975609756,
+          "summary_sha256": "e951ef4b0aaa5f8cd4cc378f694b6ca5713f37a19ef0b4e24fa6ea81c669f316"
+        },
+        {
+          "model": "kev-9b",
+          "run": "kev-9b-external-v2",
+          "split": "external_test",
+          "selected": "s1q-a8",
+          "matched_rtn": "rtn-matched",
+          "n": 85,
+          "n_clusters": 49,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": -3.5294117647058822,
+          "lower_95_pp": -9.876543209876543,
+          "upper_95_pp": 2.2222222222222223,
+          "summary_sha256": "15f512f7ab70926b8184beae380f80889353bdcd1996ee97a22f92e52121e12e"
+        },
+        {
+          "model": "nanojev",
+          "run": "nanojev-external-v2",
+          "split": "external_test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn-matched",
+          "n": 85,
+          "n_clusters": 49,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": -2.3529411764705883,
+          "lower_95_pp": -9.63952584531675,
+          "upper_95_pp": 4.705882352941177,
+          "summary_sha256": "b96a75f56ad2568780ff4b237bf471aea878d70a95b2301c575b10925b750f8a"
+        },
+        {
+          "model": "laya",
+          "run": "laya-external-v2",
+          "split": "external_test",
+          "selected": "s1q-local",
+          "matched_rtn": "rtn-matched",
+          "n": 85,
+          "n_clusters": 49,
+          "cluster_basis": "saved cluster_id",
+          "delta_pp": 4.705882352941177,
+          "lower_95_pp": -4.761904761904762,
+          "upper_95_pp": 14.285714285714285,
+          "summary_sha256": "d305abb49c42138162278a6615dbe996591c5641968c249414ad385fed82540f"
+        }
+      ],
+      "axis_limits_pp": [
+        -12.776014109347443,
+        17.185185185185183
+      ],
+      "interpretation": "Fixed-profile external authored validation; no invented uncompleted model points."
+    }
+  ]
+}

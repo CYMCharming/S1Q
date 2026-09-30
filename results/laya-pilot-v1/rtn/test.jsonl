@@ -1,0 +1,331 @@
+{"key": "0::stars", "record_id": "0", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [4.65625, 2.1875, -3.171875, -3.484375, -3.59375]}
+{"key": "1::answer_type", "record_id": "1", "qid": "answer_type", "type": "choice", "source": "trec", "label": 1, "label_kind": "dataset_gold", "logits": [-3.234375, -0.050048828125, -0.5390625, -3.359375, -3.640625, -3.828125]}
+{"key": "2::answer", "record_id": "2", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [3.203125, 0.1455078125]}
+{"key": "3::relation", "record_id": "3", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [-1.3828125, 0.9140625, -0.150390625]}
+{"key": "4::decision", "record_id": "4", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [0.484375, 0.3515625, -0.609375]}
+{"key": "5::decision", "record_id": "5", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 1, "label_kind": "dataset_gold", "logits": [1.625, 1.390625, -0.04736328125]}
+{"key": "6::rating", "record_id": "6", "qid": "rating", "type": "score", "source": "yelp", "label": 4, "label_kind": "dataset_gold", "logits": [-2.96875, -2.015625, 0.349609375, 1.390625, 1.265625]}
+{"key": "6::recommend", "record_id": "6", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.828125, 3.234375]}
+{"key": "7::positive", "record_id": "7", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [20.125, 2.96875]}
+{"key": "8::sentiment", "record_id": "8", "qid": "sentiment", "type": "score", "source": "sst5", "label": 3, "label_kind": "dataset_gold", "logits": [0.27734375, 2.265625, 1.1171875, -1.53125, -3.03125]}
+{"key": "9::topic", "record_id": "9", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [-1.8046875, -1.3984375, 0.2451171875, 1.65625]}
+{"key": "9::is_scitech", "record_id": "9", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [0.89453125, 0.80859375]}
+{"key": "9::is_sports", "record_id": "9", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [8.3125, -0.30078125]}
+{"key": "10::stars", "record_id": "10", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [4.3125, 2.3125, -3.21875, -3.4375, -3.546875]}
+{"key": "11::answer_type", "record_id": "11", "qid": "answer_type", "type": "choice", "source": "trec", "label": 5, "label_kind": "dataset_gold", "logits": [-1.3828125, -1.0859375, -1.3125, -1.578125, -2.9375, 0.31640625]}
+{"key": "12::answer", "record_id": "12", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-2.171875, 1.0390625]}
+{"key": "13::relation", "record_id": "13", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [1.8515625, -0.4140625, -1.7578125]}
+{"key": "14::decision", "record_id": "14", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [2.671875, 0.0703125]}
+{"key": "15::decision", "record_id": "15", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [1.109375, 0.2275390625]}
+{"key": "16::rating", "record_id": "16", "qid": "rating", "type": "score", "source": "yelp", "label": 2, "label_kind": "dataset_gold", "logits": [-2.796875, 0.62890625, 3.515625, 1.7578125, -2.984375]}
+{"key": "16::recommend", "record_id": "16", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-0.94140625, 1.125]}
+{"key": "17::positive", "record_id": "17", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [18.625, -0.88671875]}
+{"key": "18::sentiment", "record_id": "18", "qid": "sentiment", "type": "score", "source": "sst5", "label": 2, "label_kind": "dataset_gold", "logits": [2.5625, 0.91796875, 1.3125, -2.21875, -2.90625]}
+{"key": "19::topic", "record_id": "19", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [-2.03125, -4.21875, 5.75, -3.578125]}
+{"key": "19::is_sports", "record_id": "19", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.125, -0.412109375]}
+{"key": "19::is_world", "record_id": "19", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [3.890625, -0.1201171875]}
+{"key": "20::stars", "record_id": "20", "qid": "stars", "type": "score", "source": "amazon", "label": 0, "label_kind": "dataset_gold", "logits": [4.59375, 3.15625, -3.21875, -3.5, -3.609375]}
+{"key": "21::answer_type", "record_id": "21", "qid": "answer_type", "type": "choice", "source": "trec", "label": 2, "label_kind": "dataset_gold", "logits": [-3.65625, -3.0, 3.546875, -3.53125, -3.640625, -3.8125]}
+{"key": "22::answer", "record_id": "22", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-2.25, 1.15625]}
+{"key": "23::relation", "record_id": "23", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [-0.064453125, 1.40625, -1.9140625]}
+{"key": "24::decision", "record_id": "24", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [1.859375, 0.296875, -1.46875]}
+{"key": "25::decision", "record_id": "25", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 1, "label_kind": "dataset_gold", "logits": [1.09375, 1.0546875, 0.427734375]}
+{"key": "26::rating", "record_id": "26", "qid": "rating", "type": "score", "source": "yelp", "label": 4, "label_kind": "dataset_gold", "logits": [-1.5625, -0.46484375, 0.21484375, 1.2890625, 0.337890625]}
+{"key": "26::recommend", "record_id": "26", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.25, 2.6875]}
+{"key": "27::positive", "record_id": "27", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [18.375, 1.453125]}
+{"key": "28::sentiment", "record_id": "28", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [4.59375, 1.1171875, -2.0, -3.234375, -3.515625]}
+{"key": "29::topic", "record_id": "29", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [-2.265625, -3.6875, 3.6875, -1.625]}
+{"key": "29::is_business", "record_id": "29", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-4.875, 4.5]}
+{"key": "29::is_world", "record_id": "29", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [4.34375, -0.1328125]}
+{"key": "30::stars", "record_id": "30", "qid": "stars", "type": "score", "source": "amazon", "label": 0, "label_kind": "dataset_gold", "logits": [4.84375, 1.359375, -3.265625, -3.546875, -3.609375]}
+{"key": "31::answer_type", "record_id": "31", "qid": "answer_type", "type": "choice", "source": "trec", "label": 4, "label_kind": "dataset_gold", "logits": [-2.5625, -1.75, -2.578125, -3.46875, 4.59375, -3.53125]}
+{"key": "32::answer", "record_id": "32", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5078125, 0.953125]}
+{"key": "33::relation", "record_id": "33", "qid": "relation", "type": "choice", "source": "mnli", "label": 1, "label_kind": "dataset_gold", "logits": [0.40625, 1.3828125, -1.375]}
+{"key": "34::decision", "record_id": "34", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [0.1357421875, 0.62890625]}
+{"key": "35::decision", "record_id": "35", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [0.057373046875, 0.63671875]}
+{"key": "36::rating", "record_id": "36", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [1.875, 0.158203125, -0.53125, -0.671875, -0.2451171875]}
+{"key": "36::recommend", "record_id": "36", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-1.515625, 2.578125]}
+{"key": "37::positive", "record_id": "37", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [15.3125, -0.8125]}
+{"key": "38::sentiment", "record_id": "38", "qid": "sentiment", "type": "score", "source": "sst5", "label": 2, "label_kind": "dataset_gold", "logits": [2.296875, 1.0, 1.25, -0.91015625, -2.15625]}
+{"key": "39::topic", "record_id": "39", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-2.046875, -3.546875, 1.0703125, 2.125]}
+{"key": "39::is_sports", "record_id": "39", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.625, -2.78125]}
+{"key": "39::is_world", "record_id": "39", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [3.171875, 0.314453125]}
+{"key": "40::stars", "record_id": "40", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [2.125, 4.40625, -3.265625, -3.484375, -3.578125]}
+{"key": "41::answer_type", "record_id": "41", "qid": "answer_type", "type": "choice", "source": "trec", "label": 3, "label_kind": "dataset_gold", "logits": [-4.15625, -3.734375, -3.9375, 4.875, -2.203125, -4.09375]}
+{"key": "42::answer", "record_id": "42", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [1.5859375, 0.1640625]}
+{"key": "43::relation", "record_id": "43", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [0.026123046875, 1.0625, -2.453125]}
+{"key": "44::decision", "record_id": "44", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 0, "label_kind": "dataset_gold", "logits": [2.15625, 1.5703125, 0.69921875]}
+{"key": "45::decision", "record_id": "45", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 1, "label_kind": "dataset_gold", "logits": [2.03125, 1.578125, 0.94140625]}
+{"key": "46::rating", "record_id": "46", "qid": "rating", "type": "score", "source": "yelp", "label": 1, "label_kind": "dataset_gold", "logits": [-1.1796875, 2.671875, 3.984375, -2.109375, -3.46875]}
+{"key": "46::recommend", "record_id": "46", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [0.314453125, -0.62890625]}
+{"key": "47::positive", "record_id": "47", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [20.125, -1.40625]}
+{"key": "48::sentiment", "record_id": "48", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [2.125, 0.77734375, -1.3046875, -3.3125, -3.546875]}
+{"key": "49::topic", "record_id": "49", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [-1.5390625, -3.453125, 2.765625, -0.047119140625]}
+{"key": "49::is_sports", "record_id": "49", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [19.875, -1.25]}
+{"key": "49::is_world", "record_id": "49", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [4.3125, -0.318359375]}
+{"key": "50::stars", "record_id": "50", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [2.015625, 4.09375, -3.125, -3.390625, -3.546875]}
+{"key": "51::answer_type", "record_id": "51", "qid": "answer_type", "type": "choice", "source": "trec", "label": 3, "label_kind": "dataset_gold", "logits": [-4.125, -3.765625, -3.671875, 4.71875, -3.609375, -4.1875]}
+{"key": "52::answer", "record_id": "52", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [2.84375, 0.1181640625]}
+{"key": "53::relation", "record_id": "53", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-2.765625, -0.1552734375, 4.78125]}
+{"key": "54::decision", "record_id": "54", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [0.90625, 0.279296875]}
+{"key": "55::decision", "record_id": "55", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [1.703125, 0.1025390625]}
+{"key": "56::rating", "record_id": "56", "qid": "rating", "type": "score", "source": "yelp", "label": 0, "label_kind": "dataset_gold", "logits": [4.09375, 2.390625, 0.2333984375, -2.8125, -3.421875]}
+{"key": "56::recommend", "record_id": "56", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [3.671875, -1.953125]}
+{"key": "57::positive", "record_id": "57", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [18.375, -0.5546875]}
+{"key": "58::sentiment", "record_id": "58", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [1.703125, 3.9375, 1.171875, -3.109375, -3.40625]}
+{"key": "59::topic", "record_id": "59", "qid": "topic", "type": "choice", "source": "agnews", "label": 0, "label_kind": "dataset_gold", "logits": [5.875, -4.3125, -4.21875, -4.15625]}
+{"key": "59::is_scitech", "record_id": "59", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.375, -1.9375]}
+{"key": "59::is_business", "record_id": "59", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.0, -1.140625]}
+{"key": "60::stars", "record_id": "60", "qid": "stars", "type": "score", "source": "amazon", "label": 3, "label_kind": "dataset_gold", "logits": [3.375, 3.46875, -3.125, -3.375, -3.46875]}
+{"key": "61::answer_type", "record_id": "61", "qid": "answer_type", "type": "choice", "source": "trec", "label": 1, "label_kind": "dataset_gold", "logits": [-3.09375, -0.185546875, -1.4765625, 0.09716796875, -2.890625, -2.125]}
+{"key": "62::answer", "record_id": "62", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-2.578125, 1.25]}
+{"key": "63::relation", "record_id": "63", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [-0.58203125, 1.59375, -0.69921875]}
+{"key": "64::decision", "record_id": "64", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [0.87890625, 0.62890625, -0.58984375]}
+{"key": "65::decision", "record_id": "65", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 1, "label_kind": "dataset_gold", "logits": [1.5859375, 1.296875, 0.0849609375]}
+{"key": "66::rating", "record_id": "66", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [1.3984375, 1.421875, -0.3125, -1.9140625, -3.25]}
+{"key": "66::recommend", "record_id": "66", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5234375, 1.125]}
+{"key": "67::positive", "record_id": "67", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [15.1875, 1.859375]}
+{"key": "68::sentiment", "record_id": "68", "qid": "sentiment", "type": "score", "source": "sst5", "label": 4, "label_kind": "dataset_gold", "logits": [0.10302734375, -1.2265625, -0.341796875, -1.453125, 0.37109375]}
+{"key": "69::topic", "record_id": "69", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-2.96875, -3.46875, -0.87890625, 0.515625]}
+{"key": "69::is_business", "record_id": "69", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [3.4375, 0.359375]}
+{"key": "69::is_scitech", "record_id": "69", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [0.0673828125, 0.80859375]}
+{"key": "70::stars", "record_id": "70", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [2.8125, 4.15625, -3.171875, -3.46875, -3.5625]}
+{"key": "71::answer_type", "record_id": "71", "qid": "answer_type", "type": "choice", "source": "trec", "label": 4, "label_kind": "dataset_gold", "logits": [-3.546875, -2.96875, -2.28125, -3.421875, 4.625, -3.71875]}
+{"key": "72::answer", "record_id": "72", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-1.046875, 0.87890625]}
+{"key": "73::relation", "record_id": "73", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-2.140625, -2.21875, 4.96875]}
+{"key": "74::decision", "record_id": "74", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 0, "label_kind": "dataset_gold", "logits": [2.125, 0.75, 2.859375]}
+{"key": "75::decision", "record_id": "75", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 1, "label_kind": "dataset_gold", "logits": [2.4375, 1.4765625, 0.5703125]}
+{"key": "76::rating", "record_id": "76", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [-2.125, -2.046875, -2.140625, -1.796875, 1.0234375]}
+{"key": "76::recommend", "record_id": "76", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-3.28125, 2.4375]}
+{"key": "77::positive", "record_id": "77", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [20.625, 1.4453125]}
+{"key": "78::sentiment", "record_id": "78", "qid": "sentiment", "type": "score", "source": "sst5", "label": 4, "label_kind": "dataset_gold", "logits": [-2.734375, -2.03125, -0.58203125, 1.9609375, 0.37890625]}
+{"key": "79::topic", "record_id": "79", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-1.84375, -3.125, 1.0859375, 2.109375]}
+{"key": "79::is_sports", "record_id": "79", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.125, -0.75390625]}
+{"key": "79::is_business", "record_id": "79", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [2.078125, 0.703125]}
+{"key": "80::stars", "record_id": "80", "qid": "stars", "type": "score", "source": "amazon", "label": 4, "label_kind": "dataset_gold", "logits": [1.1953125, 2.984375, -3.3125, -3.5, -3.578125]}
+{"key": "81::answer_type", "record_id": "81", "qid": "answer_type", "type": "choice", "source": "trec", "label": 2, "label_kind": "dataset_gold", "logits": [-3.0625, -2.453125, 3.25, -2.484375, -3.140625, -3.5625]}
+{"key": "82::answer", "record_id": "82", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [0.63671875, 0.62109375]}
+{"key": "83::relation", "record_id": "83", "qid": "relation", "type": "choice", "source": "mnli", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5859375, 3.4375, -1.3828125]}
+{"key": "84::decision", "record_id": "84", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 1, "label_kind": "dataset_gold", "logits": [-0.84375, 0.87890625]}
+{"key": "85::decision", "record_id": "85", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 0, "label_kind": "dataset_gold", "logits": [2.984375, 0.123046875]}
+{"key": "86::rating", "record_id": "86", "qid": "rating", "type": "score", "source": "yelp", "label": 1, "label_kind": "dataset_gold", "logits": [4.53125, 3.390625, -0.515625, -3.078125, -3.5625]}
+{"key": "86::recommend", "record_id": "86", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [4.125, -1.984375]}
+{"key": "87::positive", "record_id": "87", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [18.0, -1.3515625]}
+{"key": "88::sentiment", "record_id": "88", "qid": "sentiment", "type": "score", "source": "sst5", "label": 4, "label_kind": "dataset_gold", "logits": [-2.015625, -2.640625, 0.40625, 1.0078125, -0.134765625]}
+{"key": "89::topic", "record_id": "89", "qid": "topic", "type": "choice", "source": "agnews", "label": 1, "label_kind": "dataset_gold", "logits": [-2.21875, 3.9375, -3.0625, -0.369140625]}
+{"key": "89::is_world", "record_id": "89", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [3.75, -0.07275390625]}
+{"key": "89::is_sports", "record_id": "89", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-1.8671875, 1.0390625]}
+{"key": "90::stars", "record_id": "90", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [1.8515625, 4.28125, -3.265625, -3.453125, -3.578125]}
+{"key": "91::answer_type", "record_id": "91", "qid": "answer_type", "type": "choice", "source": "trec", "label": 5, "label_kind": "dataset_gold", "logits": [-2.171875, -1.1640625, -1.375, -0.890625, -2.5, -1.5859375]}
+{"key": "92::answer", "record_id": "92", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [2.921875, 0.34765625]}
+{"key": "93::relation", "record_id": "93", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [0.1865234375, 1.1953125, -0.48828125]}
+{"key": "94::decision", "record_id": "94", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 1, "label_kind": "dataset_gold", "logits": [-0.30078125, 0.69140625]}
+{"key": "95::decision", "record_id": "95", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 0, "label_kind": "dataset_gold", "logits": [2.703125, 0.57421875]}
+{"key": "96::rating", "record_id": "96", "qid": "rating", "type": "score", "source": "yelp", "label": 4, "label_kind": "dataset_gold", "logits": [1.734375, 0.60546875, -1.2890625, -0.36328125, 0.18359375]}
+{"key": "96::recommend", "record_id": "96", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-4.15625, 4.125]}
+{"key": "97::positive", "record_id": "97", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [19.5, 2.59375]}
+{"key": "98::sentiment", "record_id": "98", "qid": "sentiment", "type": "score", "source": "sst5", "label": 4, "label_kind": "dataset_gold", "logits": [-2.640625, -2.515625, 0.14453125, 1.1875, 0.30859375]}
+{"key": "99::topic", "record_id": "99", "qid": "topic", "type": "choice", "source": "agnews", "label": 1, "label_kind": "dataset_gold", "logits": [-3.53125, 4.78125, -4.09375, -3.890625]}
+{"key": "99::is_sports", "record_id": "99", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.796875, 1.2734375]}
+{"key": "99::is_business", "record_id": "99", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.0, -0.51171875]}
+{"key": "100::stars", "record_id": "100", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [4.15625, 3.546875, -3.15625, -3.40625, -3.515625]}
+{"key": "101::answer_type", "record_id": "101", "qid": "answer_type", "type": "choice", "source": "trec", "label": 5, "label_kind": "dataset_gold", "logits": [-2.265625, -1.09375, -1.7734375, -2.359375, -3.078125, 3.203125]}
+{"key": "102::answer", "record_id": "102", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-3.109375, 1.21875]}
+{"key": "103::relation", "record_id": "103", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-3.34375, -2.359375, 4.96875]}
+{"key": "104::decision", "record_id": "104", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [0.66796875, 0.25]}
+{"key": "105::decision", "record_id": "105", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [1.4375, 0.21484375]}
+{"key": "106::rating", "record_id": "106", "qid": "rating", "type": "score", "source": "yelp", "label": 2, "label_kind": "dataset_gold", "logits": [0.359375, 2.90625, 4.03125, -0.181640625, -3.203125]}
+{"key": "106::recommend", "record_id": "106", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-0.82421875, 0.61328125]}
+{"key": "107::positive", "record_id": "107", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [20.5, 2.125]}
+{"key": "108::sentiment", "record_id": "108", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [4.53125, 0.75390625, -1.515625, -2.984375, -3.390625]}
+{"key": "109::topic", "record_id": "109", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [-1.328125, -3.78125, 3.125, -0.19140625]}
+{"key": "109::is_scitech", "record_id": "109", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-0.203125, 0.80859375]}
+{"key": "109::is_sports", "record_id": "109", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.125, -0.51953125]}
+{"key": "110::stars", "record_id": "110", "qid": "stars", "type": "score", "source": "amazon", "label": 4, "label_kind": "dataset_gold", "logits": [-1.8671875, 1.6015625, -3.359375, -3.484375, -3.671875]}
+{"key": "111::answer_type", "record_id": "111", "qid": "answer_type", "type": "choice", "source": "trec", "label": 1, "label_kind": "dataset_gold", "logits": [-3.609375, 3.015625, -2.203125, -2.46875, -2.703125, -3.40625]}
+{"key": "112::answer", "record_id": "112", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [1.6640625, 0.63671875]}
+{"key": "113::relation", "record_id": "113", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-1.625, -1.4453125, 4.0625]}
+{"key": "114::decision", "record_id": "114", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [1.9296875, 0.10888671875]}
+{"key": "115::decision", "record_id": "115", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [2.90625, 0.0203857421875]}
+{"key": "116::rating", "record_id": "116", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [-1.46875, -0.57421875, -0.9609375, -0.32421875, 0.609375]}
+{"key": "116::recommend", "record_id": "116", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-1.984375, 2.265625]}
+{"key": "117::positive", "record_id": "117", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [17.125, 2.109375]}
+{"key": "118::sentiment", "record_id": "118", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [1.3984375, 4.09375, 2.015625, -2.734375, -3.40625]}
+{"key": "119::topic", "record_id": "119", "qid": "topic", "type": "choice", "source": "agnews", "label": 1, "label_kind": "dataset_gold", "logits": [-3.96875, 5.46875, -4.1875, -1.2265625]}
+{"key": "119::is_sports", "record_id": "119", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-5.0, 2.21875]}
+{"key": "119::is_scitech", "record_id": "119", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.5, -0.51953125]}
+{"key": "120::stars", "record_id": "120", "qid": "stars", "type": "score", "source": "amazon", "label": 4, "label_kind": "dataset_gold", "logits": [0.9765625, 3.65625, -3.25, -3.484375, -3.59375]}
+{"key": "121::answer_type", "record_id": "121", "qid": "answer_type", "type": "choice", "source": "trec", "label": 1, "label_kind": "dataset_gold", "logits": [-2.265625, 0.94921875, 0.51953125, -1.09375, -2.203125, -3.03125]}
+{"key": "122::answer", "record_id": "122", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-1.921875, 0.9453125]}
+{"key": "123::relation", "record_id": "123", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [2.953125, 0.054931640625, -2.71875]}
+{"key": "124::decision", "record_id": "124", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 1, "label_kind": "dataset_gold", "logits": [-1.6875, 0.99609375]}
+{"key": "125::decision", "record_id": "125", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 0, "label_kind": "dataset_gold", "logits": [3.28125, 0.1337890625]}
+{"key": "126::rating", "record_id": "126", "qid": "rating", "type": "score", "source": "yelp", "label": 0, "label_kind": "dataset_gold", "logits": [0.04052734375, 3.59375, 2.28125, -2.828125, -3.453125]}
+{"key": "126::recommend", "record_id": "126", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [2.84375, -0.75390625]}
+{"key": "127::positive", "record_id": "127", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [20.625, -2.109375]}
+{"key": "128::sentiment", "record_id": "128", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [2.296875, 2.234375, -2.265625, -3.09375, -3.390625]}
+{"key": "129::topic", "record_id": "129", "qid": "topic", "type": "choice", "source": "agnews", "label": 0, "label_kind": "dataset_gold", "logits": [2.765625, -4.0, -3.984375, -3.515625]}
+{"key": "129::is_scitech", "record_id": "129", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.875, -0.455078125]}
+{"key": "129::is_world", "record_id": "129", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.21875, 1.0859375]}
+{"key": "130::stars", "record_id": "130", "qid": "stars", "type": "score", "source": "amazon", "label": 3, "label_kind": "dataset_gold", "logits": [1.7265625, 1.7109375, -3.359375, -3.5625, -3.65625]}
+{"key": "131::answer_type", "record_id": "131", "qid": "answer_type", "type": "choice", "source": "trec", "label": 1, "label_kind": "dataset_gold", "logits": [-3.21875, 2.5, -2.046875, -2.75, -2.359375, -3.515625]}
+{"key": "132::answer", "record_id": "132", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [-1.3828125, 0.88671875]}
+{"key": "133::relation", "record_id": "133", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-2.828125, -0.6953125, 4.65625]}
+{"key": "134::decision", "record_id": "134", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [0.72265625, 0.51953125, -0.53515625]}
+{"key": "135::decision", "record_id": "135", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 1, "label_kind": "dataset_gold", "logits": [0.6796875, 1.0390625, 0.443359375]}
+{"key": "136::rating", "record_id": "136", "qid": "rating", "type": "score", "source": "yelp", "label": 1, "label_kind": "dataset_gold", "logits": [3.90625, 3.578125, 0.68359375, -2.8125, -3.1875]}
+{"key": "136::recommend", "record_id": "136", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [4.0625, -1.4609375]}
+{"key": "137::positive", "record_id": "137", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [18.375, 0.47265625]}
+{"key": "138::sentiment", "record_id": "138", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [1.7734375, 0.56640625, 1.3359375, -2.703125, -3.25]}
+{"key": "139::topic", "record_id": "139", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-0.796875, -3.78125, -0.490234375, 2.828125]}
+{"key": "139::is_business", "record_id": "139", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [2.515625, 0.515625]}
+{"key": "139::is_scitech", "record_id": "139", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5, 1.0078125]}
+{"key": "140::stars", "record_id": "140", "qid": "stars", "type": "score", "source": "amazon", "label": 0, "label_kind": "dataset_gold", "logits": [4.90625, 0.88671875, -3.3125, -3.578125, -3.671875]}
+{"key": "141::answer_type", "record_id": "141", "qid": "answer_type", "type": "choice", "source": "trec", "label": 2, "label_kind": "dataset_gold", "logits": [-3.125, -2.5, 3.734375, -2.546875, -3.265625, -3.609375]}
+{"key": "142::answer", "record_id": "142", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [3.21875, -0.69140625]}
+{"key": "143::relation", "record_id": "143", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [1.078125, 0.1259765625, -2.421875]}
+{"key": "144::decision", "record_id": "144", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 0, "label_kind": "dataset_gold", "logits": [2.421875, 0.66015625, 2.46875]}
+{"key": "145::decision", "record_id": "145", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 1, "label_kind": "dataset_gold", "logits": [2.359375, 1.2578125, 0.6953125]}
+{"key": "146::rating", "record_id": "146", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [-1.1953125, 1.1640625, 2.140625, 0.58203125, -3.203125]}
+{"key": "146::recommend", "record_id": "146", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-0.1611328125, 0.5546875]}
+{"key": "147::positive", "record_id": "147", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [20.0, 0.251953125]}
+{"key": "148::sentiment", "record_id": "148", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [1.109375, 3.140625, 0.640625, -2.34375, -3.28125]}
+{"key": "149::topic", "record_id": "149", "qid": "topic", "type": "choice", "source": "agnews", "label": 1, "label_kind": "dataset_gold", "logits": [-4.28125, 5.34375, -4.34375, -3.109375]}
+{"key": "149::is_world", "record_id": "149", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [4.90625, -0.357421875]}
+{"key": "149::is_scitech", "record_id": "149", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [19.875, -1.03125]}
+{"key": "150::stars", "record_id": "150", "qid": "stars", "type": "score", "source": "amazon", "label": 0, "label_kind": "dataset_gold", "logits": [4.40625, 3.15625, -3.140625, -3.4375, -3.578125]}
+{"key": "151::answer_type", "record_id": "151", "qid": "answer_type", "type": "choice", "source": "trec", "label": 2, "label_kind": "dataset_gold", "logits": [-1.75, -1.09375, 1.46875, -2.609375, -3.1875, -3.40625]}
+{"key": "152::answer", "record_id": "152", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-5.09375, 16.375]}
+{"key": "153::relation", "record_id": "153", "qid": "relation", "type": "choice", "source": "mnli", "label": 1, "label_kind": "dataset_gold", "logits": [-1.59375, 2.453125, -2.421875]}
+{"key": "154::decision", "record_id": "154", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [1.09375, 0.267578125]}
+{"key": "155::decision", "record_id": "155", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [1.6171875, 0.375]}
+{"key": "156::rating", "record_id": "156", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [-1.734375, 0.2109375, 2.265625, -1.6796875, -3.453125]}
+{"key": "156::recommend", "record_id": "156", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-0.703125, 0.52734375]}
+{"key": "157::positive", "record_id": "157", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [19.375, 1.1796875]}
+{"key": "158::sentiment", "record_id": "158", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [0.271484375, 1.5234375, -0.734375, -3.375, -3.546875]}
+{"key": "159::topic", "record_id": "159", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [1.1171875, -3.25, 3.625, -2.65625]}
+{"key": "159::is_scitech", "record_id": "159", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.875, -0.76953125]}
+{"key": "159::is_sports", "record_id": "159", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.625, -0.50390625]}
+{"key": "160::stars", "record_id": "160", "qid": "stars", "type": "score", "source": "amazon", "label": 4, "label_kind": "dataset_gold", "logits": [1.421875, 2.453125, -3.296875, -3.453125, -3.609375]}
+{"key": "161::answer_type", "record_id": "161", "qid": "answer_type", "type": "choice", "source": "trec", "label": 1, "label_kind": "dataset_gold", "logits": [-2.75, 1.234375, -1.234375, -3.40625, -3.453125, -2.375]}
+{"key": "162::answer", "record_id": "162", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [1.75, 0.765625]}
+{"key": "163::relation", "record_id": "163", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-2.375, -1.6171875, 4.4375]}
+{"key": "164::decision", "record_id": "164", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 1, "label_kind": "dataset_gold", "logits": [-0.7578125, 0.85546875]}
+{"key": "165::decision", "record_id": "165", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 0, "label_kind": "dataset_gold", "logits": [2.109375, 0.4296875]}
+{"key": "166::rating", "record_id": "166", "qid": "rating", "type": "score", "source": "yelp", "label": 2, "label_kind": "dataset_gold", "logits": [1.6875, 2.390625, 2.4375, -0.453125, -3.046875]}
+{"key": "166::recommend", "record_id": "166", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-0.953125, 0.7734375]}
+{"key": "167::positive", "record_id": "167", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [19.75, -1.515625]}
+{"key": "168::sentiment", "record_id": "168", "qid": "sentiment", "type": "score", "source": "sst5", "label": 3, "label_kind": "dataset_gold", "logits": [-1.265625, 0.63671875, 2.078125, -0.453125, -2.5625]}
+{"key": "169::topic", "record_id": "169", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-2.984375, -3.84375, 0.01226806640625, 1.5625]}
+{"key": "169::is_scitech", "record_id": "169", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.46875, 1.2734375]}
+{"key": "169::is_business", "record_id": "169", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [2.71875, 0.404296875]}
+{"key": "170::stars", "record_id": "170", "qid": "stars", "type": "score", "source": "amazon", "label": 2, "label_kind": "dataset_gold", "logits": [4.71875, 2.109375, -3.28125, -3.5, -3.609375]}
+{"key": "171::answer_type", "record_id": "171", "qid": "answer_type", "type": "choice", "source": "trec", "label": 1, "label_kind": "dataset_gold", "logits": [-2.28125, -1.21875, 1.859375, -1.0625, -2.28125, -2.625]}
+{"key": "172::answer", "record_id": "172", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [-1.953125, 1.09375]}
+{"key": "173::relation", "record_id": "173", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [-1.2265625, 2.859375, -2.171875]}
+{"key": "174::decision", "record_id": "174", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [0.68359375, 0.51171875, -0.5859375]}
+{"key": "175::decision", "record_id": "175", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 2, "label_kind": "dataset_gold", "logits": [0.5546875, 0.97265625, 0.484375]}
+{"key": "176::rating", "record_id": "176", "qid": "rating", "type": "score", "source": "yelp", "label": 0, "label_kind": "dataset_gold", "logits": [4.875, 0.051513671875, -2.75, -3.265625, -3.484375]}
+{"key": "176::recommend", "record_id": "176", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-0.7421875, 0.0869140625]}
+{"key": "177::positive", "record_id": "177", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [20.125, -2.640625]}
+{"key": "178::sentiment", "record_id": "178", "qid": "sentiment", "type": "score", "source": "sst5", "label": 3, "label_kind": "dataset_gold", "logits": [-1.765625, -1.0859375, -0.298828125, 0.64453125, -0.138671875]}
+{"key": "179::topic", "record_id": "179", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [-3.71875, -3.96875, 1.875, -3.625]}
+{"key": "179::is_scitech", "record_id": "179", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.0, -1.953125]}
+{"key": "179::is_world", "record_id": "179", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [4.125, -0.298828125]}
+{"key": "180::stars", "record_id": "180", "qid": "stars", "type": "score", "source": "amazon", "label": 2, "label_kind": "dataset_gold", "logits": [1.4921875, 4.1875, -2.59375, -3.4375, -3.625]}
+{"key": "181::answer_type", "record_id": "181", "qid": "answer_type", "type": "choice", "source": "trec", "label": 4, "label_kind": "dataset_gold", "logits": [-3.796875, -2.34375, -2.515625, -2.453125, 4.9375, -3.71875]}
+{"key": "182::answer", "record_id": "182", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [2.875, 0.322265625]}
+{"key": "183::relation", "record_id": "183", "qid": "relation", "type": "choice", "source": "mnli", "label": 1, "label_kind": "dataset_gold", "logits": [-0.74609375, 2.109375, -2.125]}
+{"key": "184::decision", "record_id": "184", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [1.34375, 0.30078125, -0.78125]}
+{"key": "185::decision", "record_id": "185", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 1, "label_kind": "dataset_gold", "logits": [1.1484375, 1.2421875, 0.462890625]}
+{"key": "186::rating", "record_id": "186", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [-2.609375, -0.052001953125, 3.0, 1.9140625, -2.71875]}
+{"key": "186::recommend", "record_id": "186", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-0.88671875, 0.73046875]}
+{"key": "187::positive", "record_id": "187", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [19.375, 2.75]}
+{"key": "188::sentiment", "record_id": "188", "qid": "sentiment", "type": "score", "source": "sst5", "label": 3, "label_kind": "dataset_gold", "logits": [-2.6875, -1.515625, 1.3125, -0.1845703125, -2.421875]}
+{"key": "189::topic", "record_id": "189", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-0.76171875, -3.3125, -1.1953125, 2.046875]}
+{"key": "189::is_world", "record_id": "189", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [4.375, -0.2578125]}
+{"key": "189::is_sports", "record_id": "189", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [20.0, -0.921875]}
+{"key": "190::stars", "record_id": "190", "qid": "stars", "type": "score", "source": "amazon", "label": 4, "label_kind": "dataset_gold", "logits": [2.140625, 3.28125, -3.28125, -3.453125, -3.59375]}
+{"key": "191::answer_type", "record_id": "191", "qid": "answer_type", "type": "choice", "source": "trec", "label": 5, "label_kind": "dataset_gold", "logits": [-1.546875, -0.087890625, -1.390625, -1.1484375, -2.078125, -2.28125]}
+{"key": "192::answer", "record_id": "192", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-1.375, 0.953125]}
+{"key": "193::relation", "record_id": "193", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-0.98828125, 0.6796875, -0.302734375]}
+{"key": "194::decision", "record_id": "194", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 0, "label_kind": "dataset_gold", "logits": [2.125, 1.3125, 1.1484375]}
+{"key": "195::decision", "record_id": "195", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 1, "label_kind": "dataset_gold", "logits": [2.28125, 1.5546875, 1.3515625]}
+{"key": "196::rating", "record_id": "196", "qid": "rating", "type": "score", "source": "yelp", "label": 2, "label_kind": "dataset_gold", "logits": [1.8359375, 3.109375, 3.140625, -2.953125, -3.46875]}
+{"key": "196::recommend", "record_id": "196", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [3.4375, -1.5234375]}
+{"key": "197::positive", "record_id": "197", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [19.25, 4.375]}
+{"key": "198::sentiment", "record_id": "198", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [2.515625, 4.09375, 1.9140625, -3.03125, -3.453125]}
+{"key": "199::topic", "record_id": "199", "qid": "topic", "type": "choice", "source": "agnews", "label": 0, "label_kind": "dataset_gold", "logits": [0.42578125, -3.203125, -2.015625, 0.3671875]}
+{"key": "199::is_scitech", "record_id": "199", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [18.875, -0.404296875]}
+{"key": "199::is_business", "record_id": "199", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [16.75, -0.71875]}
+{"key": "200::stars", "record_id": "200", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [1.3828125, 4.09375, -3.015625, -3.3125, -3.46875]}
+{"key": "201::answer_type", "record_id": "201", "qid": "answer_type", "type": "choice", "source": "trec", "label": 5, "label_kind": "dataset_gold", "logits": [-2.1875, -1.421875, -2.171875, -2.78125, -3.328125, 3.390625]}
+{"key": "202::answer", "record_id": "202", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [2.96875, 0.333984375]}
+{"key": "203::relation", "record_id": "203", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [-0.416015625, 2.265625, -2.453125]}
+{"key": "204::decision", "record_id": "204", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 0, "label_kind": "dataset_gold", "logits": [2.0, 1.46875, 1.2109375]}
+{"key": "205::decision", "record_id": "205", "qid": "decision", "type": "choice", "source": "contrastive_spend_threshold", "label": 1, "label_kind": "dataset_gold", "logits": [1.796875, 1.109375, 1.7578125]}
+{"key": "206::rating", "record_id": "206", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [-1.8203125, -0.11181640625, 2.1875, 2.375, -1.0234375]}
+{"key": "206::recommend", "record_id": "206", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-1.3125, 2.46875]}
+{"key": "207::positive", "record_id": "207", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [18.375, 5.625]}
+{"key": "208::sentiment", "record_id": "208", "qid": "sentiment", "type": "score", "source": "sst5", "label": 0, "label_kind": "dataset_gold", "logits": [4.84375, 0.96875, -2.671875, -3.484375, -3.65625]}
+{"key": "209::topic", "record_id": "209", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-0.2041015625, -2.625, -1.2265625, 2.578125]}
+{"key": "209::is_scitech", "record_id": "209", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.28125, 1.21875]}
+{"key": "209::is_world", "record_id": "209", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [1.0859375, 0.89453125]}
+{"key": "210::stars", "record_id": "210", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [4.5, 3.484375, -3.1875, -3.453125, -3.59375]}
+{"key": "211::answer_type", "record_id": "211", "qid": "answer_type", "type": "choice", "source": "trec", "label": 4, "label_kind": "dataset_gold", "logits": [-3.96875, -3.265625, -2.15625, -1.5234375, 5.46875, -3.90625]}
+{"key": "212::answer", "record_id": "212", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [0.80859375, 0.46484375]}
+{"key": "213::relation", "record_id": "213", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-1.890625, 2.328125, -0.287109375]}
+{"key": "214::decision", "record_id": "214", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [2.28125, 0.08251953125]}
+{"key": "215::decision", "record_id": "215", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [-0.37890625, 0.3203125]}
+{"key": "216::rating", "record_id": "216", "qid": "rating", "type": "score", "source": "yelp", "label": 1, "label_kind": "dataset_gold", "logits": [4.84375, 0.36328125, -2.859375, -3.46875, -3.671875]}
+{"key": "216::recommend", "record_id": "216", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [3.25, -1.0390625]}
+{"key": "217::positive", "record_id": "217", "qid": "positive", "type": "noul", "source": "imdb", "label": 0, "label_kind": "dataset_gold", "logits": [20.25, -3.5]}
+{"key": "218::sentiment", "record_id": "218", "qid": "sentiment", "type": "score", "source": "sst5", "label": 2, "label_kind": "dataset_gold", "logits": [1.78125, 3.46875, 2.484375, -2.640625, -3.265625]}
+{"key": "219::topic", "record_id": "219", "qid": "topic", "type": "choice", "source": "agnews", "label": 2, "label_kind": "dataset_gold", "logits": [0.46484375, -4.0625, 5.4375, -3.265625]}
+{"key": "219::is_world", "record_id": "219", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-1.8828125, 1.1015625]}
+{"key": "219::is_business", "record_id": "219", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.671875, 1.328125]}
+{"key": "220::stars", "record_id": "220", "qid": "stars", "type": "score", "source": "amazon", "label": 2, "label_kind": "dataset_gold", "logits": [2.015625, 3.140625, -3.234375, -3.421875, -3.5625]}
+{"key": "221::answer_type", "record_id": "221", "qid": "answer_type", "type": "choice", "source": "trec", "label": 2, "label_kind": "dataset_gold", "logits": [-1.2109375, -1.0859375, 2.28125, -2.234375, -2.625, -3.109375]}
+{"key": "222::answer", "record_id": "222", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [-2.59375, 2.09375]}
+{"key": "223::relation", "record_id": "223", "qid": "relation", "type": "choice", "source": "mnli", "label": 0, "label_kind": "dataset_gold", "logits": [-1.1484375, 1.28125, -0.96875]}
+{"key": "224::decision", "record_id": "224", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 1, "label_kind": "dataset_gold", "logits": [-0.470703125, 0.828125]}
+{"key": "225::decision", "record_id": "225", "qid": "decision", "type": "noul", "source": "contrastive_age_eligibility", "label": 0, "label_kind": "dataset_gold", "logits": [3.3125, 0.0498046875]}
+{"key": "226::rating", "record_id": "226", "qid": "rating", "type": "score", "source": "yelp", "label": 2, "label_kind": "dataset_gold", "logits": [0.421875, 3.15625, 4.0, 1.1328125, -3.21875]}
+{"key": "226::recommend", "record_id": "226", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-0.81640625, -0.2265625]}
+{"key": "227::positive", "record_id": "227", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [20.0, 1.3203125]}
+{"key": "228::sentiment", "record_id": "228", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [2.109375, 3.75, -1.265625, -3.125, -3.484375]}
+{"key": "229::topic", "record_id": "229", "qid": "topic", "type": "choice", "source": "agnews", "label": 1, "label_kind": "dataset_gold", "logits": [-4.09375, 6.375, -4.25, -4.25]}
+{"key": "229::is_sports", "record_id": "229", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-4.65625, 2.59375]}
+{"key": "229::is_world", "record_id": "229", "qid": "is_world", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [6.21875, -0.54296875]}
+{"key": "230::stars", "record_id": "230", "qid": "stars", "type": "score", "source": "amazon", "label": 4, "label_kind": "dataset_gold", "logits": [0.8984375, 4.53125, -3.296875, -3.5, -3.578125]}
+{"key": "231::answer_type", "record_id": "231", "qid": "answer_type", "type": "choice", "source": "trec", "label": 5, "label_kind": "dataset_gold", "logits": [-2.375, -1.4921875, -2.125, -3.15625, -1.2421875, 1.46875]}
+{"key": "232::answer", "record_id": "232", "qid": "answer", "type": "noul", "source": "boolq", "label": 0, "label_kind": "dataset_gold", "logits": [-1.375, 0.9921875]}
+{"key": "233::relation", "record_id": "233", "qid": "relation", "type": "choice", "source": "mnli", "label": 1, "label_kind": "dataset_gold", "logits": [-2.640625, 3.921875, -2.609375]}
+{"key": "234::decision", "record_id": "234", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 1, "label_kind": "dataset_gold", "logits": [0.65625, 0.369140625]}
+{"key": "235::decision", "record_id": "235", "qid": "decision", "type": "noul", "source": "contrastive_return_window", "label": 0, "label_kind": "dataset_gold", "logits": [-1.09375, 0.71875]}
+{"key": "236::rating", "record_id": "236", "qid": "rating", "type": "score", "source": "yelp", "label": 4, "label_kind": "dataset_gold", "logits": [-2.421875, -0.94921875, 0.80859375, 0.90625, 1.0234375]}
+{"key": "236::recommend", "record_id": "236", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-3.140625, 3.015625]}
+{"key": "237::positive", "record_id": "237", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [19.875, 2.65625]}
+{"key": "238::sentiment", "record_id": "238", "qid": "sentiment", "type": "score", "source": "sst5", "label": 3, "label_kind": "dataset_gold", "logits": [1.0234375, 3.515625, 1.7890625, -1.7890625, -3.25]}
+{"key": "239::topic", "record_id": "239", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-2.890625, -3.78125, -0.83203125, 1.3046875]}
+{"key": "239::is_business", "record_id": "239", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-0.4765625, 0.8125]}
+{"key": "239::is_scitech", "record_id": "239", "qid": "is_scitech", "type": "noul", "source": "agnews_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-2.265625, 1.1875]}
+{"key": "240::stars", "record_id": "240", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [1.890625, 4.09375, -3.25, -3.46875, -3.578125]}
+{"key": "241::answer_type", "record_id": "241", "qid": "answer_type", "type": "choice", "source": "trec", "label": 4, "label_kind": "dataset_gold", "logits": [-3.78125, -2.71875, -2.546875, -3.65625, 4.9375, -3.953125]}
+{"key": "242::answer", "record_id": "242", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-1.90625, 0.96484375]}
+{"key": "243::relation", "record_id": "243", "qid": "relation", "type": "choice", "source": "mnli", "label": 1, "label_kind": "dataset_gold", "logits": [0.79296875, 0.203125, -3.203125]}
+{"key": "244::decision", "record_id": "244", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [1.9765625, 0.46875, -1.7890625]}
+{"key": "245::decision", "record_id": "245", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 1, "label_kind": "dataset_gold", "logits": [1.28125, 1.2109375, 0.3671875]}
+{"key": "246::rating", "record_id": "246", "qid": "rating", "type": "score", "source": "yelp", "label": 3, "label_kind": "dataset_gold", "logits": [-2.03125, 0.58984375, 1.734375, 1.46875, -2.75]}
+{"key": "246::recommend", "record_id": "246", "qid": "recommend", "type": "noul", "source": "yelp_yn", "label": 1, "label_kind": "dataset_gold", "logits": [-1.2265625, 1.8671875]}
+{"key": "247::positive", "record_id": "247", "qid": "positive", "type": "noul", "source": "imdb", "label": 1, "label_kind": "dataset_gold", "logits": [20.0, 1.1796875]}
+{"key": "248::sentiment", "record_id": "248", "qid": "sentiment", "type": "score", "source": "sst5", "label": 1, "label_kind": "dataset_gold", "logits": [3.609375, 3.46875, 1.8671875, -1.96875, -2.671875]}
+{"key": "249::topic", "record_id": "249", "qid": "topic", "type": "choice", "source": "agnews", "label": 3, "label_kind": "dataset_gold", "logits": [-0.58203125, -2.625, 2.109375, 2.109375]}
+{"key": "249::is_sports", "record_id": "249", "qid": "is_sports", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [19.875, -1.3125]}
+{"key": "249::is_business", "record_id": "249", "qid": "is_business", "type": "noul", "source": "agnews_yn", "label": 0, "label_kind": "dataset_gold", "logits": [-1.9609375, 1.125]}
+{"key": "250::stars", "record_id": "250", "qid": "stars", "type": "score", "source": "amazon", "label": 1, "label_kind": "dataset_gold", "logits": [4.84375, 1.4609375, -3.3125, -3.59375, -3.703125]}
+{"key": "251::answer_type", "record_id": "251", "qid": "answer_type", "type": "choice", "source": "trec", "label": 4, "label_kind": "dataset_gold", "logits": [-2.8125, -1.2734375, -1.9140625, -2.3125, 3.8125, -3.5625]}
+{"key": "252::answer", "record_id": "252", "qid": "answer", "type": "noul", "source": "boolq", "label": 1, "label_kind": "dataset_gold", "logits": [-1.6875, 0.98828125]}
+{"key": "253::relation", "record_id": "253", "qid": "relation", "type": "choice", "source": "mnli", "label": 2, "label_kind": "dataset_gold", "logits": [-2.765625, -1.15625, 4.8125]}
+{"key": "254::decision", "record_id": "254", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 0, "label_kind": "dataset_gold", "logits": [0.55078125, 0.56640625, -0.84765625]}
+{"key": "255::decision", "record_id": "255", "qid": "decision", "type": "choice", "source": "contrastive_quantity_limit", "label": 2, "label_kind": "dataset_gold", "logits": [0.76953125, 1.21875, -0.00171661376953125]}

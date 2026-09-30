@@ -1,0 +1,26 @@
+S1Q: Low-Bit Quantization for System One Decision Models
+Copyright 2026 Yuanming Chen / CYMCharming
+
+This repository's original code is licensed under Apache-2.0.
+Upstream source and model weights are not relicensed by this repository.
+
+Upstream dependencies and model families:
+- Kev: https://github.com/jaredpalmer/kev (Apache-2.0)
+- Laya: https://github.com/NandhaKishorM/laya (Apache-2.0)
+- NanoJev source: https://github.com/TianyuCodings/NanoJev (MIT).
+  Fine-tuned NanoJev weights are not redistributed by S1Q; see docs/artifacts.md.
+- Qwen model backbones: consult each pinned model card and LICENSE.
+  Qwen base weight copyright: Alibaba Cloud; Apache-2.0 for the pinned bases.
+
+S1Q weight release assets modify selected backbone linear weights through
+quantization (and Kev adapter merging); retained native components are required
+separately. Preserve this NOTICE, LICENSE and upstream notices when redistributing.
+
+Quantization methods and ideas are credited in docs/method.md and
+docs/related-work.md. Similarity of interfaces does not establish identity of
+architecture, training recipe, or calibration quality with hosted TypeSafe Jev.
+
+Dataset licensing and target provenance are documented in
+docs/evaluation-design.md. Derived artifacts inherit applicable upstream terms.
+Source data, teacher receipts, private credentials and raw upstream clones must
+not be included in public Git history.

@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "s1q"
+version = "0.1.0"
+description = "Low-bit quantization research for System One decision models"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.6,<3", "numpy>=1.24,<3", "huggingface-hub>=0.26,<2", "safetensors>=0.4,<1"]
+
+[project.optional-dependencies]
+models = [
+    "torch>=2.6,<2.9",
+    "transformers>=5.17,<6",
+    "peft>=0.21,<1",
+    "accelerate>=1.15,<2",
+    "pydantic>=2.9,<3",
+    "huggingface-hub>=1.5,<2",
+    "safetensors>=0.8,<1",
+    "datasets>=3,<6",
+    "einops>=0.8,<1",
+    "tiktoken>=0.9,<1",
+]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+s1q = "s1q.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

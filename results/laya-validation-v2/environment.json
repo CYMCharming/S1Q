@@ -1,0 +1,88 @@
+{
+  "model": {
+    "name": "laya",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "convaiinnovations/laya",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "native_temperature": [
+      1.6369030475616455,
+      1.2514300346374512,
+      1.983399510383606
+    ],
+    "native_temperature_by_options": {
+      "choice:3-5": 1.7601518630981445,
+      "choice:6-10": 1.0000158548355103,
+      "score:3-5": 1.2514300346374512,
+      "noul:2": 1.983399510383606,
+      "choice:11+": 0.5,
+      "choice:2": 1.9063563346862793
+    },
+    "subfolder": null,
+    "max_len": 512,
+    "head_max_len": 192,
+    "source_revision": "6d942c92081fbc139e736bbd9ac0023223c29b7f"
+  },
+  "packages": {
+    "torch": "2.9.1+cu126",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "datasets": "2.14.6",
+    "huggingface-hub": "1.29.0",
+    "numpy": "1.26.4"
+  },
+  "platform": "Linux-6.8.0-111-generic-x86_64-with-glibc2.35",
+  "seed": 20261001,
+  "data_manifest_sha256": "fcefaf5a1cfc81b65f487bb48207e32aa11601a890c4a32028f3c6a55038b132",
+  "gpu": "NVIDIA A800 80GB PCIe",
+  "source_files_sha256": {
+    "metrics.py": "71d67c824e1cdca51de08967c20e7a620ee94ba143cc83aacc50387c1b04f76e",
+    "decision_stats.py": "fb3cac473728050e990cd9b6f6511390d38f5b6fe3c3ce14c563a1f4150d2210",
+    "models.py": "6295ed746830a619aa66dd9f4452b6266e3b0f8d576e4f0c674493677e5f948e",
+    "packed.py": "b66c96ca14c68e3d94f9fed95bfd93d2631c5afb6488beb924156125cd7cea32",
+    "data.py": "2b6fe792bba6c05348f94baf6b4517da8dd8d33ea9f5765e616cce22b7373546",
+    "quantization.py": "3a89d9ecce59891f6ccd63de6606844c3fabee03f133eb3dc982daa026fd6f21",
+    "cli.py": "2557edf8d2e08f0c6bc7f2e9c5b30c24cb2a9f4a53b1d67aef63b6d50acd5116",
+    "__init__.py": "1f7b749e5bc62881c4b60d05a0da409cb9613ec4520a9ca8ba8c094fe75c5a53",
+    "experiment.py": "495dbc6a5427777962391363dff262ae533534a301a5fd5c82400366ac72013b"
+  },
+  "reused_baseline_environment": {
+    "model": {
+      "name": "laya",
+      "dtype": "torch.bfloat16",
+      "device": "cuda",
+      "raw_logits": true,
+      "repo": "convaiinnovations/laya",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "native_temperature": [
+        1.6369030475616455,
+        1.2514300346374512,
+        1.983399510383606
+      ],
+      "native_temperature_by_options": {
+        "choice:3-5": 1.7601518630981445,
+        "choice:6-10": 1.0000158548355103,
+        "score:3-5": 1.2514300346374512,
+        "noul:2": 1.983399510383606,
+        "choice:11+": 0.5,
+        "choice:2": 1.9063563346862793
+      },
+      "subfolder": null,
+      "max_len": 512,
+      "head_max_len": 192,
+      "source_revision": "6d942c92081fbc139e736bbd9ac0023223c29b7f"
+    },
+    "packages": {
+      "torch": "2.9.1+cu126",
+      "transformers": "5.17.0",
+      "peft": "0.21.0",
+      "datasets": "2.14.6",
+      "huggingface-hub": "1.29.0"
+    },
+    "platform": "Linux-6.8.0-111-generic-x86_64-with-glibc2.35",
+    "seed": 20261001,
+    "data_manifest_sha256": "fcefaf5a1cfc81b65f487bb48207e32aa11601a890c4a32028f3c6a55038b132",
+    "gpu": "NVIDIA A800 80GB PCIe"
+  }
+}

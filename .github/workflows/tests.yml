@@ -1,0 +1,45 @@
+name: tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            .github/constraints.txt
+      - name: Install fixed CPU runtime and inference dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -c .github/constraints.txt torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -c .github/constraints.txt -e '.[models,test]'
+          python -m pip check
+          python -m pip freeze
+      - name: Acquire and verify pinned native sources
+        run: python scripts/setup_sources.py
+      - name: Require native imports without weights or downloads
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import accelerate, datasets, einops, peft, pydantic, safetensors, tiktoken, transformers
+          from s1q.models import SOURCE_REVISIONS, _source, _import_source, _module_file
+          sources = {family: _source(Path('work/upstream') / family, family) for family in SOURCE_REVISIONS}
+          _import_source(sources['kev'])
+          _import_source(sources['laya'])
+          from kev.api import SystemOneRequest
+          from kev.model import DecisionModel
+          from kev.checkpoint import Checkpoint
+          from laya.agent import Agent
+          predictor = _module_file(sources['NanoJev'] / 'scripts/predict_toy_decisions.py', 's1q_ci_nano')
+          predictor.load_decision_model_class()
+          print('Pinned Kev, Laya and NanoJev imports passed; no model weights loaded.')
+          PY
+      - name: Run CPU mathematics, native schema and end-to-end experiment tests
+        run: python -m pytest tests -q

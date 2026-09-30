@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the software release or exact commit when using S1Q."
+title: "S1Q: Low-Bit Quantization for System One Decision Models"
+type: software
+authors:
+  - family-names: Chen
+    given-names: Yuanming
+version: 0.1.0
+date-released: 2026-10-01
+license: Apache-2.0
+repository-code: "https://github.com/CYMCharming/S1Q"
+url: "https://github.com/CYMCharming/S1Q"

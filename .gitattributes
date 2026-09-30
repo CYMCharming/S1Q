@@ -1,0 +1,5 @@
+# Preserve exact bytes: source, frozen records and JSON are SHA256-addressed.
+# Automatic newline conversion would invalidate published experiment provenance.
+* -text
+# Shell helpers have no experimental byte-hash binding and must run on Unix.
+*.sh text eol=lf

@@ -1,0 +1,87 @@
+{
+  "selected": {
+    "name": "s1q-fisher",
+    "method": "s1q",
+    "activation_bits": null,
+    "sensitive_fraction": 0,
+    "fisher": true
+  },
+  "bits": 4,
+  "group_size": 128,
+  "objective": "development boundary-weighted JS + 0.1 harmful flip rate",
+  "selected_before_quantized_test": true,
+  "candidates": [
+    {
+      "profile": {
+        "name": "rtn",
+        "method": "rtn",
+        "activation_bits": null,
+        "sensitive_fraction": 0
+      },
+      "objective": 0.02353466799855869,
+      "development_accuracy": 0.7781350482315113
+    },
+    {
+      "profile": {
+        "name": "s1q-local",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0
+      },
+      "objective": 0.021950940567484367,
+      "development_accuracy": 0.8038585209003215
+    },
+    {
+      "profile": {
+        "name": "s1q-protected",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0.05
+      },
+      "objective": 0.022137196692561093,
+      "development_accuracy": 0.797427652733119
+    },
+    {
+      "profile": {
+        "name": "s1q-a8",
+        "method": "s1q",
+        "activation_bits": 8,
+        "sensitive_fraction": 0
+      },
+      "objective": 0.024862491240820284,
+      "development_accuracy": 0.8038585209003215
+    },
+    {
+      "profile": {
+        "name": "s1q-a4",
+        "method": "s1q",
+        "activation_bits": 4,
+        "sensitive_fraction": 0
+      },
+      "objective": 0.16023001722553604,
+      "development_accuracy": 0.6141479099678456
+    },
+    {
+      "profile": {
+        "name": "s1q-fisher",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0,
+        "fisher": true
+      },
+      "objective": 0.02089006384215289,
+      "development_accuracy": 0.8167202572347267
+    },
+    {
+      "profile": {
+        "name": "s1q-fisher-protected",
+        "method": "s1q",
+        "activation_bits": null,
+        "sensitive_fraction": 0.05,
+        "fisher": true
+      },
+      "objective": 0.021134022549572196,
+      "development_accuracy": 0.8102893890675241
+    }
+  ]
+}

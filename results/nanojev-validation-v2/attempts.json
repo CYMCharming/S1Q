@@ -1,0 +1,18 @@
+{
+  "configuration_unchanged": true,
+  "selection_or_data_changed_after_failure": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed_before_profile_selection",
+      "reason": "CUDA out of memory during Fisher collection after another task occupied the shared device.",
+      "physical_device": "GPU24:5"
+    },
+    {
+      "attempt": 2,
+      "status": "complete",
+      "action": "Restarted the same seed, calibration data, search and baseline cache on an idle device.",
+      "physical_device": "GPU24:7"
+    }
+  ]
+}

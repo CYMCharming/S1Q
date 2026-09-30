@@ -1,0 +1,38 @@
+{
+  "schema": "s1q-source-checksums-v1",
+  "repo": "C-Tianyu/NanoJev-Data",
+  "repo_type": "dataset",
+  "revision": "7afc5257c0f3ff0ba08512729888a51d94b40e7e",
+  "release_tag": "unified-games-v1",
+  "annotated_tag_object": "fd4d07b63aec3ba8dda483e9434c9855964b5931",
+  "package_manifest_sha256": "5934af3eb325b7e79e090d6b1ce30cd0c3535da6388fa2c3e8cc4fd183d2382a",
+  "source": "https://huggingface.co/datasets/C-Tianyu/NanoJev-Data/tree/7afc5257c0f3ff0ba08512729888a51d94b40e7e",
+  "transport": "standard TLS-verified git clone; LFS_SKIP_SMUDGE=1; raw git blobs used to avoid Windows CRLF checkout conversion",
+  "files": {
+    "unified/hard/train.jsonl": {
+      "sha256": "bda8712f89d5db94d80f840f9620f18312c92baca2d8a6df3456218fc807acd0",
+      "bytes": 68467981,
+      "verification": "immutable_git_lfs_pointer_matches_package_manifest"
+    },
+    "unified/hard/dev.jsonl": {
+      "sha256": "605b40f56e4834b0f234f3328b1e6a8ed41174641986b229e94927a3f05f70bd",
+      "bytes": 10303642,
+      "verification": "actual_git_blob_matches_package_manifest"
+    },
+    "unified/hard/calibration.jsonl": {
+      "sha256": "6408aa09b9238c724c557c86b68b23f2359140911d84daac7693f9e347fa091b",
+      "bytes": 10489180,
+      "verification": "immutable_git_lfs_pointer_matches_package_manifest"
+    },
+    "unified/hard/test.jsonl": {
+      "sha256": "2f96cc4e45c67fa375980ff4f355b47716985cf5fb4a1ef034c5e65481b072c9",
+      "bytes": 15129954,
+      "verification": "immutable_git_lfs_pointer_matches_package_manifest"
+    },
+    "unified/hard/ood.jsonl": {
+      "sha256": "7a778752e0f7699bd709aa6c83bb1ffaaa205568c304909000039b40fb7ff636",
+      "bytes": 11371959,
+      "verification": "immutable_git_lfs_pointer_matches_package_manifest"
+    }
+  }
+}

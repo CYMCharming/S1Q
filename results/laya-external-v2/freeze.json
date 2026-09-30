@@ -1,0 +1,316 @@
+{
+  "schema": "s1q.external-freeze.v1",
+  "created_utc": "2026-09-30T17:45:07.578013+00:00",
+  "model": "laya",
+  "model_metadata": {
+    "name": "laya",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "convaiinnovations/laya",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "native_temperature": [
+      1.6369030475616455,
+      1.2514300346374512,
+      1.983399510383606
+    ],
+    "native_temperature_by_options": {
+      "choice:3-5": 1.7601518630981445,
+      "choice:6-10": 1.0000158548355103,
+      "score:3-5": 1.2514300346374512,
+      "noul:2": 1.983399510383606,
+      "choice:11+": 0.5,
+      "choice:2": 1.9063563346862793
+    },
+    "subfolder": null,
+    "max_len": 512,
+    "head_max_len": 192,
+    "source_revision": "6d942c92081fbc139e736bbd9ac0023223c29b7f"
+  },
+  "selection": {
+    "selected": {
+      "name": "s1q-local",
+      "method": "s1q",
+      "activation_bits": null,
+      "sensitive_fraction": 0
+    },
+    "bits": 4,
+    "group_size": 128,
+    "objective": "development boundary-weighted JS + 0.1 harmful flip rate",
+    "selected_before_quantized_test": true,
+    "candidates": [
+      {
+        "profile": {
+          "name": "rtn",
+          "method": "rtn",
+          "activation_bits": null,
+          "sensitive_fraction": 0
+        },
+        "objective": 0.031823684698939037,
+        "development_accuracy": 0.6559485530546624
+      },
+      {
+        "profile": {
+          "name": "s1q-local",
+          "method": "s1q",
+          "activation_bits": null,
+          "sensitive_fraction": 0
+        },
+        "objective": 0.031918118042866366,
+        "development_accuracy": 0.6752411575562701
+      },
+      {
+        "profile": {
+          "name": "s1q-protected",
+          "method": "s1q",
+          "activation_bits": null,
+          "sensitive_fraction": 0.05
+        },
+        "objective": 0.03354443563048413,
+        "development_accuracy": 0.6591639871382636
+      },
+      {
+        "profile": {
+          "name": "s1q-a8",
+          "method": "s1q",
+          "activation_bits": 8,
+          "sensitive_fraction": 0
+        },
+        "objective": 0.03310108562472585,
+        "development_accuracy": 0.6720257234726688
+      },
+      {
+        "profile": {
+          "name": "s1q-a4",
+          "method": "s1q",
+          "activation_bits": 4,
+          "sensitive_fraction": 0
+        },
+        "objective": 0.1310002662552009,
+        "development_accuracy": 0.5337620578778135
+      },
+      {
+        "profile": {
+          "name": "s1q-fisher",
+          "method": "s1q",
+          "activation_bits": null,
+          "sensitive_fraction": 0,
+          "fisher": true
+        },
+        "objective": 0.04632631796489783,
+        "development_accuracy": 0.6430868167202572
+      },
+      {
+        "profile": {
+          "name": "s1q-fisher-protected",
+          "method": "s1q",
+          "activation_bits": null,
+          "sensitive_fraction": 0.05,
+          "fisher": true
+        },
+        "objective": 0.04277771371002849,
+        "development_accuracy": 0.6495176848874598
+      }
+    ]
+  },
+  "inputs": {
+    "run_summary": {
+      "path": "/home/cym/S1Q/results/laya-validation-v2/summary.json",
+      "sha256": "00d8fe82e73a06619bf45e1721d4fab2f56f86804f983cd9775807f461fb7ace",
+      "bytes": 162174
+    },
+    "run_selection": {
+      "path": "/home/cym/S1Q/results/laya-validation-v2/selection.json",
+      "sha256": "0cbac1841c779c6d19017df9e9a9b5a47768c2cf59e0723b37f2bc7c8bcfc720",
+      "bytes": 2096
+    },
+    "run_environment": {
+      "path": "/home/cym/S1Q/results/laya-validation-v2/environment.json",
+      "sha256": "5cd5c005a25052b502b23289ff14a2e7a05afbdd8a5a50e3f788fc87478eb610",
+      "bytes": 3131
+    },
+    "artifact": {
+      "path": "/home/cym/S1Q/artifacts/laya-validation-v2/packed-linears.pt",
+      "sha256": "23d0db195a58cd76c7a8c10ef3b04f048e84d4e6c036c41000d905085711c192",
+      "bytes": 183100345
+    },
+    "external_manifest": {
+      "path": "/home/cym/S1Q/work/jevbench-external/manifest.json",
+      "sha256": "e5e9fddff2d9a49630301717e4137c3287acd2b73b081bfdc9c05969e1302e01",
+      "bytes": 27187
+    },
+    "external_data": {
+      "path": "/home/cym/S1Q/work/jevbench-external/external_test.jsonl",
+      "sha256": "d39ed07cf31abd599485fdcbbfcf3a890d8bfc6f4037e2dbf5397e6fc4cef67c",
+      "bytes": 129872
+    }
+  },
+  "script_sha256": "d0f767739fb111db5129b74a33800f1da40d614e3137cfccd67d00d7eab3cee5",
+  "inference_source_files_sha256": {
+    "models.py": "6295ed746830a619aa66dd9f4452b6266e3b0f8d576e4f0c674493677e5f948e",
+    "quantization.py": "3a89d9ecce59891f6ccd63de6606844c3fabee03f133eb3dc982daa026fd6f21",
+    "metrics.py": "71d67c824e1cdca51de08967c20e7a620ee94ba143cc83aacc50387c1b04f76e"
+  },
+  "packages": {
+    "torch": "2.9.1+cu126",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "datasets": "2.14.6",
+    "huggingface-hub": "1.29.0",
+    "numpy": "1.26.4"
+  },
+  "platform": "Linux-6.8.0-111-generic-x86_64-with-glibc2.35",
+  "seed": 20261001,
+  "bootstrap_samples": 2000,
+  "cohort": {
+    "records": 85,
+    "questions": 85,
+    "source_revision": "bb05a335bc809e61b20c0f745d25499a82b326fc",
+    "sampling": "entire prepared cohort; no subsampling"
+  },
+  "temperatures": {
+    "baseline": {
+      "choice": 2.679903325683249,
+      "noul": 4.999999999999999,
+      "score": 3.849349802860485
+    },
+    "selected": {
+      "choice": 2.9634987809564106,
+      "noul": 4.999999999999999,
+      "score": 4.0888271697897105
+    },
+    "rtn_matched": {
+      "choice": 3.623898318388476,
+      "noul": 4.999999999999999,
+      "score": 4.171919106316452
+    }
+  },
+  "rtn_temperature_status": "frozen_from_scope_matched_run",
+  "rtn_scope": {
+    "layers": [
+      "layers.0.attn.Wo",
+      "layers.0.attn.Wqkv",
+      "layers.0.mlp.Wi",
+      "layers.0.mlp.Wo",
+      "layers.1.attn.Wo",
+      "layers.1.attn.Wqkv",
+      "layers.1.mlp.Wi",
+      "layers.1.mlp.Wo",
+      "layers.10.attn.Wo",
+      "layers.10.attn.Wqkv",
+      "layers.10.mlp.Wi",
+      "layers.10.mlp.Wo",
+      "layers.11.attn.Wo",
+      "layers.11.attn.Wqkv",
+      "layers.11.mlp.Wi",
+      "layers.11.mlp.Wo",
+      "layers.12.attn.Wo",
+      "layers.12.attn.Wqkv",
+      "layers.12.mlp.Wi",
+      "layers.12.mlp.Wo",
+      "layers.13.attn.Wo",
+      "layers.13.attn.Wqkv",
+      "layers.13.mlp.Wi",
+      "layers.13.mlp.Wo",
+      "layers.14.attn.Wo",
+      "layers.14.attn.Wqkv",
+      "layers.14.mlp.Wi",
+      "layers.14.mlp.Wo",
+      "layers.15.attn.Wo",
+      "layers.15.attn.Wqkv",
+      "layers.15.mlp.Wi",
+      "layers.15.mlp.Wo",
+      "layers.16.attn.Wo",
+      "layers.16.attn.Wqkv",
+      "layers.16.mlp.Wi",
+      "layers.16.mlp.Wo",
+      "layers.17.attn.Wo",
+      "layers.17.attn.Wqkv",
+      "layers.17.mlp.Wi",
+      "layers.17.mlp.Wo",
+      "layers.18.attn.Wo",
+      "layers.18.attn.Wqkv",
+      "layers.18.mlp.Wi",
+      "layers.18.mlp.Wo",
+      "layers.19.attn.Wo",
+      "layers.19.attn.Wqkv",
+      "layers.19.mlp.Wi",
+      "layers.19.mlp.Wo",
+      "layers.2.attn.Wo",
+      "layers.2.attn.Wqkv",
+      "layers.2.mlp.Wi",
+      "layers.2.mlp.Wo",
+      "layers.20.attn.Wo",
+      "layers.20.attn.Wqkv",
+      "layers.20.mlp.Wi",
+      "layers.20.mlp.Wo",
+      "layers.21.attn.Wo",
+      "layers.21.attn.Wqkv",
+      "layers.21.mlp.Wi",
+      "layers.21.mlp.Wo",
+      "layers.22.attn.Wo",
+      "layers.22.attn.Wqkv",
+      "layers.22.mlp.Wi",
+      "layers.22.mlp.Wo",
+      "layers.23.attn.Wo",
+      "layers.23.attn.Wqkv",
+      "layers.23.mlp.Wi",
+      "layers.23.mlp.Wo",
+      "layers.24.attn.Wo",
+      "layers.24.attn.Wqkv",
+      "layers.24.mlp.Wi",
+      "layers.24.mlp.Wo",
+      "layers.25.attn.Wo",
+      "layers.25.attn.Wqkv",
+      "layers.25.mlp.Wi",
+      "layers.25.mlp.Wo",
+      "layers.26.attn.Wo",
+      "layers.26.attn.Wqkv",
+      "layers.26.mlp.Wi",
+      "layers.26.mlp.Wo",
+      "layers.27.attn.Wo",
+      "layers.27.attn.Wqkv",
+      "layers.27.mlp.Wi",
+      "layers.27.mlp.Wo",
+      "layers.3.attn.Wo",
+      "layers.3.attn.Wqkv",
+      "layers.3.mlp.Wi",
+      "layers.3.mlp.Wo",
+      "layers.4.attn.Wo",
+      "layers.4.attn.Wqkv",
+      "layers.4.mlp.Wi",
+      "layers.4.mlp.Wo",
+      "layers.5.attn.Wo",
+      "layers.5.attn.Wqkv",
+      "layers.5.mlp.Wi",
+      "layers.5.mlp.Wo",
+      "layers.6.attn.Wo",
+      "layers.6.attn.Wqkv",
+      "layers.6.mlp.Wi",
+      "layers.6.mlp.Wo",
+      "layers.7.attn.Wo",
+      "layers.7.attn.Wqkv",
+      "layers.7.mlp.Wi",
+      "layers.7.mlp.Wo",
+      "layers.8.attn.Wo",
+      "layers.8.attn.Wqkv",
+      "layers.8.mlp.Wi",
+      "layers.8.mlp.Wo",
+      "layers.9.attn.Wo",
+      "layers.9.attn.Wqkv",
+      "layers.9.mlp.Wi",
+      "layers.9.mlp.Wo"
+    ],
+    "bits": 4,
+    "group_size": 128,
+    "activation_bits": null,
+    "protected_mask": {}
+  },
+  "policy": {
+    "external_fitting": false,
+    "external_selection": false,
+    "eligibility": "native floating-point admission, frozen before quantized predictions",
+    "tie_break": "first native candidate in insertion order; differs from upstream lexicographic tie break",
+    "probability_gold": "reported separately from authored hard/modal gold; normalized by supplied sum"
+  }
+}

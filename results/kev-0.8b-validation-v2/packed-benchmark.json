@@ -1,0 +1,2653 @@
+{
+  "model": "kev-0.8b",
+  "model_metadata": {
+    "name": "kev-0.8b",
+    "dtype": "torch.bfloat16",
+    "device": "cuda",
+    "raw_logits": true,
+    "repo": "jaredpalmer/kev-0.8b",
+    "revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+    "base": "Qwen/Qwen3.5-0.8B-Base",
+    "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+    "native_temperature": 2.3510958125672174,
+    "hybrid": true,
+    "context": {
+      "max_state": 384,
+      "max_branch": 1024,
+      "max_packed": 2048
+    },
+    "source_revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91"
+  },
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "persistent_dense_cuda_bytes": 1540593664,
+  "persistent_packed_cuda_bytes": 797458432,
+  "peak_packed_cuda_bytes": 923755520,
+  "requests": 41,
+  "rejected": [],
+  "paired": {
+    "n": 41,
+    "js_to_reference": 0.0,
+    "decision_flip_rate": 0.0,
+    "harmful_flip_rate": 0.0,
+    "mean_confidence_drift": 0.0,
+    "selection_objective": 0.0
+  },
+  "mean_request_time_ms": 78.65562791994307,
+  "storage": {
+    "execution": "packed_storage_transient_float_dequantization",
+    "native_integer_gemm": false,
+    "packed_linear_count": 186,
+    "packed_payload_bytes": 248807424,
+    "packed_linear_retained_bytes": 265463808,
+    "original_linear_tensor_bytes": 995229696,
+    "model_resident_tensor_bytes": 777119488,
+    "layers": {
+      "lm.layers.0.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.0.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.0.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.0.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.0.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.0.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.0.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.0.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.1.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.1.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.1.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.1.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.1.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.1.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.1.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.1.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.2.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.2.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.2.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.2.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.2.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.2.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.2.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.2.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.3.self_attn.q_proj": {
+        "shape": [
+          4096,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 2097152,
+        "auxiliary_bytes": 135168,
+        "retained_bytes": 2232320,
+        "original_linear_tensor_bytes": 8388608
+      },
+      "lm.layers.3.self_attn.k_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.3.self_attn.v_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.3.self_attn.o_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.3.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.3.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.3.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.4.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.4.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.4.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.4.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.4.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.4.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.4.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.4.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.5.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.5.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.5.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.5.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.5.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.5.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.5.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.5.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.6.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.6.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.6.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.6.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.6.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.6.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.6.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.6.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.7.self_attn.q_proj": {
+        "shape": [
+          4096,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 2097152,
+        "auxiliary_bytes": 135168,
+        "retained_bytes": 2232320,
+        "original_linear_tensor_bytes": 8388608
+      },
+      "lm.layers.7.self_attn.k_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.7.self_attn.v_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.7.self_attn.o_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.7.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.7.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.7.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.8.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.8.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.8.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.8.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.8.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.8.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.8.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.8.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.9.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.9.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.9.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.9.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.9.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.9.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.9.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.9.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.10.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.10.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.10.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.10.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.10.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.10.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.10.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.10.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.11.self_attn.q_proj": {
+        "shape": [
+          4096,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 2097152,
+        "auxiliary_bytes": 135168,
+        "retained_bytes": 2232320,
+        "original_linear_tensor_bytes": 8388608
+      },
+      "lm.layers.11.self_attn.k_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.11.self_attn.v_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.11.self_attn.o_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.11.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.11.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.11.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.12.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.12.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.12.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.12.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.12.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.12.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.12.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.12.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.13.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.13.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.13.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.13.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.13.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.13.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.13.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.13.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.14.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.14.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.14.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.14.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.14.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.14.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.14.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.14.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.15.self_attn.q_proj": {
+        "shape": [
+          4096,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 2097152,
+        "auxiliary_bytes": 135168,
+        "retained_bytes": 2232320,
+        "original_linear_tensor_bytes": 8388608
+      },
+      "lm.layers.15.self_attn.k_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.15.self_attn.v_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.15.self_attn.o_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.15.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.15.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.15.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.16.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.16.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.16.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.16.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.16.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.16.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.16.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.16.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.17.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.17.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.17.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.17.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.17.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.17.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.17.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.17.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.18.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.18.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.18.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.18.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.18.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.18.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.18.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.18.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.19.self_attn.q_proj": {
+        "shape": [
+          4096,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 2097152,
+        "auxiliary_bytes": 135168,
+        "retained_bytes": 2232320,
+        "original_linear_tensor_bytes": 8388608
+      },
+      "lm.layers.19.self_attn.k_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.19.self_attn.v_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.19.self_attn.o_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.19.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.19.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.19.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.20.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.20.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.20.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.20.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.20.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.20.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.20.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.20.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.21.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.21.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.21.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.21.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.21.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.21.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.21.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.21.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.22.linear_attn.out_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.22.linear_attn.in_proj_qkv": {
+        "shape": [
+          6144,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 3145728,
+        "auxiliary_bytes": 200704,
+        "retained_bytes": 3346432,
+        "original_linear_tensor_bytes": 12582912
+      },
+      "lm.layers.22.linear_attn.in_proj_z": {
+        "shape": [
+          2048,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 69632,
+        "retained_bytes": 1118208,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.22.linear_attn.in_proj_b": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.22.linear_attn.in_proj_a": {
+        "shape": [
+          16,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 8192,
+        "auxiliary_bytes": 4608,
+        "retained_bytes": 12800,
+        "original_linear_tensor_bytes": 32768
+      },
+      "lm.layers.22.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.22.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.22.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.23.self_attn.q_proj": {
+        "shape": [
+          4096,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 2097152,
+        "auxiliary_bytes": 135168,
+        "retained_bytes": 2232320,
+        "original_linear_tensor_bytes": 8388608
+      },
+      "lm.layers.23.self_attn.k_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.23.self_attn.v_proj": {
+        "shape": [
+          512,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 262144,
+        "auxiliary_bytes": 20480,
+        "retained_bytes": 282624,
+        "original_linear_tensor_bytes": 1048576
+      },
+      "lm.layers.23.self_attn.o_proj": {
+        "shape": [
+          1024,
+          2048
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1048576,
+        "auxiliary_bytes": 73728,
+        "retained_bytes": 1122304,
+        "original_linear_tensor_bytes": 4194304
+      },
+      "lm.layers.23.mlp.gate_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.23.mlp.up_proj": {
+        "shape": [
+          3584,
+          1024
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 118784,
+        "retained_bytes": 1953792,
+        "original_linear_tensor_bytes": 7340032
+      },
+      "lm.layers.23.mlp.down_proj": {
+        "shape": [
+          1024,
+          3584
+        ],
+        "bits": 4,
+        "group_size": 128,
+        "activation_bits": null,
+        "compute_dtype": "torch.bfloat16",
+        "payload_bytes": 1835008,
+        "auxiliary_bytes": 129024,
+        "retained_bytes": 1964032,
+        "original_linear_tensor_bytes": 7340032
+      }
+    }
+  },
+  "artifact_sha256": "034b445df6f1b03943e54cce2f98e6cd27ff96ccec28aa58d32a08583bb88ca2",
+  "execution": "transient per-layer dequantization + floating GEMM; A4/A8 simulated if enabled; no native low-bit speed claim"
+}

@@ -1,0 +1,256 @@
+{"key": "0::emotion", "record_id": "0", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-3.140625, 3.78125, -1.1328125, -3.671875, -3.0, -3.484375]}
+{"key": "1::paraphrase", "record_id": "1", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-0.55859375, 1.484375]}
+{"key": "2::answers", "record_id": "2", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [4.78125, -0.1005859375]}
+{"key": "3::answer", "record_id": "3", "qid": "answer", "type": "choice", "source": "mmlu", "label": 2, "label_kind": "dataset_gold", "logits": [1.546875, 0.1259765625, -0.640625, -1.1484375]}
+{"key": "4::offensive", "record_id": "4", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [3.765625, -0.80078125]}
+{"key": "5::decision", "record_id": "5", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.63671875, 1.5703125]}
+{"key": "6::decision", "record_id": "6", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [0.6875, 0.75390625]}
+{"key": "7::decision", "record_id": "7", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.63671875, 1.5703125]}
+{"key": "8::decision", "record_id": "8", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.73046875, 1.3515625]}
+{"key": "9::decision", "record_id": "9", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.265625, 1.0625]}
+{"key": "10::decision", "record_id": "10", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [-1.1875, 0.828125]}
+{"key": "11::answer", "record_id": "11", "qid": "answer", "type": "choice", "source": "sciq", "label": 1, "label_kind": "dataset_gold", "logits": [-2.34375, 0.98046875, -2.765625, -2.328125]}
+{"key": "12::emotion", "record_id": "12", "qid": "emotion", "type": "choice", "source": "emotion", "label": 0, "label_kind": "dataset_gold", "logits": [3.640625, -3.21875, -3.75, 1.25, -2.078125, -1.21875]}
+{"key": "13::paraphrase", "record_id": "13", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [0.306640625, 0.0279541015625]}
+{"key": "14::answers", "record_id": "14", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [2.515625, 0.36328125]}
+{"key": "15::answer", "record_id": "15", "qid": "answer", "type": "choice", "source": "mmlu", "label": 1, "label_kind": "dataset_gold", "logits": [-1.9140625, 0.2734375, -0.30859375, 0.52734375]}
+{"key": "16::offensive", "record_id": "16", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.484375, 0.10693359375]}
+{"key": "17::decision", "record_id": "17", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.0296630859375, -1.484375]}
+{"key": "18::decision", "record_id": "18", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.03662109375, -0.353515625]}
+{"key": "19::decision", "record_id": "19", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.0296630859375, -1.484375]}
+{"key": "20::decision", "record_id": "20", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.087890625, -1.5703125]}
+{"key": "21::decision", "record_id": "21", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.609375, 1.1484375]}
+{"key": "22::decision", "record_id": "22", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [1.6015625, 0.59765625]}
+{"key": "23::answer", "record_id": "23", "qid": "answer", "type": "choice", "source": "sciq", "label": 3, "label_kind": "dataset_gold", "logits": [-3.625, -3.265625, -2.03125, 4.25]}
+{"key": "24::emotion", "record_id": "24", "qid": "emotion", "type": "choice", "source": "emotion", "label": 0, "label_kind": "dataset_gold", "logits": [5.25, -3.375, -3.90625, 2.5625, -3.40625, -3.953125]}
+{"key": "25::paraphrase", "record_id": "25", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-2.546875, 2.125]}
+{"key": "26::answers", "record_id": "26", "qid": "answers", "type": "noul", "source": "qnli", "label": 0, "label_kind": "dataset_gold", "logits": [2.796875, 0.1474609375]}
+{"key": "27::answer", "record_id": "27", "qid": "answer", "type": "choice", "source": "mmlu", "label": 2, "label_kind": "dataset_gold", "logits": [-0.10400390625, -0.1328125, -0.703125, -0.625]}
+{"key": "28::offensive", "record_id": "28", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 1, "label_kind": "dataset_gold", "logits": [2.171875, 0.4296875]}
+{"key": "29::decision", "record_id": "29", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [-2.40625, 1.3984375]}
+{"key": "30::decision", "record_id": "30", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5859375, 0.58984375]}
+{"key": "31::decision", "record_id": "31", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [-2.40625, 1.3984375]}
+{"key": "32::decision", "record_id": "32", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [-2.34375, 1.53125]}
+{"key": "33::decision", "record_id": "33", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.578125, 1.1640625]}
+{"key": "34::decision", "record_id": "34", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [-2.0625, 1.046875]}
+{"key": "35::answer", "record_id": "35", "qid": "answer", "type": "choice", "source": "sciq", "label": 1, "label_kind": "dataset_gold", "logits": [-2.828125, 1.109375, -2.296875, -1.8828125]}
+{"key": "36::emotion", "record_id": "36", "qid": "emotion", "type": "choice", "source": "emotion", "label": 3, "label_kind": "dataset_gold", "logits": [1.2421875, 1.9453125, -1.4296875, -2.140625, -2.1875, 0.9609375]}
+{"key": "37::paraphrase", "record_id": "37", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [-0.0810546875, 1.0234375]}
+{"key": "38::answers", "record_id": "38", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-2.96875, 1.140625]}
+{"key": "39::answer", "record_id": "39", "qid": "answer", "type": "choice", "source": "mmlu", "label": 1, "label_kind": "dataset_gold", "logits": [0.41015625, -0.37890625, 2.109375, 0.35546875]}
+{"key": "40::offensive", "record_id": "40", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.46875, 0.0810546875]}
+{"key": "41::decision", "record_id": "41", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.09228515625, 1.7890625]}
+{"key": "42::decision", "record_id": "42", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [0.1279296875, 1.71875]}
+{"key": "43::decision", "record_id": "43", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.09228515625, 1.7890625]}
+{"key": "44::decision", "record_id": "44", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.12109375, 1.7734375]}
+{"key": "45::decision", "record_id": "45", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.40625, 1.125]}
+{"key": "46::decision", "record_id": "46", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [3.484375, -0.0458984375]}
+{"key": "47::answer", "record_id": "47", "qid": "answer", "type": "choice", "source": "sciq", "label": 3, "label_kind": "dataset_gold", "logits": [-1.03125, -1.3671875, -0.0703125, 3.265625]}
+{"key": "48::emotion", "record_id": "48", "qid": "emotion", "type": "choice", "source": "emotion", "label": 0, "label_kind": "dataset_gold", "logits": [6.125, -3.421875, -1.46875, -3.546875, -1.1953125, -3.8125]}
+{"key": "49::paraphrase", "record_id": "49", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-0.78515625, 1.90625]}
+{"key": "50::answers", "record_id": "50", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-0.765625, 0.34765625]}
+{"key": "51::answer", "record_id": "51", "qid": "answer", "type": "choice", "source": "mmlu", "label": 2, "label_kind": "dataset_gold", "logits": [1.109375, 0.71484375, 1.015625, -0.75390625]}
+{"key": "52::offensive", "record_id": "52", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [4.5625, -1.140625]}
+{"key": "53::decision", "record_id": "53", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.06640625, 2.890625]}
+{"key": "54::decision", "record_id": "54", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [-2.28125, 4.65625]}
+{"key": "55::decision", "record_id": "55", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.06640625, 2.890625]}
+{"key": "56::decision", "record_id": "56", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.07080078125, 2.75]}
+{"key": "57::decision", "record_id": "57", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 0, "label_kind": "dataset_gold", "logits": [1.59375, 2.9375, 1.0234375]}
+{"key": "58::decision", "record_id": "58", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 1, "label_kind": "dataset_gold", "logits": [2.015625, 2.375, 1.4140625]}
+{"key": "59::answer", "record_id": "59", "qid": "answer", "type": "choice", "source": "sciq", "label": 2, "label_kind": "dataset_gold", "logits": [-0.490234375, -0.8515625, 3.921875, -2.640625]}
+{"key": "60::emotion", "record_id": "60", "qid": "emotion", "type": "choice", "source": "emotion", "label": 4, "label_kind": "dataset_gold", "logits": [3.03125, -3.546875, -3.84375, -1.984375, 6.0, -3.859375]}
+{"key": "61::paraphrase", "record_id": "61", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [-0.07958984375, -1.4375]}
+{"key": "62::answers", "record_id": "62", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-2.578125, 1.1015625]}
+{"key": "63::answer", "record_id": "63", "qid": "answer", "type": "choice", "source": "mmlu", "label": 3, "label_kind": "dataset_gold", "logits": [0.16015625, 0.640625, -0.74609375, -1.0703125]}
+{"key": "64::offensive", "record_id": "64", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 1, "label_kind": "dataset_gold", "logits": [1.8828125, 0.54296875]}
+{"key": "65::decision", "record_id": "65", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [1.2265625, -1.78125]}
+{"key": "66::decision", "record_id": "66", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [1.1484375, -1.6796875]}
+{"key": "67::decision", "record_id": "67", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [1.2265625, -1.78125]}
+{"key": "68::decision", "record_id": "68", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [1.6875, -1.96875]}
+{"key": "69::decision", "record_id": "69", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 0, "label_kind": "dataset_gold", "logits": [0.9765625, 1.796875, 0.63671875]}
+{"key": "70::decision", "record_id": "70", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 2, "label_kind": "dataset_gold", "logits": [2.375, 2.609375, 2.015625]}
+{"key": "71::answer", "record_id": "71", "qid": "answer", "type": "choice", "source": "sciq", "label": 3, "label_kind": "dataset_gold", "logits": [-1.7734375, -2.0, -1.515625, 2.1875]}
+{"key": "72::emotion", "record_id": "72", "qid": "emotion", "type": "choice", "source": "emotion", "label": 0, "label_kind": "dataset_gold", "logits": [1.8828125, 0.609375, -1.6015625, -2.125, -2.5625, -2.296875]}
+{"key": "73::paraphrase", "record_id": "73", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [0.14453125, -0.376953125]}
+{"key": "74::answers", "record_id": "74", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [2.515625, -0.1845703125]}
+{"key": "75::answer", "record_id": "75", "qid": "answer", "type": "choice", "source": "mmlu", "label": 3, "label_kind": "dataset_gold", "logits": [0.9140625, 1.09375, 1.9296875, -1.8046875]}
+{"key": "76::offensive", "record_id": "76", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.15625, 0.36328125]}
+{"key": "77::decision", "record_id": "77", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.296875, 3.15625]}
+{"key": "78::decision", "record_id": "78", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [0.404296875, 3.078125]}
+{"key": "79::decision", "record_id": "79", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.296875, 3.15625]}
+{"key": "80::decision", "record_id": "80", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.28125, 3.125]}
+{"key": "81::decision", "record_id": "81", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.5625, 1.171875]}
+{"key": "82::decision", "record_id": "82", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [0.87890625, 0.6796875]}
+{"key": "83::answer", "record_id": "83", "qid": "answer", "type": "choice", "source": "sciq", "label": 0, "label_kind": "dataset_gold", "logits": [5.90625, -3.484375, -2.15625, -2.375]}
+{"key": "84::emotion", "record_id": "84", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-4.25, 6.03125, -3.78125, -4.09375, -4.0, -3.984375]}
+{"key": "85::paraphrase", "record_id": "85", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-3.421875, 3.703125]}
+{"key": "86::answers", "record_id": "86", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-1.265625, 0.95703125]}
+{"key": "87::answer", "record_id": "87", "qid": "answer", "type": "choice", "source": "mmlu", "label": 1, "label_kind": "dataset_gold", "logits": [0.5859375, 2.078125, 1.5703125, -0.361328125]}
+{"key": "88::offensive", "record_id": "88", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [3.0625, -0.1552734375]}
+{"key": "89::decision", "record_id": "89", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.3828125, 2.6875]}
+{"key": "90::decision", "record_id": "90", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [1.9453125, -1.15625]}
+{"key": "91::decision", "record_id": "91", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [-0.3828125, 2.6875]}
+{"key": "92::decision", "record_id": "92", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.3359375, 0.76171875]}
+{"key": "93::decision", "record_id": "93", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.515625, 1.125]}
+{"key": "94::decision", "record_id": "94", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [-0.9453125, 0.73828125]}
+{"key": "95::answer", "record_id": "95", "qid": "answer", "type": "choice", "source": "sciq", "label": 1, "label_kind": "dataset_gold", "logits": [-2.140625, 3.90625, -2.21875, -3.140625]}
+{"key": "96::emotion", "record_id": "96", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-3.984375, 5.40625, -2.609375, -3.96875, -3.796875, -3.390625]}
+{"key": "97::paraphrase", "record_id": "97", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-2.296875, 2.3125]}
+{"key": "98::answers", "record_id": "98", "qid": "answers", "type": "noul", "source": "qnli", "label": 0, "label_kind": "dataset_gold", "logits": [4.125, -0.0286865234375]}
+{"key": "99::answer", "record_id": "99", "qid": "answer", "type": "choice", "source": "mmlu", "label": 3, "label_kind": "dataset_gold", "logits": [3.265625, -1.8203125, -1.875, -1.578125]}
+{"key": "100::offensive", "record_id": "100", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.75, -0.26953125]}
+{"key": "101::decision", "record_id": "101", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [-0.59765625, 3.046875]}
+{"key": "102::decision", "record_id": "102", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [-0.64453125, 3.421875]}
+{"key": "103::decision", "record_id": "103", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [-0.59765625, 3.046875]}
+{"key": "104::decision", "record_id": "104", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [-0.59765625, 3.1875]}
+{"key": "105::decision", "record_id": "105", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.578125, 1.15625]}
+{"key": "106::decision", "record_id": "106", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [3.0, 0.349609375]}
+{"key": "107::answer", "record_id": "107", "qid": "answer", "type": "choice", "source": "sciq", "label": 3, "label_kind": "dataset_gold", "logits": [-2.609375, -2.859375, -2.125, 2.984375]}
+{"key": "108::emotion", "record_id": "108", "qid": "emotion", "type": "choice", "source": "emotion", "label": 2, "label_kind": "dataset_gold", "logits": [-3.578125, -0.4765625, -1.5546875, -3.140625, -3.734375, -3.703125]}
+{"key": "109::paraphrase", "record_id": "109", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-0.90625, 1.625]}
+{"key": "110::answers", "record_id": "110", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-1.6171875, 0.9921875]}
+{"key": "111::answer", "record_id": "111", "qid": "answer", "type": "choice", "source": "mmlu", "label": 2, "label_kind": "dataset_gold", "logits": [1.4453125, 0.07666015625, -0.060302734375, -0.9921875]}
+{"key": "112::offensive", "record_id": "112", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.578125, -0.08740234375]}
+{"key": "113::decision", "record_id": "113", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.279296875, 1.4609375]}
+{"key": "114::decision", "record_id": "114", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.240234375, 1.0078125]}
+{"key": "115::decision", "record_id": "115", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.279296875, 1.4609375]}
+{"key": "116::decision", "record_id": "116", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.08154296875, 2.109375]}
+{"key": "117::decision", "record_id": "117", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 0, "label_kind": "dataset_gold", "logits": [2.890625, 2.453125, 1.328125]}
+{"key": "118::decision", "record_id": "118", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 2, "label_kind": "dataset_gold", "logits": [2.453125, 2.515625, 1.7265625]}
+{"key": "119::answer", "record_id": "119", "qid": "answer", "type": "choice", "source": "sciq", "label": 3, "label_kind": "dataset_gold", "logits": [-1.125, 2.0, -2.015625, 0.380859375]}
+{"key": "120::emotion", "record_id": "120", "qid": "emotion", "type": "choice", "source": "emotion", "label": 2, "label_kind": "dataset_gold", "logits": [-3.78125, -0.2373046875, 6.34375, -4.21875, -4.21875, -4.21875]}
+{"key": "121::paraphrase", "record_id": "121", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-2.0, 1.515625]}
+{"key": "122::answers", "record_id": "122", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5859375, 0.99609375]}
+{"key": "123::answer", "record_id": "123", "qid": "answer", "type": "choice", "source": "mmlu", "label": 3, "label_kind": "dataset_gold", "logits": [1.484375, -0.97265625, 0.1904296875, -0.12451171875]}
+{"key": "124::offensive", "record_id": "124", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.640625, -0.2001953125]}
+{"key": "125::decision", "record_id": "125", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.9453125, 1.03125]}
+{"key": "126::decision", "record_id": "126", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [1.0703125, 0.92578125]}
+{"key": "127::decision", "record_id": "127", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.9453125, 1.03125]}
+{"key": "128::decision", "record_id": "128", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.953125, 1.40625]}
+{"key": "129::decision", "record_id": "129", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 0, "label_kind": "dataset_gold", "logits": [1.625, 2.09375, 0.5234375]}
+{"key": "130::decision", "record_id": "130", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 1, "label_kind": "dataset_gold", "logits": [0.75390625, 2.421875, 1.3125]}
+{"key": "131::answer", "record_id": "131", "qid": "answer", "type": "choice", "source": "sciq", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5234375, 3.640625, -3.734375, -2.328125]}
+{"key": "132::emotion", "record_id": "132", "qid": "emotion", "type": "choice", "source": "emotion", "label": 0, "label_kind": "dataset_gold", "logits": [6.34375, -3.65625, -1.34375, -3.1875, -3.84375, -4.03125]}
+{"key": "133::paraphrase", "record_id": "133", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [0.337890625, -0.921875]}
+{"key": "134::answers", "record_id": "134", "qid": "answers", "type": "noul", "source": "qnli", "label": 0, "label_kind": "dataset_gold", "logits": [-1.34375, 0.9140625]}
+{"key": "135::answer", "record_id": "135", "qid": "answer", "type": "choice", "source": "mmlu", "label": 2, "label_kind": "dataset_gold", "logits": [-1.0, 0.384765625, 3.796875, -1.234375]}
+{"key": "136::offensive", "record_id": "136", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [3.6875, -0.68359375]}
+{"key": "137::decision", "record_id": "137", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [2.609375, -0.021240234375]}
+{"key": "138::decision", "record_id": "138", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [3.0, -0.091796875]}
+{"key": "139::decision", "record_id": "139", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [2.609375, -0.021240234375]}
+{"key": "140::decision", "record_id": "140", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [1.75, -0.42578125]}
+{"key": "141::decision", "record_id": "141", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 0, "label_kind": "dataset_gold", "logits": [2.59375, 2.5625, 1.046875]}
+{"key": "142::decision", "record_id": "142", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 2, "label_kind": "dataset_gold", "logits": [1.6953125, 2.9375, 0.99609375]}
+{"key": "143::answer", "record_id": "143", "qid": "answer", "type": "choice", "source": "sciq", "label": 0, "label_kind": "dataset_gold", "logits": [3.828125, -1.6640625, -1.6640625, -1.3046875]}
+{"key": "144::emotion", "record_id": "144", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-4.1875, 5.9375, -3.890625, -4.125, -3.984375, -3.875]}
+{"key": "145::paraphrase", "record_id": "145", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-2.75, 2.71875]}
+{"key": "146::answers", "record_id": "146", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-0.4375, 0.8046875]}
+{"key": "147::answer", "record_id": "147", "qid": "answer", "type": "choice", "source": "mmlu", "label": 1, "label_kind": "dataset_gold", "logits": [1.3046875, 0.68359375, -0.177734375, -0.76953125]}
+{"key": "148::offensive", "record_id": "148", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 1, "label_kind": "dataset_gold", "logits": [3.140625, -0.48828125]}
+{"key": "149::decision", "record_id": "149", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.396484375, 2.5625]}
+{"key": "150::decision", "record_id": "150", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [-0.2099609375, 3.40625]}
+{"key": "151::decision", "record_id": "151", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.396484375, 2.5625]}
+{"key": "152::decision", "record_id": "152", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [1.625, 1.7890625]}
+{"key": "153::decision", "record_id": "153", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.40625, 1.1328125]}
+{"key": "154::decision", "record_id": "154", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [-1.109375, 0.828125]}
+{"key": "155::answer", "record_id": "155", "qid": "answer", "type": "choice", "source": "sciq", "label": 3, "label_kind": "dataset_gold", "logits": [-0.197265625, -1.234375, -3.0, 2.25]}
+{"key": "156::emotion", "record_id": "156", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-4.125, 5.375, -4.15625, -4.125, -3.90625, -3.984375]}
+{"key": "157::paraphrase", "record_id": "157", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [2.46875, -0.181640625]}
+{"key": "158::answers", "record_id": "158", "qid": "answers", "type": "noul", "source": "qnli", "label": 0, "label_kind": "dataset_gold", "logits": [7.125, -0.48828125]}
+{"key": "159::answer", "record_id": "159", "qid": "answer", "type": "choice", "source": "mmlu", "label": 1, "label_kind": "dataset_gold", "logits": [-3.28125, -2.71875, -0.67578125, -3.421875]}
+{"key": "160::offensive", "record_id": "160", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [4.03125, -0.94921875]}
+{"key": "161::decision", "record_id": "161", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.61328125, 0.244140625]}
+{"key": "162::decision", "record_id": "162", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [-0.01214599609375, 0.66796875]}
+{"key": "163::decision", "record_id": "163", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.61328125, 0.244140625]}
+{"key": "164::decision", "record_id": "164", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [1.140625, -0.2734375]}
+{"key": "165::decision", "record_id": "165", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.453125, 1.125]}
+{"key": "166::decision", "record_id": "166", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [0.16015625, 0.828125]}
+{"key": "167::answer", "record_id": "167", "qid": "answer", "type": "choice", "source": "sciq", "label": 0, "label_kind": "dataset_gold", "logits": [4.15625, -2.53125, -2.296875, -1.9140625]}
+{"key": "168::emotion", "record_id": "168", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-3.796875, 4.84375, -3.140625, -2.671875, -3.203125, -3.359375]}
+{"key": "169::paraphrase", "record_id": "169", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [6.59375, -2.078125]}
+{"key": "170::answers", "record_id": "170", "qid": "answers", "type": "noul", "source": "qnli", "label": 0, "label_kind": "dataset_gold", "logits": [3.828125, -0.22265625]}
+{"key": "171::answer", "record_id": "171", "qid": "answer", "type": "choice", "source": "mmlu", "label": 3, "label_kind": "dataset_gold", "logits": [-0.78515625, -0.9453125, 1.2109375, 0.78515625]}
+{"key": "172::offensive", "record_id": "172", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [0.63671875, 1.0546875]}
+{"key": "173::decision", "record_id": "173", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [0.037109375, -1.2578125]}
+{"key": "174::decision", "record_id": "174", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [0.36328125, -1.328125]}
+{"key": "175::decision", "record_id": "175", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [0.037109375, -1.2578125]}
+{"key": "176::decision", "record_id": "176", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [-0.09619140625, -1.3359375]}
+{"key": "177::decision", "record_id": "177", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.484375, 1.1484375]}
+{"key": "178::decision", "record_id": "178", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [-1.828125, 1.0546875]}
+{"key": "179::answer", "record_id": "179", "qid": "answer", "type": "choice", "source": "sciq", "label": 1, "label_kind": "dataset_gold", "logits": [0.322265625, 2.4375, 0.9921875, -2.78125]}
+{"key": "180::emotion", "record_id": "180", "qid": "emotion", "type": "choice", "source": "emotion", "label": 0, "label_kind": "dataset_gold", "logits": [5.03125, -3.203125, -4.0, 0.57421875, 5.125, -3.78125]}
+{"key": "181::paraphrase", "record_id": "181", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-2.21875, 2.046875]}
+{"key": "182::answers", "record_id": "182", "qid": "answers", "type": "noul", "source": "qnli", "label": 0, "label_kind": "dataset_gold", "logits": [4.5625, -0.126953125]}
+{"key": "183::answer", "record_id": "183", "qid": "answer", "type": "choice", "source": "mmlu", "label": 2, "label_kind": "dataset_gold", "logits": [1.515625, 0.53125, 0.953125, 0.796875]}
+{"key": "184::offensive", "record_id": "184", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [4.1875, -0.94921875]}
+{"key": "185::decision", "record_id": "185", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.63671875, -0.341796875]}
+{"key": "186::decision", "record_id": "186", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 1, "label_kind": "dataset_gold", "logits": [0.7421875, 0.55078125]}
+{"key": "187::decision", "record_id": "187", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.63671875, -0.341796875]}
+{"key": "188::decision", "record_id": "188", "qid": "decision", "type": "choice", "source": "composition_final_exception", "label": 0, "label_kind": "dataset_gold", "logits": [0.9609375, -0.5390625]}
+{"key": "189::decision", "record_id": "189", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 0, "label_kind": "dataset_gold", "logits": [2.609375, 2.671875, 0.78515625]}
+{"key": "190::decision", "record_id": "190", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 1, "label_kind": "dataset_gold", "logits": [2.359375, 2.4375, 1.1015625]}
+{"key": "191::answer", "record_id": "191", "qid": "answer", "type": "choice", "source": "sciq", "label": 3, "label_kind": "dataset_gold", "logits": [-0.71484375, 1.5390625, -1.390625, 0.8671875]}
+{"key": "192::emotion", "record_id": "192", "qid": "emotion", "type": "choice", "source": "emotion", "label": 0, "label_kind": "dataset_gold", "logits": [0.83984375, 2.03125, -0.0498046875, -2.703125, -2.421875, -3.25]}
+{"key": "193::paraphrase", "record_id": "193", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [2.296875, -0.6796875]}
+{"key": "194::answers", "record_id": "194", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-1.859375, 1.0703125]}
+{"key": "195::answer", "record_id": "195", "qid": "answer", "type": "choice", "source": "mmlu", "label": 0, "label_kind": "dataset_gold", "logits": [1.6484375, -0.6328125, -0.427734375, -1.3359375]}
+{"key": "196::offensive", "record_id": "196", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.625, -0.3359375]}
+{"key": "197::decision", "record_id": "197", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [2.34375, -0.8984375]}
+{"key": "198::decision", "record_id": "198", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [1.8203125, -0.97265625]}
+{"key": "199::decision", "record_id": "199", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [2.34375, -0.8984375]}
+{"key": "200::decision", "record_id": "200", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [2.265625, -0.85546875]}
+{"key": "201::decision", "record_id": "201", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 0, "label_kind": "dataset_gold", "logits": [3.21875, 2.625, 0.546875]}
+{"key": "202::decision", "record_id": "202", "qid": "decision", "type": "score", "source": "contrastive_deadline", "label": 2, "label_kind": "dataset_gold", "logits": [2.078125, 2.625, 1.1875]}
+{"key": "203::answer", "record_id": "203", "qid": "answer", "type": "choice", "source": "sciq", "label": 2, "label_kind": "dataset_gold", "logits": [-2.171875, -1.53125, 3.40625, -0.61328125]}
+{"key": "204::emotion", "record_id": "204", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-4.15625, 6.53125, -3.6875, -4.125, -4.09375, -4.125]}
+{"key": "205::paraphrase", "record_id": "205", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-0.6015625, 1.0859375]}
+{"key": "206::answers", "record_id": "206", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [3.125, -0.193359375]}
+{"key": "207::answer", "record_id": "207", "qid": "answer", "type": "choice", "source": "mmlu", "label": 1, "label_kind": "dataset_gold", "logits": [1.390625, 1.2578125, 1.2421875, 0.02001953125]}
+{"key": "208::offensive", "record_id": "208", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.453125, 0.00091552734375]}
+{"key": "209::decision", "record_id": "209", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.40625, 0.017333984375]}
+{"key": "210::decision", "record_id": "210", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 0, "label_kind": "dataset_gold", "logits": [1.0625, -0.8984375]}
+{"key": "211::decision", "record_id": "211", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.40625, 0.017333984375]}
+{"key": "212::decision", "record_id": "212", "qid": "decision", "type": "choice", "source": "composition_final_combination", "label": 1, "label_kind": "dataset_gold", "logits": [0.333984375, -0.349609375]}
+{"key": "213::decision", "record_id": "213", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.390625, 1.109375]}
+{"key": "214::decision", "record_id": "214", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [-1.96875, 1.046875]}
+{"key": "215::answer", "record_id": "215", "qid": "answer", "type": "choice", "source": "sciq", "label": 2, "label_kind": "dataset_gold", "logits": [-1.359375, -1.6953125, 3.1875, -1.7890625]}
+{"key": "216::emotion", "record_id": "216", "qid": "emotion", "type": "choice", "source": "emotion", "label": 3, "label_kind": "dataset_gold", "logits": [-3.625, 3.421875, -2.46875, -3.0625, -3.640625, -3.65625]}
+{"key": "217::paraphrase", "record_id": "217", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 0, "label_kind": "dataset_gold", "logits": [0.91015625, -1.53125]}
+{"key": "218::answers", "record_id": "218", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-3.40625, 1.4140625]}
+{"key": "219::answer", "record_id": "219", "qid": "answer", "type": "choice", "source": "mmlu", "label": 2, "label_kind": "dataset_gold", "logits": [-1.0625, -1.109375, -0.5625, 0.97265625]}
+{"key": "220::offensive", "record_id": "220", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [3.328125, -0.48046875]}
+{"key": "221::decision", "record_id": "221", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [0.09375, 2.46875]}
+{"key": "222::decision", "record_id": "222", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [-0.396484375, 3.15625]}
+{"key": "223::decision", "record_id": "223", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [0.09375, 2.46875]}
+{"key": "224::decision", "record_id": "224", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [-0.28125, 2.875]}
+{"key": "225::decision", "record_id": "225", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.140625, 1.0625]}
+{"key": "226::decision", "record_id": "226", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [3.96875, 0.058349609375]}
+{"key": "227::answer", "record_id": "227", "qid": "answer", "type": "choice", "source": "sciq", "label": 2, "label_kind": "dataset_gold", "logits": [-1.75, -1.296875, 1.21875, 0.4453125]}
+{"key": "228::emotion", "record_id": "228", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-3.90625, 4.9375, 1.59375, -4.0, -3.90625, -2.3125]}
+{"key": "229::paraphrase", "record_id": "229", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-3.046875, 2.8125]}
+{"key": "230::answers", "record_id": "230", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-1.734375, 1.0234375]}
+{"key": "231::answer", "record_id": "231", "qid": "answer", "type": "choice", "source": "mmlu", "label": 3, "label_kind": "dataset_gold", "logits": [0.384765625, 0.043212890625, 1.7109375, 1.1875]}
+{"key": "232::offensive", "record_id": "232", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [2.328125, 0.10546875]}
+{"key": "233::decision", "record_id": "233", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [-0.2470703125, 0.314453125]}
+{"key": "234::decision", "record_id": "234", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [-0.095703125, 0.08935546875]}
+{"key": "235::decision", "record_id": "235", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [-0.2470703125, 0.314453125]}
+{"key": "236::decision", "record_id": "236", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [-0.318359375, 0.59375]}
+{"key": "237::decision", "record_id": "237", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.875, 1.2265625]}
+{"key": "238::decision", "record_id": "238", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [-1.7890625, 0.9609375]}
+{"key": "239::answer", "record_id": "239", "qid": "answer", "type": "choice", "source": "sciq", "label": 2, "label_kind": "dataset_gold", "logits": [3.40625, -0.59375, -0.267578125, -1.3125]}
+{"key": "240::emotion", "record_id": "240", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-3.625, 4.8125, 4.65625, -3.96875, -3.90625, -2.34375]}
+{"key": "241::paraphrase", "record_id": "241", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-1.8671875, 1.8203125]}
+{"key": "242::answers", "record_id": "242", "qid": "answers", "type": "noul", "source": "qnli", "label": 1, "label_kind": "dataset_gold", "logits": [-0.7421875, 0.89453125]}
+{"key": "243::answer", "record_id": "243", "qid": "answer", "type": "choice", "source": "mmlu", "label": 1, "label_kind": "dataset_gold", "logits": [0.65625, 0.486328125, 0.263671875, -0.875]}
+{"key": "244::offensive", "record_id": "244", "qid": "offensive", "type": "noul", "source": "tweet_offensive", "label": 0, "label_kind": "dataset_gold", "logits": [3.140625, -0.494140625]}
+{"key": "245::decision", "record_id": "245", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [0.77734375, 1.1484375]}
+{"key": "246::decision", "record_id": "246", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 0, "label_kind": "dataset_gold", "logits": [0.3671875, 1.7578125]}
+{"key": "247::decision", "record_id": "247", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [0.77734375, 1.1484375]}
+{"key": "248::decision", "record_id": "248", "qid": "decision", "type": "choice", "source": "composition_final_negation", "label": 1, "label_kind": "dataset_gold", "logits": [0.396484375, 1.3046875]}
+{"key": "249::decision", "record_id": "249", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 1, "label_kind": "dataset_gold", "logits": [-2.5625, 1.1328125]}
+{"key": "250::decision", "record_id": "250", "qid": "decision", "type": "noul", "source": "contrastive_authorization", "label": 0, "label_kind": "dataset_gold", "logits": [0.90625, 0.60546875]}
+{"key": "251::answer", "record_id": "251", "qid": "answer", "type": "choice", "source": "sciq", "label": 2, "label_kind": "dataset_gold", "logits": [-2.484375, -2.359375, 3.296875, -3.34375]}
+{"key": "252::emotion", "record_id": "252", "qid": "emotion", "type": "choice", "source": "emotion", "label": 1, "label_kind": "dataset_gold", "logits": [-0.0751953125, -2.296875, -3.890625, -1.546875, 2.640625, -3.234375]}
+{"key": "253::paraphrase", "record_id": "253", "qid": "paraphrase", "type": "noul", "source": "paws", "label": 1, "label_kind": "dataset_gold", "logits": [-1.5625, 1.703125]}
+{"key": "254::answers", "record_id": "254", "qid": "answers", "type": "noul", "source": "qnli", "label": 0, "label_kind": "dataset_gold", "logits": [6.25, -0.52734375]}
+{"key": "255::answer", "record_id": "255", "qid": "answer", "type": "choice", "source": "mmlu", "label": 3, "label_kind": "dataset_gold", "logits": [-1.4375, 2.0, 1.015625, 0.61328125]}
