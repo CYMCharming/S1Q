@@ -1,0 +1,72 @@
+{
+  "schema": "s1q-upstream-licenses.v1",
+  "release_catalog_sha256": "a7045f018f2276b1f71678d659213d4a933c00824230826d5d38ad436cf601f8",
+  "files": [
+    {
+      "file": "Kev-source-LICENSE.txt",
+      "role": "upstream source license",
+      "repository": "jaredpalmer/kev",
+      "revision": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91",
+      "source_path": "LICENSE",
+      "url": "https://github.com/jaredpalmer/kev/blob/0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91/LICENSE",
+      "bytes": 11343,
+      "sha256": "6b08bb37982c233aa12bcbdf19106da12f3f4fcf800773ea42e28ebeddd34fb8",
+      "transport": "exact Git blob; no checkout newline conversion"
+    },
+    {
+      "file": "Laya-source-LICENSE.txt",
+      "role": "upstream source license",
+      "repository": "NandhaKishorM/laya",
+      "revision": "6d942c92081fbc139e736bbd9ac0023223c29b7f",
+      "source_path": "LICENSE",
+      "url": "https://github.com/NandhaKishorM/laya/blob/6d942c92081fbc139e736bbd9ac0023223c29b7f/LICENSE",
+      "bytes": 10173,
+      "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+      "transport": "exact Git blob; no checkout newline conversion"
+    },
+    {
+      "file": "NanoJev-source-LICENSE.txt",
+      "role": "upstream source license",
+      "repository": "TianyuCodings/NanoJev",
+      "revision": "76fdfc9ecdca45a9bcef17991a07d3041a87685a",
+      "source_path": "LICENSE",
+      "url": "https://github.com/TianyuCodings/NanoJev/blob/76fdfc9ecdca45a9bcef17991a07d3041a87685a/LICENSE",
+      "bytes": 1077,
+      "sha256": "c69c1bb0b33112f68f9e8ef7e91dd38ec59066fcba3f62f70cbc8c9c83cf6a8e",
+      "transport": "exact Git blob; no checkout newline conversion"
+    },
+    {
+      "file": "Qwen3.5-0.8B-Base-LICENSE.txt",
+      "role": "base-model weight license for kev-0.8b",
+      "repository": "Qwen/Qwen3.5-0.8B-Base",
+      "revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+      "source_path": "LICENSE",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B-Base/resolve/dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68/LICENSE",
+      "bytes": 11343,
+      "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32",
+      "transport": "HTTPS with normal certificate verification; exact response bytes"
+    },
+    {
+      "file": "Qwen3.5-4B-Base-LICENSE.txt",
+      "role": "base-model weight license for kev-4b",
+      "repository": "Qwen/Qwen3.5-4B-Base",
+      "revision": "1001bb4d826a52d1f399e183466143f4da7b741b",
+      "source_path": "LICENSE",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B-Base/resolve/1001bb4d826a52d1f399e183466143f4da7b741b/LICENSE",
+      "bytes": 11343,
+      "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32",
+      "transport": "HTTPS with normal certificate verification; exact response bytes"
+    },
+    {
+      "file": "Qwen3.5-9B-Base-LICENSE.txt",
+      "role": "base-model weight license for kev-9b",
+      "repository": "Qwen/Qwen3.5-9B-Base",
+      "revision": "68c46c4b3498877f3ef123c856ecfde50c39f404",
+      "source_path": "LICENSE",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B-Base/resolve/68c46c4b3498877f3ef123c856ecfde50c39f404/LICENSE",
+      "bytes": 11343,
+      "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32",
+      "transport": "HTTPS with normal certificate verification; exact response bytes"
+    }
+  ]
+}

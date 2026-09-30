@@ -1,0 +1,4 @@
+# Preserve upstream license bytes and their manifest checksums on every platform.
+*-LICENSE.txt -text
+manifest.json text eol=lf
+README.md text eol=lf
