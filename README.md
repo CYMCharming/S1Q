@@ -98,7 +98,7 @@ The quantization design draws on [AWQ](https://arxiv.org/abs/2306.00978), [Smoot
 
 Every completed run records model/source revisions, package versions, dataset hashes, eligibility exclusions, development selection, per-question predictions and matched RTN results where precision policies differ. The inspected exploratory Laya pilot motivated a Fisher extension; its inspected cohorts are not presented as fresh confirmation. External JevBench evaluation hashes its inputs before inference and reuses frozen model profiles and temperatures.
 
-Rebuild the report with `python scripts/summarize_results.py`. Independent external evaluation is in [evaluate_external.py](scripts/evaluate_external.py); it does not fit temperatures or tune quantization on the external cohort. The [runtime audit](docs/runtime.md) distinguishes recorded experimental packages from the fresh supported installation profile.
+Rebuild the report with `python scripts/summarize_results.py`. Install `python -m pip install -e '.[plots]'` for `python scripts/plot_results.py`; the published figure snapshot used Matplotlib 3.8.4. Independent external evaluation is in [evaluate_external.py](scripts/evaluate_external.py); it does not fit temperatures or tune quantization on the external cohort. The [runtime audit](docs/runtime.md) distinguishes recorded experimental packages from the fresh supported installation profile.
 
 Dataset source JSONL and full upstream clones are not committed. Model and dataset licenses remain upstream-specific; see [NOTICE](NOTICE) and the evaluation documentation. Publication of recipes, identifiers and derived metrics does not relicense source material.
 

@@ -23,6 +23,7 @@ models = [
     "tiktoken>=0.9,<1",
 ]
 test = ["pytest>=8,<10"]
+plots = ["matplotlib>=3.8,<4"]
 
 [project.scripts]
 s1q = "s1q.cli:main"
