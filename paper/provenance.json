@@ -1,7 +1,7 @@
 {
   "schema": "s1q-manuscript-provenance-v1",
   "manuscript": "s1q.tex",
-  "manuscript_sha256": "93bed5f6e61baeeaacc6cc56bfb994fc7cca19b3e33f298063295c2e379af3ce",
+  "manuscript_sha256": "62d6b49e1b8059ac57915a3c203158db572c01853fa250ed11cfe7771e3d5403",
   "experiment_release": "v0.1.0",
   "experiment_code_commit": "c46a95b2438cb4c878e789ea3c538080d6df8da5",
   "tables": "Derived from completed summaries and the audited result report.",
@@ -59,8 +59,8 @@
   "scope": "Research manuscript draft; no new GPU experiments or speedup claim.",
   "export": {
     "pdf": "s1q.pdf",
-    "pdf_sha256": "de96a19670bb137b60d5687a8cfe834caa91c4680236ce2dc93f0eca44f9aa29",
-    "pdf_bytes": 582593,
+    "pdf_sha256": "38174c99d360761c3288ba4969d232af5ae0449998acda24f3f187ea1d521759",
+    "pdf_bytes": 582589,
     "pages": 11,
     "compiler": "pdfLaTeX (existing MiKTeX installation)",
     "compile_passes": 2,
