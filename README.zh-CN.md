@@ -1,14 +1,16 @@
 # S1Q：面向 System One 决策模型的低比特量化
 
-[English](README.md) · [完整结果](docs/results.md) · [方法说明](docs/method.md) · [评测设计](docs/evaluation-design.md) · [权重使用](docs/artifacts.md) · [运行环境](docs/runtime.md) · [相关工作](docs/related-work.md)
+[English](README.md) · [论文](paper/README.md) · [完整结果](docs/results.md) · [方法说明](docs/method.md) · [评测设计](docs/evaluation-design.md) · [权重使用](docs/artifacts.md) · [运行环境](docs/runtime.md) · [相关工作](docs/related-work.md)
 
 S1Q 面向 Kev-0.8B、Kev-4B、Kev-9B、NanoJev 和 Laya 等开源 Jev-like 决策模型，研究低比特量化如何影响选择、评分和概率输出。
+
+已提供 [完整英文论文初稿](paper/s1q.pdf)，包括方法公式、Fisher 探针推导、五模型实验、开发集消融、概率指标、局限与复现附录。[LaTeX 源码和数据溯源](paper/README.md)同步公开。论文报告 v0.1.0 已完成实验，尚未投稿；更强的方法比较结论仍需官方 AWQ/GPTQ 基线及多随机种子实验。
 
 方法结合激活感知通道缩放、分组裁剪搜索，以及可选的决策输出 Fisher 权重。只用独立开发集选择量化配置，温度校准与量化校准分开，并保留原生决策头和混合架构的递归状态计算精度。原精度、RTN、局部重构消融及选定 S1Q 的逐项预测和指标保存在 `results/`。
 
 目前实现包括 W4/W8 权重量化、A4/A8 模拟量化、INT4/INT8 打包文件，以及逐层临时反量化的低存储参考执行路径。**浮点矩阵乘法仍然存在，不能把这些实验描述为原生 W4A4 内核加速。** 总体压缩率会计入保留的 embedding、决策头和其他参数。
 
-五个模型已经在 A100/A800 上完成真实量化与评测。下表为主测试集准确率（%）；RTN 与 S1Q 的权重范围、分组和激活精度匹配。Kev/Laya 使用 914 个决策，NanoJev 使用 1,023 个原生游戏决策，不能将不同数据集的准确率当作模型排行榜。
+五个模型已经在 A100/A800 上完成真实量化与评测。下表为主测试集准确率（%）；RTN 与 S1Q 的权重范围、分组和激活精度匹配。Kev/Laya 使用 914 个决策，NanoJev 使用 1,023 个 shooting 决策，标签为记录的参考策略动作概率 argmax；不能将不同数据集的准确率当作模型排行榜。
 
 | 模型 | 选定配置 | 原精度 | 匹配 RTN | S1Q | 完整参数存储占原模型 |
 |---|---|---:|---:|---:|---:|
@@ -22,7 +24,7 @@ S1Q 面向 Kev-0.8B、Kev-4B、Kev-9B、NanoJev 和 Laya 等开源 Jev-like 决�
 
 现有社区已经有 Laya INT4/INT8 和 Kev INT8 量化，因此本项目不宣称“首个针对这类模型的量化工作”，贡献定位为跨模型量化实现、决策输出适配及可复现研究。
 
-NanoJev 当前权重主要用于游戏决策，使用其原生测试集；只有教师概率的题目不作为独立真实标签。跨游戏回合的重复输入先按连通分组处理，再用固定规则避免校准与测试重叠。专家动作一致率与真实事件的概率校准分开解释。
+NanoJev 上游数据包涵盖 Maze、Snake、ViZDoom Basic 和 Predict Position；S1Q 最终原生 test（1,023 个决策）和 OOD（1,024 个决策）仅包含 shooting 的 Basic 与 Predict Position。原数据显式提供的 `reference_argmax_compatibility` 标签用于衡量与记录的强化学习参考策略动作 argmax 的一致率，不是人类标注、最优动作真值或观测成功概率。没有显式受支持硬标签的题目被排除。跨游戏回合的重复输入先按连通分组处理，再用固定规则避免校准与测试重叠。
 
 安装与执行命令见 [英文说明](README.md#quick-start)。源码、权重和数据均固定版本；公开仓库提供代码、可复现实验配方、数据标识和派生评测结果，不重新分发许可不明确的原始数据。
 

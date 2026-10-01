@@ -4,7 +4,9 @@ Generated from completed, hashed run summaries and saved paired predictions by `
 
 Pilot results were inspected before the expanded Fisher search. Pilot and expanded validation results are exploratory, including repeated evaluation on overlapping Kev suites. A larger rerun does not create a new independent held-out set. External authored-cohort results are reported separately when available; they must use profiles frozen before external inference.
 
-The current implementation rounds weights and simulates activation quantization while executing floating point operations. Storage estimates include retained embeddings, heads and other native parameters; they are not GPU memory or integer-kernel speedups. NanoJev game targets measure agreement with explicit expert actions, rather than calibration of observed event probabilities. No claim of the first quantization work on these models follows from these experiments.
+The current implementation rounds weights and simulates activation quantization while executing floating point operations. Storage estimates include retained embeddings, heads and other native parameters; they are not GPU memory or integer-kernel speedups. NanoJev's native cohorts in the v0.1.0 snapshot contain only shooting tasks (Basic and Predict Position); supplied `reference_argmax_compatibility` labels measure recorded reference-policy action argmax agreement, not human annotation, optimal-action gold or observed-success probability calibration. No claim of the first quantization work on these models follows from these experiments.
+
+Documentation clarification of the v0.1.0 snapshot: the upstream NanoJev package also includes Maze and Snake, but they are absent from the final S1Q native test (1,023 decisions) and OOD (1,024 decisions) cohorts. Test contains 321 Basic and 702 Predict Position decisions; OOD contains 398 Basic and 626 Predict Position decisions. The converter preserves supplied hard gold and does not manufacture teacher argmax labels. This clarification changes no experiment numbers, result JSON, aggregate or figure provenance.
 
 ## Latest completed main cohorts
 

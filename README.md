@@ -1,6 +1,6 @@
 # S1Q: Low-Bit Quantization for System One Decision Models
 
-[中文说明](README.zh-CN.md) · [Results](docs/results.md) · [Method](docs/method.md) · [Evaluation protocol](docs/evaluation-design.md) · [Weights](docs/artifacts.md) · [Runtime](docs/runtime.md) · [Related work](docs/related-work.md)
+[中文说明](README.zh-CN.md) · [Paper](paper/README.md) · [Results](docs/results.md) · [Method](docs/method.md) · [Evaluation protocol](docs/evaluation-design.md) · [Weights](docs/artifacts.md) · [Runtime](docs/runtime.md) · [Related work](docs/related-work.md)
 
 S1Q is a research implementation for quantizing open Jev-like **typed decision models**: **Kev-0.8B, Kev-4B, Kev-9B, NanoJev, and Laya**. These models directly score choices, Boolean questions, or ordered levels. Evaluation therefore measures decision accuracy **and** probability quality, rather than language-model perplexity alone.
 
@@ -8,9 +8,11 @@ S1Q adapts activation-aware channel scaling and groupwise clipping to native dec
 
 **Research snapshot:** five real A100/A800 GPU model experiments, development ablations, source-transfer/game OOD evaluation, and a separate frozen public JevBench cohort. This repository does **not** claim to be the first quantization of System One models: prior Laya INT4/INT8 and Kev INT8 work exists. See the primary-source [prior-art audit](docs/related-work.md).
 
+**Manuscript:** the [complete English research draft](paper/s1q.pdf) includes the method, categorical-Fisher probe derivation, all five model results, development ablations, probability metrics, limitations, and reproducibility appendices. [LaTeX source and table provenance](paper/README.md) are provided. This is an unsubmitted draft reporting the v0.1.0 experiments; official AWQ/GPTQ baselines and multi-seed studies remain necessary for stronger comparison claims.
+
 ## Results at a glance
 
-Main-cohort accuracy (%), with identical quantized layer scope and activation precision for the matched RTN comparison. Four models use 914 typed decisions from the screened Kev suites; NanoJev uses 1,023 native game decisions. These cohorts are exploratory after pilot inspection; the separate 85-task JevBench cohort is evaluated with already frozen profiles. See [full results, paired confidence intervals, probability metrics and negative outcomes](docs/results.md).
+Main-cohort accuracy (%), with identical quantized layer scope and activation precision for the matched RTN comparison. Four models use 914 typed decisions from the screened Kev suites; NanoJev uses 1,023 shooting decisions with recorded reference-policy argmax action targets. These cohorts are exploratory after pilot inspection; the separate 85-task JevBench cohort is evaluated with already frozen profiles. See [full results, paired confidence intervals, probability metrics and negative outcomes](docs/results.md).
 
 | Model | Selected configuration | Native | Matched RTN | S1Q | Complete parameter storage / native |
 |---|---|---:|---:|---:|---:|
@@ -51,7 +53,7 @@ CUDA_VISIBLE_DEVICES=0 s1q run --model kev-0.8b \
 
 Available model names: `kev-0.8b`, `kev-4b`, `kev-9b`, `nanojev`, `laya`.
 
-NanoJev's released checkpoint is specialized for games. Prepare its native hard-label dataset separately:
+NanoJev's released checkpoint is specialized for games. Prepare its upstream unified hard-label dataset separately:
 
 ```bash
 python scripts/prepare_data.py nanojev --output work/data/nanojev
@@ -59,7 +61,7 @@ s1q run --model nanojev --data work/data/nanojev \
   --output results/nanojev-reproduction --bits 4 --fisher
 ```
 
-Upstream game samples that only contain Jev teacher probabilities are excluded from hard-label accuracy. Expert-action agreement is reported separately from observed-outcome probability calibration. Whole episode components sharing identical requests are kept together; lower-priority overlaps are excluded using a published fixed policy.
+The upstream package covers Maze, Snake, ViZDoom Basic and Predict Position. The final S1Q native test (1,023 decisions) and OOD (1,024 decisions) cohorts contain only shooting tasks: Basic and Predict Position. Their explicitly supplied `reference_argmax_compatibility` labels measure agreement with recorded RL reference-policy action argmaxes, not human judgments, optimal-action gold or observed success probabilities. Questions without explicit supported hard gold are excluded. Whole episode components sharing identical requests are kept together; lower-priority overlaps are excluded using a published fixed policy.
 
 ## Evaluate or inspect packed weights
 
@@ -104,7 +106,7 @@ Dataset source JSONL and full upstream clones are not committed. Model and datas
 
 ## Citation
 
-Until a paper is available, cite the software and pin the exact release/commit:
+The [research manuscript](paper/README.md) is available as a draft. When using the implementation or reported experiments, cite the software and pin the exact release/commit:
 
 ```bibtex
 @software{chen2026s1q,
