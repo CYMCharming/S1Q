@@ -1,10 +1,8 @@
 # S1Q：面向 System One 决策模型的低比特量化
 
-[English](README.md) · [论文](paper/README.md) · [完整结果](docs/results.md) · [方法说明](docs/method.md) · [评测设计](docs/evaluation-design.md) · [权重使用](docs/artifacts.md) · [运行环境](docs/runtime.md) · [相关工作](docs/related-work.md)
+[English](README.md) · [完整结果](docs/results.md) · [方法说明](docs/method.md) · [评测设计](docs/evaluation-design.md) · [权重使用](docs/artifacts.md) · [运行环境](docs/runtime.md) · [相关工作](docs/related-work.md)
 
 S1Q 面向 Kev-0.8B、Kev-4B、Kev-9B、NanoJev 和 Laya 等开源 Jev-like 决策模型，研究低比特量化如何影响选择、评分和概率输出。
-
-已提供 [完整英文论文初稿](paper/s1q.pdf)，包括方法公式、Fisher 探针推导、五模型实验、开发集消融、概率指标、局限与复现附录。[LaTeX 源码和数据溯源](paper/README.md)同步公开。论文报告 v0.1.0 已完成实验，尚未投稿；更强的方法比较结论仍需官方 AWQ/GPTQ 基线及多随机种子实验。
 
 方法结合激活感知通道缩放、分组裁剪搜索，以及可选的决策输出 Fisher 权重。只用独立开发集选择量化配置，温度校准与量化校准分开，并保留原生决策头和混合架构的递归状态计算精度。原精度、RTN、局部重构消融及选定 S1Q 的逐项预测和指标保存在 `results/`。
 
