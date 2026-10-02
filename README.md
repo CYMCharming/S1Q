@@ -1,14 +1,12 @@
 # S1Q: Low-Bit Quantization for System One Decision Models
 
-[中文说明](README.zh-CN.md) · [Paper](paper/README.md) · [Results](docs/results.md) · [Method](docs/method.md) · [Evaluation protocol](docs/evaluation-design.md) · [Weights](docs/artifacts.md) · [Runtime](docs/runtime.md) · [Related work](docs/related-work.md)
+[中文说明](README.zh-CN.md) · [Results](docs/results.md) · [Method](docs/method.md) · [Evaluation protocol](docs/evaluation-design.md) · [Weights](docs/artifacts.md) · [Runtime](docs/runtime.md) · [Related work](docs/related-work.md)
 
 S1Q is a research implementation for quantizing open Jev-like **typed decision models**: **Kev-0.8B, Kev-4B, Kev-9B, NanoJev, and Laya**. These models directly score choices, Boolean questions, or ordered levels. Evaluation therefore measures decision accuracy **and** probability quality, rather than language-model perplexity alone.
 
 S1Q adapts activation-aware channel scaling and groupwise clipping to native decision-model backbones. It also tests teacher categorical-Fisher weighting of output channels and uses held-out development decisions to select among weight-only, activation-quantized, and selective higher-precision configurations. Native decision heads and recurrent state arithmetic retain their original precision. No claim is made that these individual quantization ideas are new.
 
 **Research snapshot:** five real A100/A800 GPU model experiments, development ablations, source-transfer/game OOD evaluation, and a separate frozen public JevBench cohort. This repository does **not** claim to be the first quantization of System One models: prior Laya INT4/INT8 and Kev INT8 work exists. See the primary-source [prior-art audit](docs/related-work.md).
-
-**Manuscript:** the [complete English research draft](paper/s1q.pdf) includes the method, categorical-Fisher probe derivation, all five model results, development ablations, probability metrics, limitations, and reproducibility appendices. [LaTeX source and table provenance](paper/README.md) are provided. This is an unsubmitted draft reporting the v0.1.0 experiments; official AWQ/GPTQ baselines and multi-seed studies remain necessary for stronger comparison claims.
 
 ## Results at a glance
 
@@ -106,7 +104,7 @@ Dataset source JSONL and full upstream clones are not committed. Model and datas
 
 ## Citation
 
-The [research manuscript](paper/README.md) is available as a draft. When using the implementation or reported experiments, cite the software and pin the exact release/commit:
+When using the implementation or reported experiments, cite the software and pin the exact release/commit:
 
 ```bibtex
 @software{chen2026s1q,
