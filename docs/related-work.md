@@ -88,6 +88,13 @@ were denied the same fitting data.
 
 ## What S1Q can defensibly contribute
 
+The pinned StartLux publisher source also includes an Apple MLX W8A8 path
+using SmoothQuant with alpha 0.75, per-token activation quantization and
+per-output-channel weight quantization. See its
+[native implementation](https://huggingface.co/startlux-models/StartLux-Decision-0.8B/blob/bd4f76a600e23227547fee7bfc1825e12a32764c/startlux_decision/mlx_int8.py).
+This is existing quantization work in the evaluated ecosystem. It has not been
+benchmarked as an Apple-runtime baseline in our NVIDIA W4A4 experiments.
+
 The current contribution is a reproducible cross-architecture study and a concrete
 typed-decision adaptation: aligned top-two margin-Jacobian token sampling,
 joint W/A local reconstruction and bounded activation compensation. The frozen

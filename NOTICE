@@ -9,6 +9,11 @@ Upstream dependencies and model families:
 - Laya: https://github.com/NandhaKishorM/laya (Apache-2.0)
 - NanoJev source: https://github.com/TianyuCodings/NanoJev (MIT).
   Fine-tuned NanoJev weights are not redistributed by S1Q; see docs/artifacts.md.
+- Intern-Decision: https://github.com/InternLM/Intern-Decision (Apache-2.0).
+  Its pinned model weights are Apache-2.0 and are not redistributed here.
+- StartLux-Decision: https://github.com/StartLuxLabs/StartLux-Decision.
+  Native inference code is Apache-2.0; pinned weights are CC BY-NC 4.0.
+  No StartLux weights or original inference source are redistributed here.
 - Qwen model backbones: consult each pinned model card and LICENSE.
   Qwen base weight copyright: Alibaba Cloud; Apache-2.0 for the pinned bases.
 

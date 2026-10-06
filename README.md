@@ -4,7 +4,7 @@
 
 **S1Q now denotes the current decision-margin-aware, activation-compensated method.** Its October 2026 experiment identifier was `s1q-mac`; that identifier remains supported to reproduce frozen runs. The public method name is **S1Q**. Earlier S1Q and S1Q2 recipes remain available as historical controls.
 
-S1Q quantizes open Jev-like **System One decision models** that map a state and typed questions directly to finite choice, Boolean or discrete-level distributions. The implementation supports pinned Kev, NanoJev and Laya adapters; it preserves native candidate order and decision heads. It is an independent research project and is not affiliated with [TypeSafe Jev](https://docs.typesafe.ai/introduction).
+S1Q quantizes open Jev-like **System One decision models** that map a state and typed questions directly to finite choice, Boolean or discrete-level distributions. The implementation supports pinned Kev, NanoJev, Laya, Intern-Decision and StartLux-Decision adapters; it preserves native candidate order and decision readouts. The new Intern/StartLux adapters cover released 0.8B, 2B and 4B sizes in a text-only contract, with separate native parity gates. See [model extensions](docs/decision-model-extensions.md) for interface, provenance and runtime scope. Adapter support alone does not imply a completed benchmark. It is an independent research project and is not affiliated with [TypeSafe Jev](https://docs.typesafe.ai/introduction).
 
 ## Method
 
@@ -83,7 +83,7 @@ The historical [v0.1.0 release](https://github.com/CYMCharming/S1Q/releases/tag/
 
 ## Attribution and citation
 
-Upstream decision models: [Kev](https://github.com/jaredpalmer/kev), [NanoJev](https://github.com/TianyuCodings/NanoJev), [Laya](https://github.com/NandhaKishorM/laya). Model/data licenses remain upstream-specific; see [NOTICE](NOTICE), [model audit](docs/model-audit.md) and [artifact attribution](docs/artifacts.md).
+Upstream decision models: [Kev](https://github.com/jaredpalmer/kev), [NanoJev](https://github.com/TianyuCodings/NanoJev), [Laya](https://github.com/NandhaKishorM/laya), [Intern-Decision](https://github.com/InternLM/Intern-Decision), [StartLux-Decision](https://github.com/StartLuxLabs/StartLux-Decision). Model/data licenses remain upstream-specific; see [NOTICE](NOTICE), [model audit](docs/model-audit.md), [model extensions](docs/decision-model-extensions.md) and [artifact attribution](docs/artifacts.md).
 
 Quantization ingredients are attributed to [AWQ](https://arxiv.org/abs/2306.00978), [SmoothQuant](https://arxiv.org/abs/2211.10438), [GPTQ](https://arxiv.org/abs/2210.17323), [SpinQuant](https://arxiv.org/abs/2405.16406), GuidedQuant, RSQ, ERQ and GPTAQ. Native model adapters, experiment code and the decision-aware integration are implemented here; official baseline equivalence has not been claimed.
 

@@ -33,6 +33,12 @@ CUDA_VISIBLE_DEVICES=0 s1q optimize --model kev-4b \
 
 Use model names `kev-0.8b`, `kev-4b`, `kev-9b`, `laya` with shared text data, or `nanojev` with its separate data. Change `--bits 3` for W3A4, or `--activation-bits 8` for W4A8; give each run a new output directory. W4A8 is a supported recipe, not a claimed completed result in the current October 4 evidence. Current S1Q requires gradients through the native forward during calibration, even though it does not fit model parameters.
 
+The registered Intern-Decision and StartLux-Decision 0.8B/2B/4B checkpoints
+use the same text data through their own native compilers. Follow the
+[extension guide](decision-model-extensions.md) for pinned acquisition,
+native parity checks, separate-process loading and text-runtime scope before
+using their `intern-decision-*` or `startlux-decision-*` names.
+
 The default `s1q optimize` methods are `s1q,rtn`. The script entry point can also be used from an installed checkout:
 
 ```bash

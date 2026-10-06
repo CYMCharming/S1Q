@@ -13,6 +13,7 @@ import math
 import os
 import subprocess
 import sys
+import types
 from contextlib import nullcontext
 from pathlib import Path
 from typing import Any, Mapping
@@ -29,6 +30,12 @@ MODEL_REVISIONS = {
     "laya": ("convaiinnovations/laya", "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"),
     "nanojev": ("C-Tianyu/NanoJev", "047b927b30882a1138fc504821b82ac145a4b81a"),
     "decima-small": ("amyrmahdy/decima-small", "9399bf8c5edf2ac0186a38220af277bfc27b4a56"),
+    "intern-decision-0.8b": ("internlm/Intern-Decision-0.8B", "85a0cc5a99d67ea8d56dfe98115689212867171d"),
+    "intern-decision-2b": ("internlm/Intern-Decision-2B", "8797836c65fc91a2435b1fb6850b5f0aabd75cc3"),
+    "intern-decision-4b": ("internlm/Intern-Decision-4B", "0e5e6aa7d6d750e2b1504ba11a8136cb58aeb3cd"),
+    "startlux-decision-0.8b": ("startlux-models/StartLux-Decision-0.8B", "bd4f76a600e23227547fee7bfc1825e12a32764c"),
+    "startlux-decision-2b": ("startlux-models/StartLux-Decision-2B", "3e2e456409a7fe44be69eee231566f7830872ea2"),
+    "startlux-decision-4b": ("startlux-models/StartLux-Decision-4B", "9302aedb7f7bd889994336f2ae919dffbf5dbee1"),
 }
 SOURCE_REVISIONS = {
     "kev": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91",
@@ -464,6 +471,188 @@ class DecimaAdapter(DecisionAdapter):
         return answers
 
 
+def _decision_checkpoint(name: str, checkpoint_dir=None, revision=None, checkpoint_manifest=None):
+    """Resolve a pinned symbol-readout checkpoint including its native compiler.
+
+    Local Python and weights are accepted together only with a byte manifest.
+    This verifies the supplied manifest, not its authority; acquisition tools
+    separately compare weight digests with the publisher's pinned LFS digests.
+    """
+    repo, expected = MODEL_REVISIONS[name]
+    revision = revision or expected
+    if revision != expected:
+        raise ValueError(f"Decision extension revision must remain pinned: {expected}")
+    if checkpoint_dir is None:
+        from huggingface_hub import snapshot_download
+        path = Path(snapshot_download(repo, revision=revision,
+                    allow_patterns=["*.json", "*.safetensors", "*.txt", "*.jinja",
+                                    "inference.py", "startlux_decision/*.py",
+                                    "LICENSE*", "NOTICE", "README.md"]))
+        provenance = checkpoint_provenance(revision, expected_revision=expected)
+    else:
+        path = Path(checkpoint_dir).resolve()
+        manifest = Path(checkpoint_manifest) if checkpoint_manifest else path / "checkpoint-manifest.json"
+        if not manifest.is_absolute():
+            manifest = path / manifest
+        content = json.loads(manifest.read_text(encoding="utf-8"))
+        if content.get("repo_id") != repo or content.get("revision") != expected:
+            raise ValueError("Local decision checkpoint manifest repo/revision disagrees with its pin")
+        required = (["inference.py"] if name.startswith("intern-") else
+                    ["startlux_decision/__init__.py", "startlux_decision/model.py",
+                     "startlux_decision/jevfmt.py", "decision_config.json"])
+        if any(filename not in content.get("files", {}) for filename in required):
+            raise ValueError("Decision checkpoint manifest must authenticate its native inference source")
+        provenance = checkpoint_provenance(revision, path, manifest, expected_revision=expected)
+    return path, repo, revision, provenance
+
+
+def _intern_native_module(path: Path, revision: str):
+    """Load unchanged publisher bytes with a declared Python 3.11 quote shim.
+
+    Four PEP-701 f-strings use matching quotes inside their expressions. On
+    Python 3.11 only their outer delimiters change from single to double quotes;
+    expressions and string content are unchanged. Source files stay untouched.
+    No arbitrary source replacement or environment upgrade is performed.
+    """
+    source = path.read_text(encoding="utf-8")
+    original_sha = hashlib.sha256(path.read_bytes()).hexdigest()
+    replacements = (
+        ("f'{row.get('id', '<missing id>')}: questions must be a non-empty object'",
+         'f"{row.get(\'id\', \'<missing id>\')}: questions must be a non-empty object"'),
+        ("f'{row.get('id', '<missing id>')}: question {field!r} is not an object'",
+         'f"{row.get(\'id\', \'<missing id>\')}: question {field!r} is not an object"'),
+        ("f'{row.get('id', '<missing id>')}: question {field!r} has no options'",
+         'f"{row.get(\'id\', \'<missing id>\')}: question {field!r} has no options"'),
+        ("f'{field_name}: {question.get('instructions', '')}'",
+         'f"{field_name}: {question.get(\'instructions\', \'\')}"'),
+    )
+    transformed = source
+    applied = []
+    if sys.version_info < (3, 12):
+        for before, after in replacements:
+            if transformed.count(before) != 1:
+                raise RuntimeError("Pinned Intern source disagrees with the four reviewed Python 3.11 quote shims")
+            transformed = transformed.replace(before, after)
+            applied.append({"before": before, "after": after})
+    name = "s1q_native_intern_" + revision
+    module = types.ModuleType(name)
+    module.__file__, module.__package__ = str(path), ""
+    sys.modules[name] = module
+    exec(compile(transformed, str(path), "exec"), module.__dict__)
+    module.__s1q_compat__ = {"publisher_source_sha256": original_sha,
+                           "executed_source_sha256": hashlib.sha256(transformed.encode("utf-8")).hexdigest(),
+                           "python_version": sys.version, "source_file_modified": False,
+                           "compatibility": "four_outer_fstring_quote_delimiters" if applied else "none",
+                           "replacements": applied}
+    return module
+
+
+class InternDecisionAdapter(DecisionAdapter):
+    """Native masked-skeleton candidate logits, with a differentiable HF core.
+
+    The complete original prompt/tokenizer/compiler is retained. Only the
+    inference-only score wrapper is bypassed; the candidate logits still come
+    from the position immediately before each trained decision marker.
+    """
+    def __init__(self, name, device="cuda", dtype="bf16", source_dir=None,
+                 checkpoint_dir=None, revision=None, checkpoint_manifest=None,
+                 max_length=8192):
+        super().__init__(name, device, dtype)
+        path, repo, revision, provenance = _decision_checkpoint(
+            name, checkpoint_dir, revision, checkpoint_manifest)
+        native = _intern_native_module(path / "inference.py", revision)
+        self.native = native
+        self.engine = native.DecisionEngine(checkpoint=path, temperature=1.0,
+                        device=str(self.device), dtype=str(self.compute_dtype).split(".")[-1],
+                        max_length=max_length, attn_implementation="sdpa")
+        self.model = self.engine.backend.model
+        self.backbone = self.model.model.language_model
+        self.metadata.update({"family": "intern-decision", "repo_id": repo,
+            "revision": revision, "checkpoint": provenance, "source": "checkpoint-native-inference.py",
+            "architecture": self.model.config.model_type, "readout": "pre-decision-marker candidate symbols",
+            "temperature": 1.0, "shipped_temperature": native.DEFAULT_TEMPERATURE,
+            "maximum_length": max_length, "multimodal_evaluation": False,
+            "protected_modules": ["vision tower", "projector", "embeddings", "lm_head", "normalization"],
+            "native_backend": "hf-sdpa", "native_source_compatibility": native.__s1q_compat__})
+
+    def _infer(self, request):
+        row = self.native.validate_request(request)
+        compiled, batch, positions = self.engine.backend.encode(row)
+        logits = self.model(**batch.to(self.device), use_cache=False,
+                            logits_to_keep=positions.to(self.device)).logits[0]
+        answers = []
+        for index, field in enumerate(compiled.fields):
+            options = self.native._options(row["questions"][field])
+            encoded = [self.engine.tokenizer.encode(symbol, add_special_tokens=False)
+                       for symbol in compiled.symbols[field]]
+            if any(len(ids) != 1 for ids in encoded):
+                raise UnsupportedRecord("Native candidate symbol is not a single token")
+            values = logits[index, [ids[0] for ids in encoded]].float()
+            keys = [str(value) for value, _ in options]
+            if row["questions"][field]["type"] == "noul":
+                order = [keys.index("no"), keys.index("yes")]
+            else:
+                order = [keys.index(key) for key in question_keys(row["questions"][field])]
+            answers.append(values[order])
+        return answers
+
+
+class StartLuxDecisionAdapter(DecisionAdapter):
+    """Native eager letter readout over one causal row per question.
+
+    Graph replay, shared-prefix cache and the hierarchical >26-option reducer
+    are excluded from this quantization contract. Unsupported cardinalities
+    are rejected explicitly. The undecorated native eager core is used so its
+    original padding, attention, float32 readout and token mapping retain grads.
+    """
+    def __init__(self, name, device="cuda", dtype="bf16", source_dir=None,
+                 checkpoint_dir=None, revision=None, checkpoint_manifest=None,
+                 max_length=8192):
+        super().__init__(name, device, dtype)
+        if self.compute_dtype != torch.bfloat16:
+            raise ValueError("StartLux native eager runtime uses bf16; choose dtype='bf16'")
+        path, repo, revision, provenance = _decision_checkpoint(
+            name, checkpoint_dir, revision, checkpoint_manifest)
+        loaded = sys.modules.get("startlux_decision")
+        if loaded is not None and not Path(loaded.__file__).resolve().is_relative_to(path):
+            raise RuntimeError("startlux_decision already imported from another checkpoint; start a fresh process")
+        if str(path) not in sys.path:
+            sys.path.insert(0, str(path))
+        from startlux_decision.model import StartLuxDecision
+        from startlux_decision import jevfmt
+        self.native = jevfmt
+        self.engine = StartLuxDecision(str(path), device=str(self.device),
+                         max_length=max_length, graphs=False, images=False)
+        self.engine.share = False
+        if not hasattr(self.engine._logits, "__wrapped__"):
+            raise RuntimeError("Pinned native eager logit core no longer exposes its undecorated function")
+        self.model = nn.Module()
+        self.model.add_module("body", self.engine.body)
+        self.model.register_parameter("letter_rows", nn.Parameter(self.engine.letter_rows.detach(), requires_grad=False))
+        self.engine.letter_rows = self.model.letter_rows
+        self.backbone = self.engine.body
+        self.metadata.update({"family": "startlux-decision", "repo_id": repo,
+            "revision": revision, "checkpoint": provenance, "source": "checkpoint-native-startlux_decision",
+            "architecture": self.backbone.config.model_type, "readout": "last-token float32 letter rows",
+            "temperature": 1.0, "shipped_temperature_by_type": dict(self.engine.temperature),
+            "maximum_length": max_length, "maximum_options": 26, "multimodal_evaluation": False,
+            "loaded_scope": "native images=False text decoder plus 26 protected output rows",
+            "protected_modules": ["embeddings", "26-letter output readout", "normalization"],
+            "cuda_graphs": False, "shared_prefix_cache": False, "hierarchical_wide_choice": False})
+
+    def _infer(self, request):
+        rows, mappings = [], []
+        for qid, question in request["questions"].items():
+            row = self.native.from_systemone(request["state"], question, qid)
+            keys = self.native.validate(row)
+            rows.append(row)
+            mappings.append([keys.index(key) for key in question_keys(question)])
+        # __wrapped__ is precisely the publisher's eager function prior to
+        # @torch.no_grad. It retains gradients through _forward and letter rows.
+        logits, _ = self.engine._logits.__wrapped__(self.engine, rows)
+        return [values.to(self.device).float()[order] for values, order in zip(logits, mappings)]
+
+
 def load_model(name: str, device: str = "cuda", dtype: str | torch.dtype = "bf16", **kwargs) -> DecisionAdapter:
     """Load a native model; names and Hub weights are pinned in MODEL_REVISIONS."""
     key = name.lower().replace("_", "-")
@@ -472,7 +661,8 @@ def load_model(name: str, device: str = "cuda", dtype: str | torch.dtype = "bf16
     if key not in MODEL_REVISIONS:
         raise ValueError(f"Unknown model {name!r}; choose {', '.join(MODEL_REVISIONS)}")
     cls = (KevAdapter if key.startswith("kev-") else LayaAdapter if key == "laya"
-           else NanoJevAdapter if key == "nanojev" else DecimaAdapter)
+           else NanoJevAdapter if key == "nanojev" else InternDecisionAdapter if key.startswith("intern-decision-")
+           else StartLuxDecisionAdapter if key.startswith("startlux-decision-") else DecimaAdapter)
     return cls(name=key, device=device, dtype=dtype, **kwargs)
 
 
