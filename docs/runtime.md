@@ -1,5 +1,7 @@
 # Runtime compatibility and reproduction
 
+The installation notes below include the historical v0.1 environments. For the current S1Q workflow use [Current reproduction](reproduce-current.md). Its numerical path uses floating weight/activation QDQ; the October 4 batch did not establish integer-kernel speed or new-method memory savings.
+
 Use Python 3.12 in a fresh environment for the five-model quick start. The S1Q
 core package permits Python 3.10+, while the pinned Kev project declares
 Python >=3.12,<3.14. Installing the `models` extra targets the shared inference

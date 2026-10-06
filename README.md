@@ -1,110 +1,93 @@
 # S1Q: Low-Bit Quantization for System One Decision Models
 
-[中文说明](README.zh-CN.md) · [Results](docs/results.md) · [Method](docs/method.md) · [Evaluation protocol](docs/evaluation-design.md) · [Weights](docs/artifacts.md) · [Runtime](docs/runtime.md) · [Related work](docs/related-work.md)
+[中文说明](README.zh-CN.md) · [Method](docs/method.md) · [Current reproduction](docs/reproduce-current.md) · [Related work](docs/related-work.md) · [Model audit](docs/model-audit.md) · [Legacy results](docs/results.md) · [Packed artifacts](docs/artifacts.md)
 
-S1Q is a research implementation for quantizing open Jev-like **typed decision models**: **Kev-0.8B, Kev-4B, Kev-9B, NanoJev, and Laya**. These models directly score choices, Boolean questions, or ordered levels. Evaluation therefore measures decision accuracy **and** probability quality, rather than language-model perplexity alone.
+**S1Q now denotes the current decision-margin-aware, activation-compensated method.** Its October 2026 experiment identifier was `s1q-mac`; that identifier remains supported to reproduce frozen runs. The public method name is **S1Q**. Earlier S1Q and S1Q2 recipes remain available as historical controls.
 
-S1Q adapts activation-aware channel scaling and groupwise clipping to native decision-model backbones. It also tests teacher categorical-Fisher weighting of output channels and uses held-out development decisions to select among weight-only, activation-quantized, and selective higher-precision configurations. Native decision heads and recurrent state arithmetic retain their original precision. No claim is made that these individual quantization ideas are new.
+S1Q quantizes open Jev-like **System One decision models** that map a state and typed questions directly to finite choice, Boolean or discrete-level distributions. The implementation supports pinned Kev, NanoJev and Laya adapters; it preserves native candidate order and decision heads. It is an independent research project and is not affiliated with [TypeSafe Jev](https://docs.typesafe.ai/introduction).
 
-**Research snapshot:** five real A100/A800 GPU model experiments, development ablations, source-transfer/game OOD evaluation, and a separate frozen public JevBench cohort. This repository does **not** claim to be the first quantization of System One models: prior Laya INT4/INT8 and Kev INT8 work exists. See the primary-source [prior-art audit](docs/related-work.md).
+## Method
 
-## Results at a glance
+S1Q combines three calibration steps:
 
-Main-cohort accuracy (%), with identical quantized layer scope and activation precision for the matched RTN comparison. Four models use 914 typed decisions from the screened Kev suites; NanoJev uses 1,023 shooting decisions with recorded reference-policy argmax action targets. These cohorts are exploratory after pilot inspection; the separate 85-task JevBench cohort is evaluated with already frozen profiles. See [full results, paired confidence intervals, probability metrics and negative outcomes](docs/results.md).
+1. Backpropagate each teacher decision's top-one versus runner-up logit margin separately. Use aligned, bounded token gradient energy to sample calibration rows that matter to candidate comparisons. No calibration gold labels are used.
+2. Search channel scales and clipping using the **actual quantized weight and activation reconstruction**. Both W and A error enter the local output objective.
+3. Fit a bounded ridge correction for activation error before quantizing weights. Select corrected or uncorrected candidates using a separate half of the saved token reservoir.
 
-| Model | Selected configuration | Native | Matched RTN | S1Q | Complete parameter storage / native |
+The gradient statistic is a **margin-Jacobian token proxy, not a categorical Fisher matrix**. [GuidedQuant](https://proceedings.mlr.press/v267/kim25d.html) already uses end-loss gradients to guide reconstruction, and [RSQ](https://openreview.net/pdf?id=kBezrKXHVS) already prioritizes important tokens in quantization. Ridge-based activation-error compensation has close prior art in [ERQ (ICML 2024)](https://proceedings.mlr.press/v235/zhong24a.html), and matching native outputs has close prior art in [GPTAQ](https://arxiv.org/abs/2504.02692). Gradient guidance, token importance, scaling, clipping and compensation are not individually new. The research contribution being evaluated is their concrete decision-aware integration across native typed-decision architectures. See the exact formulas, assumptions and limitations in [Method](docs/method.md).
+
+## Current evidence
+
+The frozen October 4 batch contains five models, W4A4 and two-model W3A4 stress tests, ablations and adapted quantization controls. Representative **development** accuracy (%):
+
+| Model | Precision | Native | RTN | Earlier S1Q2 | Current S1Q |
 |---|---|---:|---:|---:|---:|
-| Kev-0.8B | W4, decision-Fisher weighted | 82.93 | 80.63 | 81.18 | 51.6% |
-| Kev-4B | W4, activation-aware | 85.45 | 84.79 | 84.79 | 37.8% |
-| Kev-9B | W4A8 simulation | 86.98 | 84.35 | 86.54 | 36.0% |
-| NanoJev | W4, activation-aware | 79.86 | 79.47 | 80.45 | 36.0% |
-| Laya | W4, activation-aware | 66.85 | 63.68 | 64.55 | 29.4% |
+| Kev-0.8B | W4A4 | 80.06 | 43.41 | 63.99 | 61.41 |
+| Kev-4B | W4A4 | 85.21 | 35.05 | 55.63 | 76.85 |
+| Kev-9B | W4A4 | 85.53 | 40.19 | 41.48 | 71.70 |
+| Laya | W4A4 | 65.59 | 50.16 | 55.95 | 59.81 |
+| NanoJev | W4A4 | 81.96 | 36.47 | 79.22 | 82.35 |
+| Kev-0.8B | W3A4 | 80.06 | 40.51 | 44.69 | 47.27 |
+| Kev-4B | W3A4 | 85.53 | 37.94 | 44.05 | 56.91 |
 
-Storage includes retained native components and is a parameter-byte estimate. It is not a measured speedup. W4A4 had substantial development-set degradation; this study supports a W4 backbone starting point with model-specific checks, rather than a universal four-bit activation recipe. S1Q is not consistently superior: Kev-0.8B loses 2.38 accuracy points to RTN on source transfer, and several confidence intervals include zero.
+These are exploratory, inspected development cohorts, not a fresh final test or universal method ranking. Text models use 311 decisions; NanoJev uses 255 reference-policy compatibility decisions and measures recorded action agreement rather than game success. Native Kev-4B differs between W3/W4 runs because their recorded runtimes differ; compare methods within each run. S1Q improves some difficult low-bit settings, but the Kev-0.8B W4A4 negative result is retained. WANLI and MMLU-Pro additional cohorts support some transfer gains and substantial remaining accuracy loss. Kev-27B has a separate small non-gradient pilot; **the full current S1Q has not been evaluated on Kev-27B**.
 
-## What is implemented
-
-- Revision-pinned native model adapters; labels and targets are removed before inference.
-- Symmetric groupwise W4/W8 RTN, activation-aware scale/clipping search, optional decision-Fisher weighting.
-- W4A8/W4A4 **simulation** on selected linear inputs, with explicit mixed-precision accounting.
-- Disjoint quantization calibration, temperature calibration, development and final-test data; request/episode overlap checks.
-- Accuracy, NLL, multiclass Brier, ECE, selective coverage, probability drift, harmful decision flips and cluster-bootstrap intervals.
-- Packed INT4/INT8 linear artifacts, restoration, and a low-storage reference runtime that dequantizes one layer at a time.
-
-**Execution boundary:** current matrix multiplications use floating point. Activation quantization is simulated. Packed storage and GPU memory reduction are distinct from native INT4-GEMM acceleration; this project makes no speedup claim. Nonlinear operators, embeddings, decision heads and hybrid recurrent state updates are not all reduced to four bits.
+AWQ, GPTQ and SpinQuant controls in this batch are **adaptations/proxies**, not official reproductions. In particular GPTQ is block diagonal and SpinQuant uses restricted block rotations, with separate Hadamard/no-Hadamard variants. They cannot establish superiority over the original methods' published results. SmoothQuant is implemented but was not run in this frozen batch.
 
 ## Quick start
 
-Use an isolated Python environment and a PyTorch build compatible with your GPU. Python 3.12 is recommended for the current Kev source.
+Use Python 3.12 and a PyTorch build appropriate for your GPU. From a repository checkout:
 
 ```bash
 python -m pip install -e '.[models,test]'
-python scripts/setup_sources.py
+python scripts/setup_sources.py --families kev laya NanoJev
 python scripts/prepare_data.py shared --output work/data/shared \
   --source-root work/upstream/kev --calibration 128 \
   --temperature-calibration 128 --development 256 --test 1024
 
-CUDA_VISIBLE_DEVICES=0 s1q run --model kev-0.8b \
-  --data work/data/shared --output results/kev-0.8b-reproduction \
-  --bits 4 --fisher
+CUDA_VISIBLE_DEVICES=0 s1q optimize --model kev-4b \
+  --data-dir work/data/shared --output-dir work/runs/kev4-s1q-w4a4 \
+  --methods s1q,rtn,s1q-local,s1q2-beta05,awq-adapted \
+  --bits 4 --activation-bits 4 --group-size 128 \
+  --calibration-count 128 --development-count 256 \
+  --reservoir-size 128 --seed 20261004
 ```
 
-Available model names: `kev-0.8b`, `kev-4b`, `kev-9b`, `nanojev`, `laya`.
+Preparing the data creates a test file; `s1q optimize` reads calibration and development only. New runs write the configuration before evaluation, source/code hashes, native eligibility, matched predictions and metric reports. Use a new output directory for each run. The [reproduction guide](docs/reproduce-current.md) describes NanoJev, W3A4/W4A8, additional cohorts and ablation commands. Reproduction creates a new run; exact published values also depend on its recorded packages, cohort admission and checkpoint hashes.
 
-NanoJev's released checkpoint is specialized for games. Prepare its upstream unified hard-label dataset separately:
-
-```bash
-python scripts/prepare_data.py nanojev --output work/data/nanojev
-s1q run --model nanojev --data work/data/nanojev \
-  --output results/nanojev-reproduction --bits 4 --fisher
-```
-
-The upstream package covers Maze, Snake, ViZDoom Basic and Predict Position. The final S1Q native test (1,023 decisions) and OOD (1,024 decisions) cohorts contain only shooting tasks: Basic and Predict Position. Their explicitly supplied `reference_argmax_compatibility` labels measure agreement with recorded RL reference-policy action argmaxes, not human judgments, optimal-action gold or observed success probabilities. Questions without explicit supported hard gold are excluded. Whole episode components sharing identical requests are kept together; lower-priority overlaps are excluded using a published fixed policy.
-
-## Evaluate or inspect packed weights
-
-The [v0.1.0 weight release](https://github.com/CYMCharming/S1Q/releases/tag/v0.1.0) provides the exact evaluated packed linears for Kev-0.8B, Kev-4B, Kev-9B and Laya, with byte hashes and native checkpoint pins. NanoJev has a local reproduction recipe and full results; its audited model card does not provide a separate explicit fine-tuned weight license, so its packed weights are not redistributed. See [artifact usage and attribution](docs/artifacts.md).
-
-```bash
-python scripts/fetch_artifacts.py --model kev-0.8b --output-dir artifacts/released
-```
+A reusable API accepts already native-admitted calibration requests:
 
 ```python
-from s1q.models import load_model
-from s1q.quantization import load_quantized_artifact
+from s1q.api import quantize_s1q
 
-adapter = load_model("kev-0.8b")
-session = load_quantized_artifact(adapter.backbone, "artifacts/released/kev-0.8b-s1q-fisher-w4.pt")
-# The artifact contains selected linears; the same pinned native model is required.
-logits = adapter.infer(request)
-session.restore()
+adapter.model.eval()
+session, metadata = quantize_s1q(adapter, calibration_requests,
+                                bits=4, activation_bits=4, group_size=128)
+with session:
+    logits = adapter.infer(unlabeled_request)
+    session.export("work/linears-s1q-w4a4.pt")
+# Native backbone weights and hooks are restored on exit.
 ```
 
-For persistent packed storage, restore and delete the session, then use `s1q.packed.apply_packed`. The [benchmark script](scripts/benchmark_packed.py) compares its predictions with the same artifact's dense reference and measures persistent and peak GPU allocation separately.
+The exported artifact contains packed selected linear weights and their scales, **not a standalone complete checkpoint**. Retained native parameters, model code, tokenizer and heads are still required. The October batch did not export current-method complete checkpoints or measure integer-kernel speedups.
 
-## Model ecosystem and attribution
+## Execution and research boundaries
 
-S1Q studies independent open implementations inspired by [TypeSafe Jev](https://docs.typesafe.ai/introduction). It is not affiliated with TypeSafe, and does not quantize the closed hosted Jev model.
+- Weights use symmetric groupwise codes; activations use dynamic per-token symmetric A4/A8 **floating QDQ simulation**. Matrix multiplications remain floating point.
+- Decision heads, embeddings, normalization, biases and non-Linear recurrent operations retain native precision equally across matched methods.
+- Calibration uses backward passes to measure margin sensitivity, but the selected S1Q does not train model parameters. The optional gain-repair experiment is a separate optimization-based control and is not part of current S1Q.
+- The reservoir fit/selection split separates token rows from the same calibration requests. It is not an independent request-level validation set. Layer fitting uses native teacher inputs; it does not replay accumulated quantized upstream inputs.
+- No INT4 throughput, new-method GPU-memory reduction, universally improved confidence calibration, or first-ever System One quantization claim is made.
 
-| Project | Native implementation | Upstream |
-|---|---|---|
-| Kev | Qwen hybrid backbone, merged LoRA, pointer head | [jaredpalmer/kev](https://github.com/jaredpalmer/kev) |
-| NanoJev | Qwen3-0.6B, dynamic candidate decision heads | [TianyuCodings/NanoJev](https://github.com/TianyuCodings/NanoJev) |
-| Laya | ModernBERT encoder, typed decision head | [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) |
+The historical [v0.1.0 release](https://github.com/CYMCharming/S1Q/releases/tag/v0.1.0), packed artifacts, [results](docs/results.md) and [method document](docs/legacy-method-v0.1.md) describe earlier recipes. `s1q run` retains that legacy workflow. Manuscripts and their tables/figures are **not included in this code update**. No new model weights, raw datasets or raw prediction cohorts are redistributed.
 
-The quantization design draws on [AWQ](https://arxiv.org/abs/2306.00978), [SmoothQuant](https://arxiv.org/abs/2211.10438), and sensitivity-weighted reconstruction literature. Related decision-distribution work and close Fisher/gradient approaches are explicitly discussed in [Related work](docs/related-work.md) and [Method](docs/method.md).
+## Attribution and citation
 
-## Reproducibility and scope
+Upstream decision models: [Kev](https://github.com/jaredpalmer/kev), [NanoJev](https://github.com/TianyuCodings/NanoJev), [Laya](https://github.com/NandhaKishorM/laya). Model/data licenses remain upstream-specific; see [NOTICE](NOTICE), [model audit](docs/model-audit.md) and [artifact attribution](docs/artifacts.md).
 
-Every completed run records model/source revisions, package versions, dataset hashes, eligibility exclusions, development selection, per-question predictions and matched RTN results where precision policies differ. The inspected exploratory Laya pilot motivated a Fisher extension; its inspected cohorts are not presented as fresh confirmation. External JevBench evaluation hashes its inputs before inference and reuses frozen model profiles and temperatures.
+Quantization ingredients are attributed to [AWQ](https://arxiv.org/abs/2306.00978), [SmoothQuant](https://arxiv.org/abs/2211.10438), [GPTQ](https://arxiv.org/abs/2210.17323), [SpinQuant](https://arxiv.org/abs/2405.16406), GuidedQuant, RSQ, ERQ and GPTAQ. Native model adapters, experiment code and the decision-aware integration are implemented here; official baseline equivalence has not been claimed.
 
-Rebuild the report with `python scripts/summarize_results.py`. Install `python -m pip install -e '.[plots]'` for `python scripts/plot_results.py`; the published figure snapshot used Matplotlib 3.8.4. Independent external evaluation is in [evaluate_external.py](scripts/evaluate_external.py); it does not fit temperatures or tune quantization on the external cohort. The [runtime audit](docs/runtime.md) distinguishes recorded experimental packages from the fresh supported installation profile.
-
-Dataset source JSONL and full upstream clones are not committed. Model and dataset licenses remain upstream-specific; see [NOTICE](NOTICE) and the evaluation documentation. Publication of recipes, identifiers and derived metrics does not relicense source material.
-
-## Citation
-
-When using the implementation or reported experiments, cite the software and pin the exact release/commit:
+When using S1Q, cite the software and pin the exact commit or release:
 
 ```bibtex
 @software{chen2026s1q,

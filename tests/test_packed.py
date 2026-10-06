@@ -11,7 +11,7 @@ import torch.nn.functional as F
 from torch import nn
 
 from s1q.packed import PACKED_EXECUTION, PackedLinear, apply_packed, packed_report
-from s1q.quantization import CalibrationCollector, quantize_model
+from s1q.quantization import CalibrationCollector, load_quantized_artifact, quantize_model
 
 
 class SmallDecisionModel(nn.Module):
@@ -52,6 +52,25 @@ class PackedTests(unittest.TestCase):
                     self.assertTrue(torch.equal(model(inputs), expected))
                     self.assertIsInstance(model.backbone[0], PackedLinear)
                     self.assertIsInstance(model.backbone[2], PackedLinear)
+
+    def test_w2_w3_artifact_is_actually_bit_packed_and_matches_dense_forward(self):
+        inputs = torch.randn(11, 5) * torch.tensor([0.02, 1., 4., 0.5, 8.])
+        for bits in (2, 3):
+            for activation_bits in (None, 4, 8):
+                with self.subTest(bits=bits, activation_bits=activation_bits):
+                    model = SmallDecisionModel()
+                    artifact, expected = self.artifact(model, inputs, bits=bits,
+                                                       activation_bits=activation_bits)
+                    self.assertEqual(artifact["format"], "s1q.packed_linear.v2")
+                    for record in artifact["layers"].values():
+                        count = math.prod(record["shape"])
+                        self.assertEqual(record["payload"].numel(), math.ceil(count * bits / 8))
+                        self.assertEqual(record["bit_order"], "lsb_first_twos_complement")
+                    with load_quantized_artifact(model, artifact):
+                        self.assertTrue(torch.equal(model(inputs), expected))
+                    model = apply_packed(model, artifact)
+                    self.assertTrue(torch.equal(model(inputs), expected))
+                    self.assertEqual(model.backbone[0].bits, bits)
 
     def test_untouched_head_preserves_object_and_tensors(self):
         model = SmallDecisionModel()

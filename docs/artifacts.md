@@ -1,5 +1,7 @@
 # Released quantization artifacts
 
+**Historical v0.1 artifacts:** the downloadable weights below belong to earlier S1Q recipes, not the current decision-margin/activation-compensation method. Current S1Q supports packed selected-linear export through [the API](../src/s1q/api.py); this code update does not publish newly evaluated model weights. See [Current reproduction](reproduce-current.md).
+
 The public weight release covers **Kev-0.8B, Kev-4B, Kev-9B, and Laya**. S1Q publishes code, recipes, and evaluation results for NanoJev, but does not redistribute its fine-tuned packed weights because the audited release does not state a separate explicit fine-tuned weight license. Download the original NanoJev checkpoint from its upstream repository and reproduce its recipe locally. See the attribution details below.
 
 These files contain selected quantized backbone linear weights and their scales. They require the identical pinned native checkpoint, tokenizer, architecture, and retained decision head. They are **not standalone model checkpoints**. The group size, activation scope, protected layers, loaded floating-point dtype, and selected method can differ across entries; read the catalog rather than assuming every file is an entirely W4A4 model.

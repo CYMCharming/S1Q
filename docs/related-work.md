@@ -1,6 +1,6 @@
 # Related work and novelty audit
 
-Audit date: 2026-10-01 (Asia/Shanghai). Primary papers, model cards, source
+Original audit: 2026-10-01; current-method additions: 2026-10-06 (Asia/Shanghai). Primary papers, model cards, source
 repositories and the authors' experiment reports were inspected. This is a
 bounded search, not proof that no other relevant work exists.
 
@@ -41,7 +41,15 @@ The audit has not reproduced any source's published numbers. Different checkpoin
 revisions, suites, temperatures and runtimes cannot be placed in a causal S1Q
 before/after table. They are related work, not our own results.
 
+## Existing quantized decision-model releases
+
+The ecosystem already includes the [self-contained Kev-27B NF4 release](https://huggingface.co/TheCulliganMan/kev-27b-nf4), including its quantized backbone, original adapter and pointer head; [Laya Q8_0 GGUF](https://huggingface.co/ggml-org/Laya-GGUF/tree/main); and [jevos OpenVINO INT8](https://github.com/feder-cr/jev) for native yes/no decisions. These directly preclude a first-ever Jev-like/System One quantization or first compressed native decision-model claim. Their checkpoints, formats, runtimes and evaluation settings differ from this study. They are related ecosystem work, not matched S1Q baselines, and their reported scores/resource measurements are not mixed into our tables.
+
 ## Established quantization ingredients
+
+For the current S1Q, close references include [GuidedQuant](https://proceedings.mlr.press/v267/kim25d.html), which uses end-loss gradient guidance while retaining cross-weight dependencies, and [RSQ](https://openreview.net/pdf?id=kBezrKXHVS), which uses important-token feature scaling and quantization statistics. Gradient-guided and token-aware quantization are established ideas. S1Q's specific adaptation uses native top-two decision-margin gradients and applies bounded token importance once through a priority reservoir; it is not a first gradient-guided quantizer or a full Fisher estimator.
+
+[ERQ (ICML 2024)](https://proceedings.mlr.press/v235/zhong24a.html) already fits a closed-form ridge correction for activation error before weight quantization; its [expanded journal paper](https://arxiv.org/abs/2407.06794) is also relevant. [GPTAQ](https://arxiv.org/abs/2504.02692) calibrates against native full-precision outputs while addressing preceding-layer asymmetry. The S1Q ridge formula is not claimed as new. Our implementation uses native teacher layer inputs rather than replaying quantized preceding layers, so it does not implement GPTAQ's full asymmetric calibration. The current token importance is a margin-Jacobian norm proxy, not the categorical Fisher estimator used by an earlier recipe. See [Method](method.md) and [the archived v0.1 method](legacy-method-v0.1.md).
 
 | Method | Relevant idea | Appropriate S1Q usage |
 | --- | --- | --- |
@@ -80,11 +88,14 @@ were denied the same fitting data.
 
 ## What S1Q can defensibly contribute
 
-The credible target is a reproducible cross-architecture study and an empirically
-validated typed-decision adaptation: protect candidate comparisons, preserve
-distribution/ordinal information, and optimize quantizer parameters for decision
-outputs under a fixed storage budget. This contribution remains a hypothesis
-until the unquantized, RTN, ordinary reconstruction and full S1Q runs complete.
+The current contribution is a reproducible cross-architecture study and a concrete
+typed-decision adaptation: aligned top-two margin-Jacobian token sampling,
+joint W/A local reconstruction and bounded activation compensation. The frozen
+October batch includes unquantized, RTN, ordinary joint reconstruction and full
+S1Q controls, with both positive and negative results. These experiments support
+some difficult low-bit gains; they do not establish a new ridge solver, universal
+decision preservation, consistent near-boundary improvement or superiority over
+official quantizer implementations. The estimator is not a full Fisher matrix.
 
 If the implementation modifies channel scale/clipping objectives using output
 decision sensitivity, show the exact loss, candidate masking/order handling,

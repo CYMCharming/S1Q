@@ -15,6 +15,7 @@ REPOSITORIES = {
     "kev": "https://github.com/jaredpalmer/kev.git",
     "laya": "https://github.com/NandhaKishorM/laya.git",
     "NanoJev": "https://github.com/TianyuCodings/NanoJev.git",
+    "decima": "https://github.com/amyrmahdy/decima.git",
 }
 
 

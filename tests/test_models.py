@@ -7,16 +7,18 @@ mock only the expensive neural forward pass.
 from __future__ import annotations
 
 import copy
+import hashlib
+import json
 from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 import torch
 
-from s1q.models import (DecisionAdapter, KevAdapter, LayaAdapter, NanoJevAdapter,
+from s1q.models import (DecisionAdapter, KevAdapter, LayaAdapter, NanoJevAdapter, DecimaAdapter,
                         SOURCE_REVISIONS, UnsupportedRecord, _import_source,
                         _module_file, _source, public_request, question_keys,
-                        verify_source_revision)
+                        checkpoint_provenance, verify_source_revision)
 
 
 def request():
@@ -106,6 +108,45 @@ def test_git_source_drift_is_rejected_before_import(tmp_path, monkeypatch):
     monkeypatch.setattr("s1q.models.subprocess.run", git_result)
     with pytest.raises(RuntimeError, match="tracked modifications"):
         verify_source_revision(tmp_path, "kev")
+
+
+def test_local_checkpoint_revision_is_requested_not_verified(tmp_path):
+    local = checkpoint_provenance("pinned-revision", tmp_path,
+                                  expected_revision="pinned-revision")
+    assert local["source"] == "local_override"
+    assert local["status"] == "unverified_local_override"
+    assert local["requested_revision"] == "pinned-revision"
+    assert local["revision_verified_by_adapter"] is False
+    assert local["matches_configured_pin"] is True
+    assert local["sha256_verified_files"] == {}
+    override = checkpoint_provenance("other-revision", tmp_path,
+                                     expected_revision="pinned-revision")
+    assert override["matches_configured_pin"] is False
+    hub = checkpoint_provenance("pinned-revision")
+    assert hub["status"] == "pinned_hub_request"
+    assert hub["revision_verified_by_adapter"] is False
+
+
+def test_checkpoint_manifest_checks_only_declared_relative_files(tmp_path):
+    (tmp_path / "pytorch").mkdir()
+    checkpoint = tmp_path / "pytorch" / "head.pt"
+    checkpoint.write_bytes(b"released-head-bytes")
+    expected = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+    manifest = tmp_path / "checksums.json"
+    manifest.write_text(json.dumps({"files": {"pytorch/head.pt": expected}}), encoding="utf-8")
+    result = checkpoint_provenance("requested-commit", tmp_path, "checksums.json")
+    assert result["status"] == "local_manifest_checked"
+    assert result["revision_verified_by_adapter"] is False
+    assert result["sha256_verified_files"] == {"pytorch/head.pt": expected}
+    assert result["manifest_sha256"] == hashlib.sha256(manifest.read_bytes()).hexdigest()
+    checkpoint.write_bytes(b"changed-head-bytes")
+    with pytest.raises(ValueError, match="SHA-256 mismatch"):
+        checkpoint_provenance("requested-commit", tmp_path, manifest)
+    manifest.write_text(json.dumps({"files": {"../outside.pt": expected}}), encoding="utf-8")
+    with pytest.raises(ValueError, match="must stay inside"):
+        checkpoint_provenance("requested-commit", tmp_path, manifest)
+    with pytest.raises(ValueError, match="requires checkpoint_dir"):
+        checkpoint_provenance("requested-commit", checkpoint_manifest=manifest)
 
 
 @pytest.fixture
@@ -290,3 +331,78 @@ def test_nano_rejects_null_descriptions_instead_of_rewriting(native_sources):
     record["questions"]["route"]["criteria"]["B"] = None
     with pytest.raises(ValueError):
         adapter.infer(record)
+
+
+def make_decima(native_sources, *, state_budget=1024, choice_budget=256):
+    pytest.importorskip("transformers")
+    _import_source(native_sources["decima"])
+    from decima.systemone import to_question
+
+    class TensorTokenizer:
+        def __init__(self):
+            self.seen = []
+
+        def __call__(self, texts, **kwargs):
+            self.seen.append((texts, kwargs))
+            rows = [[ord(char) % 97 + 1 for char in text] for text in texts]
+            width = max(map(len, rows))
+            ids = torch.tensor([row + [0] * (width - len(row)) for row in rows])
+            return {"input_ids": ids, "attention_mask": (ids != 0).long()}
+
+    class TinyDecima(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.scale = torch.nn.Parameter(torch.tensor(0.1))
+            self.kinds = []
+
+        def encode(self, ids, mask):
+            return ids.float().unsqueeze(-1)
+
+        def choice_scores(self, state_h, state_mask, choice_h, choice_mask, owner):
+            scores = self.scale * choice_h.sum((1, 2)) / choice_mask.sum(1)
+            return scores, choice_h
+
+        def log_probs(self, scores, states, owner, batch, kinds, temperature):
+            self.kinds.extend(kinds)
+            assert batch == 1 and temperature == 1.0
+            return torch.log_softmax(scores, -1).unsqueeze(0)
+
+    adapter = DecimaAdapter.__new__(DecimaAdapter)
+    DecisionAdapter.__init__(adapter, "decima-small", "cpu", "fp32")
+    adapter._to_question = to_question
+    adapter.config = SimpleNamespace(
+        state_of=lambda state, question, lang: f"{question}|{state}",
+        choice_of=lambda question, option, lang: f"{question}|{option}",
+        max_state_tokens=state_budget, max_choice_tokens=choice_budget)
+    adapter.model, adapter.tokenizer = TinyDecima(), TensorTokenizer()
+    return adapter
+
+
+def test_decima_native_questions_probability_order_and_gradient(native_sources):
+    adapter = make_decima(native_sources)
+    output = adapter.infer(request())
+    assert adapter.model.kinds == ["verify", "choose", "score"]
+    seen = [text for texts, _ in adapter.tokenizer.seen for text in texts]
+    assert any("True if: A refund is requested" in text for text in seen)
+    assert any("B: billing" in text for text in seen)
+    assert any("A: delivery" in text for text in seen)
+    assert len(output) == 3 and all(len(row) == 2 for row in output)
+    # Upstream verify scores yes/no; S1Q's canonical order is false/true.
+    yes_no = adapter.model.scale * torch.tensor([
+        sum(ord(char) % 97 + 1 for char in text) / len(text)
+        for text in ("Refund requested?\nTrue if: A refund is requested\nFalse if: No refund is requested|yes",
+                     "Refund requested?\nTrue if: A refund is requested\nFalse if: No refund is requested|no")])
+    assert torch.allclose(torch.softmax(output[0], -1),
+                          torch.softmax(yes_no.flip(0), -1), atol=1e-6)
+    output[1][0].backward()
+    assert adapter.model.scale.grad is not None
+    assert torch.isfinite(adapter.model.scale.grad)
+
+
+def test_decima_rejects_native_truncation(native_sources):
+    adapter = make_decima(native_sources, state_budget=8)
+    with pytest.raises(UnsupportedRecord, match="state exceeds"):
+        adapter.infer(request())
+    adapter = make_decima(native_sources, choice_budget=4)
+    with pytest.raises(UnsupportedRecord, match="option exceeds"):
+        adapter.infer(request())

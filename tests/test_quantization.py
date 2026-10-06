@@ -247,7 +247,7 @@ class QuantizationTests(unittest.TestCase):
     def test_invalid_configuration_and_nonfinite_calibration(self):
         weight = torch.randn(2, 3)
         stats = InputStatistics(3, torch.ones(3), torch.ones(3))
-        for kwargs in ({"bits": 3}, {"group_size": 0}, {"method": "unknown"},
+        for kwargs in ({"bits": 5}, {"group_size": 0}, {"method": "unknown"},
                        {"method": "s1q"},
                        {"method": "s1q", "statistics": stats, "alphas": ()},
                        {"method": "s1q", "statistics": stats, "clipping_ratios": (0.,)}):

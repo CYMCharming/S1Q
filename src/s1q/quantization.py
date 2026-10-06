@@ -33,6 +33,8 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor, nn
 
+from .bitpack import pack_signed_codes, unpack_signed_codes
+
 
 DEFAULT_EXCLUDE_PATTERNS = (r"(^|\.)([^.]*head|classifier|pooler)(\.|$)",)
 _ACTIVE_ATTRIBUTE = "_s1q_quantization_active"
@@ -225,8 +227,8 @@ class CalibrationCollector:
 
 
 def _validate_bits(bits: int) -> None:
-    if bits not in (4, 8):
-        raise ValueError("Only signed symmetric 4-bit and 8-bit quantization is supported.")
+    if bits not in (2, 3, 4, 8):
+        raise ValueError("Only signed symmetric 2-, 3-, 4- and 8-bit weight quantization is supported.")
 
 
 def fake_quantize_activation(value: Tensor, bits: int) -> Tensor:
@@ -235,7 +237,8 @@ def fake_quantize_activation(value: Tensor, bits: int) -> Tensor:
     The positive/negative range is +/-7 for A4 and +/-127 for A8; no integer
     activation kernel or latency improvement is implied by this operation.
     """
-    _validate_bits(bits)
+    if bits not in (4, 8):
+        raise ValueError("Only 4-bit and 8-bit activation QDQ is supported.")
     if not value.is_floating_point() or value.ndim == 0:
         raise ValueError("Activations must be a floating Tensor with a feature dimension.")
     if value.numel() == 0:
@@ -293,6 +296,10 @@ class QuantizedLinear:
     relative_error: float
     calibration_rows: int
     reservoir_relative_error: float | None = None
+    reservoir_blend: float | None = None
+    search_reservoir_rows: int | None = None
+    scale_family: str | None = None
+    search_activation_bits: int | None = None
 
     def transformed_weight(self, *, device: Any = None, dtype: torch.dtype = torch.float32) -> Tensor:
         # W' is used with x' = x / input_scale.
@@ -304,7 +311,7 @@ class QuantizedLinear:
         return (self.transformed_weight(device=device) / self.input_scale.to(device=device)).to(dtype)
 
     def report(self) -> dict[str, Any]:
-        return {
+        report = {
             "method": self.method, "bits": self.bits, "group_size": self.group_size,
             "shape": list(self.integer_weight.shape), "alpha": self.alpha,
             "clipping_ratio": self.clipping_ratio,
@@ -312,6 +319,17 @@ class QuantizedLinear:
             "calibration_rows": self.calibration_rows,
             "reservoir_relative_error": self.reservoir_relative_error,
         }
+        if self.method == "s1q2":
+            report["selection_objective"] = "diagonal_and_empirical_output_reconstruction"
+            report["reservoir_blend"] = self.reservoir_blend
+            report["search_reservoir_rows"] = self.search_reservoir_rows
+        if self.method == "s1q3":
+            report["selection_objective"] = "diagonal_and_joint_weight_activation_output_reconstruction"
+            report["reservoir_blend"] = self.reservoir_blend
+            report["search_reservoir_rows"] = self.search_reservoir_rows
+            report["scale_family"] = self.scale_family
+            report["search_activation_bits"] = self.search_activation_bits
+        return report
 
 
 @torch.no_grad()
@@ -324,14 +342,26 @@ def quantize_weight(
     statistics: InputStatistics | None = None,
     alphas: Sequence[float] = (0.0, 0.25, 0.5, 0.75),
     clipping_ratios: Sequence[float] = (0.9, 0.95, 1.0),
+    reservoir_blend: float = 0.5,
+    max_reservoir_rows: int = 32,
+    activation_bits: int | None = None,
 ) -> QuantizedLinear:
-    """Select compensated groupwise weights by a diagonal reconstruction objective.
+    """Select compensated groupwise weights by a local reconstruction objective.
 
     S1Q searches s_j = RMS(x_j)**alpha (normalized to unit geometric midrange)
     and clipping ratios. Candidate error is sum_j E[x_j**2] * (Wq_j-W_j)**2,
     where Wq is the *effective* weight after input compensation. Alpha=0 and
     clipping=1 recover RTN. This is a local surrogate, not a decision-quality
     guarantee; select the global configuration on held-out development decisions.
+    Opt-in ``s1q2`` uses the same candidates and weight format, but blends this
+    diagonal loss with empirical Linear output reconstruction on up to
+    ``max_reservoir_rows`` sampled calibration inputs. It captures input-channel
+    correlations without allocating a full Hessian. ``reservoir_blend=0``
+    recovers the original local search; the empirical term can overfit a small
+    reservoir and must be tested on disjoint decisions. Opt-in ``s1q3`` adds
+    mean-absolute-activation scaling candidates and searches the actual joint
+    weight/activation QDQ Linear output error for A4/A8. Its extra search cost
+    and possible calibration overfit must be measured separately.
     """
     _validate_bits(bits)
     if not isinstance(group_size, int) or group_size <= 0:
@@ -341,19 +371,28 @@ def quantize_weight(
     if not torch.isfinite(weight).all():
         raise ValueError("Cannot quantize nonfinite weights.")
     method = method.lower()
-    if method not in ("rtn", "s1q"):
-        raise ValueError("method must be 'rtn' or 's1q'.")
+    if method not in ("rtn", "s1q", "s1q2", "s1q3"):
+        raise ValueError("method must be 'rtn', 's1q', 's1q2' or 's1q3'.")
     if statistics is not None:
         statistics.validate(weight.shape[1])
-    if method == "s1q" and statistics is None:
+    if method in ("s1q", "s1q2", "s1q3") and statistics is None:
         raise ValueError("S1Q requires calibration input statistics for each quantized layer.")
-    if method == "s1q":
+    if method in ("s1q", "s1q2", "s1q3"):
         if not alphas or any(not math.isfinite(a) or not 0 <= a <= 1 for a in alphas):
             raise ValueError("alphas must be a nonempty sequence in [0, 1].")
         if not clipping_ratios or any(not math.isfinite(c) or not 0 < c <= 1 for c in clipping_ratios):
             raise ValueError("clipping_ratios must be a nonempty sequence in (0, 1].")
     else:
         alphas, clipping_ratios = (0.0,), (1.0,)
+    if method in ("s1q2", "s1q3"):
+        if not math.isfinite(reservoir_blend) or not 0 <= reservoir_blend <= 1:
+            raise ValueError("reservoir_blend must be finite and in [0, 1].")
+        if isinstance(max_reservoir_rows, bool) or not isinstance(max_reservoir_rows, int) or max_reservoir_rows <= 0:
+            raise ValueError("max_reservoir_rows must be a positive integer.")
+        if (reservoir_blend > 0 or method == "s1q3") and (statistics is None or statistics.reservoir is None or statistics.reservoir.shape[0] == 0):
+            raise ValueError("Empirical reconstruction requires a nonempty calibration reservoir.")
+    if method == "s1q3" and activation_bits not in (4, 8):
+        raise ValueError("S1Q3 joint W/A search requires A4 or A8 activation QDQ.")
 
     floating = weight.detach().float()
     importance = (
@@ -370,13 +409,28 @@ def quantize_weight(
         if fisher.max() > 0:
             row_importance = (fisher.to(device=weight.device,dtype=torch.float32) / fisher.mean().clamp_min(1e-30)).clamp_min(1e-4)
     denominator = (floating.square() * importance * row_importance[:,None]).sum(dtype=torch.float64)
+    search_inputs = None
+    reservoir_reference = None
+    if method in ("s1q2", "s1q3") and reservoir_blend > 0:
+        # A bounded, uniformly sampled subset keeps candidate GEMMs feasible for
+        # wide layers. The diagonal term regularizes the noisy empirical estimate.
+        search_inputs = statistics.reservoir[:max_reservoir_rows].to(device=weight.device, dtype=torch.float32)
+        reference_output = F.linear(search_inputs, floating)
+        reservoir_reference = (reference_output.square() * row_importance).mean(dtype=torch.float64).clamp_min(1e-30)
     rms = importance.sqrt()
-    best: tuple[float, Tensor, Tensor, Tensor, float, float] | None = None
-    for alpha in alphas:
+    scale_candidates = [("rms", alpha, rms) for alpha in alphas]
+    if method == "s1q3":
+        # AWQ-style mean absolute activation scaling is a second family of
+        # candidates, searched under the same signed group format and A QDQ.
+        mean_abs = statistics.reservoir[:max_reservoir_rows].to(
+            device=weight.device, dtype=torch.float32).abs().mean(dim=0)
+        scale_candidates.extend(("mean_abs", step / 20, mean_abs) for step in range(1, 20))
+    best: tuple[float, Tensor, Tensor, Tensor, float, float, str] | None = None
+    for scale_family, alpha, scale_base in scale_candidates:
         if alpha == 0:
             input_scale = torch.ones_like(rms)
         else:
-            input_scale = rms.clamp_min(1e-8).pow(alpha)
+            input_scale = scale_base.clamp_min(1e-8).pow(alpha)
             observed_scale = input_scale[importance > 0]
             if observed_scale.numel():
                 normalization = (observed_scale.amin() * observed_scale.amax()).sqrt().clamp_min(1e-12)
@@ -389,14 +443,27 @@ def quantize_weight(
             integer, scales, dequantized = _groupwise_quantize(transformed, bits, group_size, ratio)
             effective = dequantized / input_scale
             error = ((effective - floating).square() * importance * row_importance[:,None]).sum(dtype=torch.float64).item()
+            if search_inputs is not None:
+                if method == "s1q3":
+                    # Runtime applies x/s, dynamic activation QDQ, then Wq*s.
+                    # The reference output remains the native unquantized Linear.
+                    quantized_input = fake_quantize_activation(
+                        search_inputs / input_scale, activation_bits)
+                    residual_output = F.linear(quantized_input, dequantized) - reference_output
+                else:
+                    residual_output = F.linear(search_inputs, effective - floating)
+                empirical_error = (residual_output.square() * row_importance).mean(dtype=torch.float64)
+                error = (1 - reservoir_blend) * error + reservoir_blend * (
+                    empirical_error / reservoir_reference * denominator
+                ).item()
             # Prefer less intervention on tied surrogate error, including wholly
             # unobserved channels. This recovers RTN when every candidate ties.
             if best is None or error < best[0] or (
                 error == best[0] and (float(alpha), -float(ratio)) < (best[4], -best[5])
             ):
-                best = (error, integer, scales, input_scale, float(alpha), float(ratio))
+                best = (error, integer, scales, input_scale, float(alpha), float(ratio), scale_family)
     assert best is not None
-    error, integer, scales, input_scale, alpha, ratio = best
+    error, integer, scales, input_scale, alpha, ratio, scale_family = best
     reservoir_error = None
     if statistics is not None and statistics.reservoir is not None and statistics.reservoir.shape[0]:
         inputs = statistics.reservoir.to(weight.device)
@@ -411,6 +478,10 @@ def quantize_weight(
         relative_error=error / denominator.item() if denominator.item() > 0 else 0.0,
         calibration_rows=statistics.count if statistics is not None else 0,
         reservoir_relative_error=reservoir_error,
+        reservoir_blend=reservoir_blend if method in ("s1q2", "s1q3") else None,
+        search_reservoir_rows=search_inputs.shape[0] if search_inputs is not None else 0 if method in ("s1q2", "s1q3") else None,
+        scale_family=scale_family if method == "s1q3" else None,
+        search_activation_bits=activation_bits if method == "s1q3" else None,
     )
 
 
@@ -499,14 +570,20 @@ class QuantizationSession:
         Unmodified weights, biases, tokenizer, architecture and decision head are
         not included. Loading restores the compensated floating research path.
         """
+        low_bit_stream = any(layer.bits in (2, 3) for layer in self.layers.values())
         return {
-            "format": "s1q.packed_linear.v1", "execution": _EXECUTION,
+            "format": "s1q.packed_linear.v2" if low_bit_stream else "s1q.packed_linear.v1",
+            "execution": _EXECUTION,
             "activation_bits": self.activation_bits,
             "preserved_layers": dict(self.preserved_layers),
             "layers": {
                 name: {
                     **layer.report(),
-                    "payload": pack_int4(layer.integer_weight) if layer.bits == 4 else layer.integer_weight.clone(),
+                    **({"bit_order": "lsb_first_twos_complement"} if layer.bits in (2, 3) else {}),
+                    "payload": (pack_signed_codes(layer.integer_weight, layer.bits)
+                                if layer.bits in (2, 3) else
+                                pack_int4(layer.integer_weight) if layer.bits == 4 else
+                                layer.integer_weight.clone()),
                     "scales": layer.scales.clone(), "input_scale": layer.input_scale.clone(),
                 }
                 for name, layer in self.layers.items()
@@ -562,6 +639,8 @@ def quantize_model(
     exclude_patterns: Sequence[str] = DEFAULT_EXCLUDE_PATTERNS,
     alphas: Sequence[float] = (0.0, 0.25, 0.5, 0.75),
     clipping_ratios: Sequence[float] = (0.9, 0.95, 1.0),
+    reservoir_blend: float = 0.5,
+    max_reservoir_rows: int = 32,
     activation_bits: int | None = None,
     sensitive_fraction: float = 0.0,
 ) -> QuantizationSession:
@@ -575,7 +654,8 @@ def quantize_model(
     """
     _validate_bits(bits)
     if activation_bits is not None:
-        _validate_bits(activation_bits)
+        if activation_bits not in (4, 8):
+            raise ValueError("Only A4 and A8 activation QDQ is supported.")
     if not math.isfinite(sensitive_fraction) or not 0 <= sensitive_fraction <= 1:
         raise ValueError("sensitive_fraction must be in [0, 1].")
     modules = selected_linear_modules(
@@ -588,7 +668,7 @@ def quantize_model(
     for name in modules:
         if getattr(modules[name], _ACTIVE_ATTRIBUTE, False):
             raise RuntimeError(f"Layer {name!r} already has an active quantization session.")
-        if method.lower() == "s1q" and (statistics is None or name not in statistics):
+        if method.lower() in ("s1q", "s1q2", "s1q3") and (statistics is None or name not in statistics):
             raise ValueError(f"Missing calibration statistics for {name!r}.")
     preserved: dict[str, str] = {}
     if sensitive_fraction:
@@ -606,6 +686,8 @@ def quantize_model(
             module.weight, bits=bits, group_size=group_size, method=method,
             statistics=statistics.get(name) if statistics is not None else None,
             alphas=alphas, clipping_ratios=clipping_ratios,
+            reservoir_blend=reservoir_blend, max_reservoir_rows=max_reservoir_rows,
+            activation_bits=activation_bits,
         )
         for name, module in modules.items() if name not in preserved
     }
@@ -621,11 +703,12 @@ def load_quantized_artifact(model: nn.Module, artifact: Mapping[str, Any] | str 
     """
     if isinstance(artifact, (str, Path)):
         artifact = torch.load(artifact, map_location="cpu", weights_only=True)
-    if artifact.get("format") != "s1q.packed_linear.v1" or artifact.get("execution") != _EXECUTION:
+    if artifact.get("format") not in ("s1q.packed_linear.v1", "s1q.packed_linear.v2") or artifact.get("execution") != _EXECUTION:
         raise ValueError("Unsupported S1Q research artifact format.")
     activation_bits = artifact.get("activation_bits")
     if activation_bits is not None:
-        _validate_bits(activation_bits)
+        if activation_bits not in (4, 8):
+            raise ValueError("Only A4 and A8 activation QDQ is supported.")
     modules = dict(model.named_modules())
     layers: dict[str, QuantizedLinear] = {}
     for name, record in artifact["layers"].items():
@@ -642,7 +725,11 @@ def load_quantized_artifact(model: nn.Module, artifact: Mapping[str, Any] | str 
         if not isinstance(group_size, int) or group_size <= 0:
             raise ValueError("Artifact group_size must be a positive integer.")
         payload = record["payload"]
-        if bits == 4:
+        if bits in (2, 3):
+            if artifact["format"] != "s1q.packed_linear.v2" or record.get("bit_order") != "lsb_first_twos_complement":
+                raise ValueError("Low-bit codes require the v2 LSB-first packed format.")
+            integer = unpack_signed_codes(payload, math.prod(shape), bits).reshape(shape)
+        elif bits == 4:
             integer = unpack_int4(payload, math.prod(shape)).reshape(shape)
         else:
             if payload.dtype != torch.int8 or tuple(payload.shape) != shape:
@@ -663,6 +750,10 @@ def load_quantized_artifact(model: nn.Module, artifact: Mapping[str, Any] | str 
             weighted_error=record["weighted_error"], relative_error=record["relative_error"],
             calibration_rows=record["calibration_rows"],
             reservoir_relative_error=record.get("reservoir_relative_error"),
+            reservoir_blend=record.get("reservoir_blend"),
+            search_reservoir_rows=record.get("search_reservoir_rows"),
+            scale_family=record.get("scale_family"),
+            search_activation_bits=record.get("search_activation_bits"),
         )
     _validate_unshared_weights(model, {name: modules[name] for name in layers})
     return _apply_layers(modules, layers, activation_bits, dict(artifact.get("preserved_layers", {})))

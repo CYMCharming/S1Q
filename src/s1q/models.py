@@ -7,6 +7,7 @@ never passed to the upstream inference model. Quantizers should modify only
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 import math
 import os
@@ -24,13 +25,16 @@ MODEL_REVISIONS = {
     "kev-0.8b": ("jaredpalmer/kev-0.8b", "9a45d25eb2ab761841196625383fa1dff0e56c1e"),
     "kev-4b": ("jaredpalmer/kev-4b", "139fdd94f1b6a6ad80cc15e08fcb99cac885a101"),
     "kev-9b": ("jaredpalmer/kev-9b", "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c"),
+    "kev-27b": ("jaredpalmer/kev-27b", "af0e6d551bdc2cc724f3e9d7a8bee1cd4fb8f7bf"),
     "laya": ("convaiinnovations/laya", "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"),
     "nanojev": ("C-Tianyu/NanoJev", "047b927b30882a1138fc504821b82ac145a4b81a"),
+    "decima-small": ("amyrmahdy/decima-small", "9399bf8c5edf2ac0186a38220af277bfc27b4a56"),
 }
 SOURCE_REVISIONS = {
     "kev": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91",
     "laya": "6d942c92081fbc139e736bbd9ac0023223c29b7f",
     "NanoJev": "76fdfc9ecdca45a9bcef17991a07d3041a87685a",
+    "decima": "30881d33713aa5269eba44a40b5e58ae07e53381",
 }
 
 
@@ -94,8 +98,68 @@ def verify_source_revision(path: str | Path, family: str) -> str:
     return actual
 
 
+def checkpoint_provenance(
+    revision: str, checkpoint_dir: str | Path | None = None,
+    checkpoint_manifest: str | Path | None = None,
+    *, expected_revision: str | None = None,
+) -> dict[str, Any]:
+    """Describe a checkpoint request without equating a local path to a Hub revision.
+
+    An optional JSON manifest maps paths relative to ``checkpoint_dir`` to
+    expected SHA-256 digests: ``{"files": {"head.pt": "<64 hex>"}}``. The
+    check authenticates only the listed bytes against that manifest; it does
+    not prove the manifest came from the model publisher or cover omitted files.
+    """
+    result: dict[str, Any] = {
+        "requested_revision": revision,
+        "configured_pin": expected_revision,
+        "matches_configured_pin": expected_revision is None or revision == expected_revision,
+        "source": "pinned_hub_request" if checkpoint_dir is None else "local_override",
+        "status": "pinned_hub_request" if checkpoint_dir is None else "unverified_local_override",
+        "revision_verified_by_adapter": False,
+        "sha256_verified_files": {},
+    }
+    if checkpoint_manifest is None:
+        return result
+    if checkpoint_dir is None:
+        raise ValueError("A checkpoint SHA-256 manifest requires checkpoint_dir.")
+    root = Path(checkpoint_dir).resolve()
+    if not root.is_dir():
+        raise FileNotFoundError(f"Checkpoint directory is missing: {root}")
+    manifest_path = Path(checkpoint_manifest)
+    if not manifest_path.is_absolute():
+        manifest_path = root / manifest_path
+    manifest_bytes = manifest_path.read_bytes()
+    manifest = json.loads(manifest_bytes)
+    files = manifest.get("files") if isinstance(manifest, dict) else None
+    if not isinstance(files, dict) or not files:
+        raise ValueError("Checkpoint manifest must contain a nonempty 'files' mapping.")
+    verified = {}
+    for name, expected in files.items():
+        if not isinstance(name, str) or not name or not isinstance(expected, str) or \
+                len(expected) != 64 or any(char not in "0123456789abcdefABCDEF" for char in expected):
+            raise ValueError("Checkpoint manifest entries need relative paths and SHA-256 hex digests.")
+        relative = Path(name)
+        if relative.is_absolute() or ".." in relative.parts:
+            raise ValueError(f"Checkpoint manifest path must stay inside checkpoint_dir: {name}")
+        target = (root / relative).resolve(strict=True)
+        if not target.is_relative_to(root) or not target.is_file():
+            raise ValueError(f"Checkpoint manifest path must name a file inside checkpoint_dir: {name}")
+        digest = hashlib.sha256()
+        with target.open("rb") as stream:
+            for chunk in iter(lambda: stream.read(1 << 20), b""):
+                digest.update(chunk)
+        if digest.hexdigest() != expected.lower():
+            raise ValueError(f"Checkpoint SHA-256 mismatch: {name}")
+        verified[name] = digest.hexdigest()
+    result["status"] = "local_manifest_checked"
+    result["manifest_sha256"] = hashlib.sha256(manifest_bytes).hexdigest()
+    result["sha256_verified_files"] = verified
+    return result
+
+
 def _import_source(path: Path) -> None:
-    for package in ("kev", "laya"):
+    for package in ("kev", "laya", "decima"):
         if not (path / package).is_dir():
             continue
         loaded = sys.modules.get(package)
@@ -191,7 +255,7 @@ class DecisionAdapter:
 class KevAdapter(DecisionAdapter):
     def __init__(self, name: str, device="cuda", dtype="bf16", source_dir=None,
                  checkpoint_dir=None, revision=None, max_state=384,
-                 max_branch=1024, max_packed=2048):
+                 max_branch=1024, max_packed=2048, checkpoint_manifest=None):
         super().__init__(name, device, dtype)
         _import_source(_source(source_dir, "kev"))
         from kev.checkpoint import Checkpoint, LoadOptions
@@ -199,6 +263,8 @@ class KevAdapter(DecisionAdapter):
         self._request_class, self._to_record = SystemOneRequest, to_record
         repo, pinned_revision = MODEL_REVISIONS[name]
         revision = revision or pinned_revision
+        provenance = checkpoint_provenance(revision, checkpoint_dir, checkpoint_manifest,
+                                           expected_revision=pinned_revision)
         ck = Checkpoint(str(checkpoint_dir) if checkpoint_dir else f"{repo}@{revision}")
         self.tokenizer, self.model = ck.load(str(device), LoadOptions(
             dtype=self.compute_dtype, merge=True, temperature=1.0, backend="torch",
@@ -209,7 +275,8 @@ class KevAdapter(DecisionAdapter):
                              base_revision=ck.meta.base_revision,
                              native_temperature=ck.meta.temperature,
                              hybrid=self.model.hybrid, context=self.context,
-                             source_revision=SOURCE_REVISIONS["kev"])
+                             source_revision=SOURCE_REVISIONS["kev"],
+                             checkpoint_provenance=provenance)
 
     def _infer(self, request):
         rec, _ = self._to_record(self._request_class.model_validate(request))
@@ -223,7 +290,8 @@ class KevAdapter(DecisionAdapter):
 class LayaAdapter(DecisionAdapter):
     def __init__(self, name="laya", device="cuda", dtype="bf16", source_dir=None,
                  checkpoint_dir=None, revision=None, subfolder=None,
-                 max_len=None, head_max_len=None, reject_truncation=True):
+                 max_len=None, head_max_len=None, reject_truncation=True,
+                 checkpoint_manifest=None):
         super().__init__(name, device, dtype)
         os.environ.setdefault("USE_TF", "0")
         _import_source(_source(source_dir, "laya"))
@@ -231,6 +299,8 @@ class LayaAdapter(DecisionAdapter):
         from laya.common import collate_items
         self._collate_items = collate_items
         repo, pinned_revision = MODEL_REVISIONS["laya"]
+        provenance = checkpoint_provenance(revision or pinned_revision, checkpoint_dir, checkpoint_manifest,
+                                           expected_revision=pinned_revision)
         self.agent = laya.load(str(checkpoint_dir) if checkpoint_dir else repo,
                                device=str(device), revision=revision or pinned_revision,
                                subfolder=subfolder, fast=False, compile=False)
@@ -244,7 +314,8 @@ class LayaAdapter(DecisionAdapter):
                              native_temperature=self.agent.temperature,
                              native_temperature_by_options=self.agent.temperature_by_options,
                              subfolder=subfolder, max_len=self.max_len, head_max_len=self.head_max_len,
-                             source_revision=SOURCE_REVISIONS["laya"])
+                             source_revision=SOURCE_REVISIONS["laya"],
+                             checkpoint_provenance=provenance)
 
     def _infer(self, request):
         internal = {}
@@ -267,7 +338,7 @@ class LayaAdapter(DecisionAdapter):
 
 class NanoJevAdapter(DecisionAdapter):
     def __init__(self, name="nanojev", device="cuda", dtype="bf16", source_dir=None,
-                 checkpoint_dir=None, revision=None, max_len=None):
+                 checkpoint_dir=None, revision=None, max_len=None, checkpoint_manifest=None):
         super().__init__(name, device, dtype)
         source = _source(source_dir, "NanoJev")
         predictor = _module_file(source / "scripts/predict_toy_decisions.py", "s1q_nanojev_predictor")
@@ -276,6 +347,8 @@ class NanoJevAdapter(DecisionAdapter):
         from safetensors.torch import load_file
         from transformers import AutoConfig, AutoModel, AutoTokenizer
         repo, pinned_revision = MODEL_REVISIONS["nanojev"]
+        provenance = checkpoint_provenance(revision or pinned_revision, checkpoint_dir, checkpoint_manifest,
+                                           expected_revision=pinned_revision)
         root = Path(checkpoint_dir) if checkpoint_dir else Path(snapshot_download(
             repo_id=repo, revision=revision or pinned_revision,
             allow_patterns=["best.safetensors", "config.json", "tokenizer/*", "backbone_config/*"]))
@@ -296,7 +369,8 @@ class NanoJevAdapter(DecisionAdapter):
         self.max_len = max_len or self.run_config.get("max_length", 512)
         self.metadata.update(repo=repo, revision=revision or pinned_revision,
                              native_temperature=1.0, max_len=self.max_len,
-                             set_head=self.run_config["set_head"], source_revision=SOURCE_REVISIONS["NanoJev"])
+                             set_head=self.run_config["set_head"], source_revision=SOURCE_REVISIONS["NanoJev"],
+                             checkpoint_provenance=provenance)
 
     def _infer(self, request):
         # Preserve supplied candidate keys/order; unsupported native schemas fail
@@ -310,6 +384,86 @@ class NanoJevAdapter(DecisionAdapter):
         return [row[:len(example["candidate_ids"])].float() for row, example in zip(logits, examples)]
 
 
+class DecimaAdapter(DecisionAdapter):
+    """PyTorch Decima 1.1 with its native option and ordinal decision heads.
+
+    Only encoder Linear modules belong to the quantizable backbone. The
+    late-interaction scorer and ordinal head remain in their released precision.
+    The native reference wrapper truncates long inputs; this adapter rejects
+    those requests so evaluation never changes the state or option text.
+    """
+
+    def __init__(self, name="decima-small", device="cuda", dtype="fp32", source_dir=None,
+                 checkpoint_dir=None, revision=None, checkpoint_manifest=None):
+        super().__init__(name, device, dtype)
+        _import_source(_source(source_dir, "decima"))
+        from decima.model import DecimaModel
+        from decima.systemone import to_question
+        from transformers import AutoTokenizer
+        from huggingface_hub import snapshot_download
+
+        repo, pinned_revision = MODEL_REVISIONS[name]
+        revision = revision or pinned_revision
+        provenance = checkpoint_provenance(revision, checkpoint_dir, checkpoint_manifest,
+                                           expected_revision=pinned_revision)
+        root = Path(checkpoint_dir) if checkpoint_dir else Path(snapshot_download(
+            repo_id=repo, revision=revision,
+            allow_patterns=["pytorch/decima.json", "pytorch/head.pt", "pytorch/encoder/*"]))
+        checkpoint = root / "pytorch" if (root / "pytorch/decima.json").is_file() else root
+        if not (checkpoint / "decima.json").is_file():
+            raise FileNotFoundError(f"Decima PyTorch checkpoint missing in {root}")
+        self.model = DecimaModel.load(checkpoint, str(self.device))
+        self.backbone = self.model.encoder
+        self.tokenizer = AutoTokenizer.from_pretrained(checkpoint / "encoder", local_files_only=True)
+        self._to_question = to_question
+        self.config = self.model.cfg
+        self.metadata.update(repo=repo, revision=revision,
+                             source_revision=SOURCE_REVISIONS["decima"],
+                             native_temperature=self.config.temperature,
+                             max_state_tokens=self.config.max_state_tokens,
+                             max_choice_tokens=self.config.max_choice_tokens,
+                             parameter_dtype="torch.float32",
+                             score_kind="uncalibrated_log_probabilities",
+                             raw_logits=False, checkpoint_provenance=provenance)
+
+    def _encode_strict(self, texts: list[str], budget: int, kind: str):
+        batch = self.tokenizer(texts, padding=True, truncation=False,
+                               return_tensors="pt")
+        if batch["input_ids"].shape[1] > budget:
+            raise UnsupportedRecord(f"Decima {kind} exceeds its {budget}-token native budget")
+        ids = batch["input_ids"].to(self.device)
+        mask = batch["attention_mask"].to(self.device)
+        return self.model.encode(ids, mask), mask
+
+    def _infer(self, request):
+        state = request["state"] if isinstance(request["state"], str) else json.dumps(
+            request["state"], ensure_ascii=False)
+        answers = []
+        for qid, spec in request["questions"].items():
+            _, question, _ = self._to_question(qid, spec)
+            state_text = self.config.state_of(state, question.text, question.lang)
+            choice_texts = [self.config.choice_of(question.text, option, question.lang)
+                            for option in question.choices]
+            with self._autocast():
+                state_h, state_mask = self._encode_strict(
+                    [state_text], self.config.max_state_tokens, "state")
+                choice_h, choice_mask = self._encode_strict(
+                    choice_texts, self.config.max_choice_tokens, "option")
+                owner = torch.zeros(len(choice_texts), dtype=torch.long, device=self.device)
+                scores, states = self.model.choice_scores(
+                    state_h, state_mask, choice_h, choice_mask, owner)
+                # At temperature 1 this is the differentiable, uncalibrated
+                # native decision distribution. The experiment fits its own
+                # temperature on a separate calibration split.
+                logp = self.model.log_probs(
+                    scores, states, owner, 1, [question.kind], temperature=1.0)[0]
+            if spec["type"] == "noul":
+                # Upstream verify orders [yes, no]; S1Q uses [false, true].
+                logp = logp.flip(0)
+            answers.append(logp.float())
+        return answers
+
+
 def load_model(name: str, device: str = "cuda", dtype: str | torch.dtype = "bf16", **kwargs) -> DecisionAdapter:
     """Load a native model; names and Hub weights are pinned in MODEL_REVISIONS."""
     key = name.lower().replace("_", "-")
@@ -317,7 +471,8 @@ def load_model(name: str, device: str = "cuda", dtype: str | torch.dtype = "bf16
         key = "nanojev"
     if key not in MODEL_REVISIONS:
         raise ValueError(f"Unknown model {name!r}; choose {', '.join(MODEL_REVISIONS)}")
-    cls = KevAdapter if key.startswith("kev-") else LayaAdapter if key == "laya" else NanoJevAdapter
+    cls = (KevAdapter if key.startswith("kev-") else LayaAdapter if key == "laya"
+           else NanoJevAdapter if key == "nanojev" else DecimaAdapter)
     return cls(name=key, device=device, dtype=dtype, **kwargs)
 
 

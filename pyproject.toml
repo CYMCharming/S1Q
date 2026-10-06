@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "s1q"
-version = "0.1.0"
+version = "0.2.0"
 description = "Low-bit quantization research for System One decision models"
 requires-python = ">=3.10"
 dependencies = ["torch>=2.6,<3", "numpy>=1.24,<3", "huggingface-hub>=0.26,<2", "safetensors>=0.4,<1"]

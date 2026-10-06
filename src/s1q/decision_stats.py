@@ -1,10 +1,12 @@
 """Teacher-distribution Fisher sensitivity for native decision outputs.
 
-This collector uses no gold labels. A randomized centered projection estimates
-the categorical Fisher metric at the full-precision teacher distribution. The
-squared gradient at each Linear output channel weights that channel's local
-reconstruction error. It is an approximation to output KL sensitivity, not a
-guarantee of better accuracy, calibration or transfer.
+By default this collector uses no gold labels. A randomized centered projection
+estimates the categorical Fisher metric at the full-precision teacher
+distribution. An opt-in calibration-label mode prioritizes correctly predicted
+decisions near the boundary. The squared gradient at each Linear output channel
+weights that channel's local reconstruction error. This is an approximation to
+output KL sensitivity, not a guarantee of better accuracy, calibration or
+transfer.
 """
 from __future__ import annotations
 
@@ -14,6 +16,8 @@ from typing import Any, Iterable, Mapping, Sequence
 
 import torch
 from torch import Tensor, nn
+
+from .metrics import label_index
 
 
 def categorical_fisher_projection(probabilities: Tensor, noise: Tensor) -> Tensor:
@@ -36,18 +40,25 @@ def categorical_fisher_projection(probabilities: Tensor, noise: Tensor) -> Tenso
 
 
 def decision_fisher_objective(logits: Sequence[Tensor], *, generator: torch.Generator,
-                              temperature: float = 1.0) -> Tensor:
+                              temperature: float = 1.0,
+                              question_weights: Sequence[float] | None = None) -> Tensor:
     """A differentiable scalar with unbiased categorical Fisher gradient covariance.
 
     Independent question projections are summed with 1/sqrt(Q), so their expected
     squared gradient represents mean per-question sensitivity rather than growing
-    with the number of questions in a request. Teacher probabilities and random
-    projection coefficients are detached from the gradient graph.
+    with the number of questions in a request. Optional question weights enter
+    as sqrt(w), giving covariance Q^-1 sum_q w_q J_q^T F_q J_q. Teacher
+    probabilities and random projection coefficients are detached from the graph.
     """
     if not logits or not math.isfinite(temperature) or temperature <= 0:
         raise ValueError("nonempty logits and a finite positive temperature are required")
+    if question_weights is not None:
+        if len(question_weights) != len(logits) or any(not math.isfinite(w) or w < 0 for w in question_weights):
+            raise ValueError("question_weights must be finite, nonnegative and match logits")
+        if sum(question_weights) <= 0:
+            raise ValueError("question_weights must contain positive mass")
     terms = []
-    for z in logits:
+    for index, z in enumerate(logits):
         if z.ndim != 1 or z.numel() == 0 or not torch.isfinite(z).all():
             raise ValueError("each question needs finite nonempty one-dimensional logits")
         scaled = z.float() / temperature
@@ -55,8 +66,43 @@ def decision_fisher_objective(logits: Sequence[Tensor], *, generator: torch.Gene
         # CPU RNG gives a stable seed sequence across GPU models and devices.
         noise = torch.randn(p.shape, generator=generator, device="cpu", dtype=torch.float32).to(p.device)
         v = categorical_fisher_projection(p, noise).detach()
-        terms.append((scaled * v).sum())
+        term = (scaled * v).sum()
+        if question_weights is not None:
+            term = term * math.sqrt(question_weights[index])
+        terms.append(term)
     return torch.stack(terms).sum() / math.sqrt(len(terms))
+
+
+def correct_boundary_question_weights(logits: Sequence[Tensor], record: Mapping[str, Any],
+                                      *, temperature: float = 1.0) -> list[float]:
+    """Prioritize correctly predicted, small-margin calibration decisions.
+
+    Labels are used only from the supplied calibration record. Incorrect teacher
+    decisions retain weight 0.25, rather than being treated as ground truth to
+    preserve. These labels are dataset proxy targets, not observed task returns.
+    """
+    if not math.isfinite(temperature) or temperature <= 0:
+        raise ValueError("temperature must be finite and positive")
+    questions = record.get("questions")
+    if not isinstance(questions, Mapping) or len(questions) != len(logits):
+        raise ValueError("correct_boundary weighting requires matching labeled calibration questions")
+    weights = []
+    for z, question in zip(logits, questions.values()):
+        if not isinstance(question, Mapping) or "label" not in question:
+            raise ValueError("correct_boundary weighting requires calibration labels")
+        labeled = dict(question)
+        if labeled.get("type") == "boolean":
+            labeled["type"] = "noul"
+        gold = label_index(labeled)
+        if z.ndim != 1 or z.numel() < 2 or not 0 <= gold < z.numel() or not torch.isfinite(z).all():
+            raise ValueError("calibration label or decision logits are incompatible")
+        p = torch.softmax(z.detach().float() / temperature, -1)
+        if int(p.argmax()) != gold:
+            weights.append(0.25)
+        else:
+            margin = float(p.topk(2).values[0] - p.topk(2).values[1])
+            weights.append(1.0 + max(0.0, min(1.0, (0.2 - margin) / 0.2)))
+    return weights
 
 
 @dataclass(frozen=True)
@@ -110,16 +156,20 @@ class DecisionFisherCollector:
     """
 
     def __init__(self, adapter: Any, *, modules: Mapping[str, nn.Linear] | None = None,
-                 seed: int = 0, temperature: float = 1.0, probes_per_record: int = 1):
+                 seed: int = 0, temperature: float = 1.0, probes_per_record: int = 1,
+                 decision_weighting: str = "teacher"):
         if isinstance(probes_per_record, bool) or not isinstance(probes_per_record, int) or probes_per_record <= 0:
             raise ValueError("probes_per_record must be a positive integer")
         if not math.isfinite(temperature) or temperature <= 0:
             raise ValueError("temperature must be finite and positive")
+        if decision_weighting not in ("teacher", "correct_boundary"):
+            raise ValueError("decision_weighting must be 'teacher' or 'correct_boundary'")
         self.adapter = adapter
         self.modules = dict(modules if modules is not None else adapter.linear_modules())
         if not self.modules or any(not isinstance(m, nn.Linear) for m in self.modules.values()):
             raise ValueError("at least one native Linear module is required")
         self.temperature, self.probes_per_record, self.seed = temperature, probes_per_record, seed
+        self.decision_weighting = decision_weighting
         self._generator = torch.Generator(device="cpu").manual_seed(seed)
         self._handles: list[Any] = []
         self._parameters: list[tuple[nn.Parameter, bool]] = []
@@ -189,9 +239,16 @@ class DecisionFisherCollector:
                 logits = self.adapter.infer(record)
                 if not logits or any(not z.requires_grad for z in logits):
                     raise RuntimeError("Native logits have no differentiable path to selected linears")
+                question_weights = (correct_boundary_question_weights(logits, record, temperature=self.temperature)
+                                    if self.decision_weighting == "correct_boundary" else None)
                 for probe in range(self.probes_per_record):
-                    objective = decision_fisher_objective(logits, generator=self._generator,
-                                                          temperature=self.temperature)
+                    if question_weights is None:
+                        objective = decision_fisher_objective(logits, generator=self._generator,
+                                                              temperature=self.temperature)
+                    else:
+                        objective = decision_fisher_objective(logits, generator=self._generator,
+                                                              temperature=self.temperature,
+                                                              question_weights=question_weights)
                     objective.backward(retain_graph=probe + 1 < self.probes_per_record)
                     self.backward_probes += 1
                 for name, update in self._pending.items():
@@ -223,16 +280,23 @@ class DecisionFisherCollector:
                                        require_all=require_all)
 
     def metadata(self) -> dict[str, Any]:
-        return {"objective": "categorical_teacher_fisher_random_projection",
+        result = {"objective": "categorical_teacher_fisher_random_projection",
                 "seed": self.seed, "temperature": self.temperature,
                 "probes_per_record": self.probes_per_record,
                 "records": self.records, "backward_probes": self.backward_probes,
                 "failed_records": self.failed_records,
                 "question_normalization": "sum_div_sqrt_question_count",
                 "gradient_reduction": "mean_square_over_output_token_rows",
-                "uses_gold_labels": False,
+                "uses_gold_labels": self.decision_weighting == "correct_boundary",
                 "autograd_fallback": "none_fail_loudly",
                 "failed_request_statistics": "discarded_atomically"}
+        if self.decision_weighting == "correct_boundary":
+            result["objective"] = "calibration_label_weighted_categorical_fisher_random_projection"
+            result["decision_weighting"] = "correct_boundary"
+            result["wrong_teacher_decision_weight"] = 0.25
+            result["correct_boundary_margin"] = 0.2
+            result["label_scope"] = "calibration_records_only_dataset_proxy_targets"
+        return result
 
     def close(self) -> None:
         for handle in self._handles:

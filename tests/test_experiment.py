@@ -359,3 +359,38 @@ def test_legacy_baseline_with_no_binding_manifest_is_rejected(toy_run):
                                   device="cpu", dtype="fp32", group_size=3,
                                   activation_search=False, export=False,
                                   reuse_baseline=toy_run["output"])
+
+
+def test_rtn_fallback_uses_the_same_development_objective_and_storage_tiebreak():
+    def candidate(name, method, objective, bytes_):
+        return {"profile": {"name": name, "method": method},
+                "paired": {"selection_objective": objective},
+                "storage": {"estimated_complete_packed_parameters_bytes": bytes_}}
+
+    cases = [candidate("rtn", "rtn", 0.01, 100),
+             candidate("local", "s1q", 0.02, 90),
+             candidate("v2", "s1q2", 0.02, 80)]
+    assert experiment.select_candidate(cases)["profile"]["name"] == "v2"
+    assert experiment.select_candidate(cases, include_rtn_candidate=True)["profile"]["name"] == "rtn"
+    cases[0]["paired"]["selection_objective"] = 0.02
+    assert experiment.select_candidate(cases, include_rtn_candidate=True)["profile"]["name"] == "v2"
+
+
+def test_accuracy_first_selection_can_fall_back_to_rtn_and_uses_probability_tiebreaks():
+    def candidate(name, method, accuracy, nll, brier):
+        return {"profile": {"name": name, "method": method},
+                "development": {"raw": {"accuracy": accuracy, "nll": nll, "brier": brier}},
+                "paired": {"selection_objective": 0.01},
+                "storage": {"estimated_complete_packed_parameters_bytes": 100}}
+
+    cases = [candidate("rtn", "rtn", 0.75, 0.7, 0.4),
+             candidate("local", "s1q", 0.7, 0.6, 0.3),
+             candidate("v2", "s1q2", 0.7, 0.5, 0.35)]
+    assert experiment.select_candidate(cases, include_rtn_candidate=True,
+                                       policy="accuracy_first")["profile"]["name"] == "rtn"
+    assert experiment.select_candidate(cases, policy="accuracy_first")["profile"]["name"] == "v2"
+    cases[2]["development"]["raw"]["accuracy"] = 0.8
+    assert experiment.select_candidate(cases, include_rtn_candidate=True,
+                                       policy="accuracy_first")["profile"]["name"] == "v2"
+    with pytest.raises(ValueError, match="selection policy"):
+        experiment.select_candidate(cases, policy="unknown")

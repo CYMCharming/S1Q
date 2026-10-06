@@ -1,5 +1,7 @@
 # S1Q experimental results
 
+**Historical v0.1 snapshot:** this page describes earlier S1Q recipes. Current S1Q is the decision-margin/activation-compensation method documented in [Method](method.md), with current representative results in [README](../README.md#current-evidence). These older scores and packed-resource measurements must not be relabeled as measurements of the current method.
+
 Generated from completed, hashed run summaries and saved paired predictions by `scripts/summarize_results.py`. Only `status=complete` runs are included. Values below describe this research snapshot; pending runs are not counted.
 
 Pilot results were inspected before the expanded Fisher search. Pilot and expanded validation results are exploratory, including repeated evaluation on overlapping Kev suites. A larger rerun does not create a new independent held-out set. External authored-cohort results are reported separately when available; they must use profiles frozen before external inference.

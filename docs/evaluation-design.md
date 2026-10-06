@@ -1,5 +1,7 @@
 # S1Q evaluation design
 
+This page preserves the v0.1 data/evaluation design and its historical final cohorts. The current S1Q uses the label-free optimization workflow described in [Method](method.md) and [Current reproduction](reproduce-current.md). The newer batch's inspected development and additional evaluation cohorts must not be described as fresh v0.1 final tests.
+
 Status: working protocol, 2026-10-01 (Asia/Shanghai). Pilot results were inspected
 before the Fisher candidate expansion; those comparisons remain exploratory.
 The external confirmation cohort and fixed-profile evaluation are specified

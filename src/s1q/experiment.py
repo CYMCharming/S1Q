@@ -91,16 +91,52 @@ def storage_report(adapter,session):
             "note":"Storage estimate, not measured GPU memory or integer-kernel speedup. Retained embeddings, heads, biases and recurrent parameters included."}
 
 
+def select_candidate(candidates, *, include_rtn_candidate=False,
+                     policy="decision_preservation"):
+    """Choose a fixed-budget profile on development data, optionally including RTN.
+
+    ``accuracy_first`` uses labeled development accuracy before NLL and Brier;
+    it is an opt-in policy for decision tasks whose main target is correctness.
+    It must be frozen before any final-test evaluation.
+    """
+    if policy not in ("decision_preservation", "accuracy_first"):
+        raise ValueError("Unknown development selection policy")
+    allowed = {"rtn", "s1q", "s1q2"} if include_rtn_candidate else {"s1q", "s1q2"}
+    eligible = [candidate for candidate in candidates if candidate["profile"]["method"] in allowed]
+    if not eligible:
+        raise ValueError("No eligible quantization candidates were evaluated")
+    if policy == "accuracy_first":
+        return min(eligible, key=lambda candidate: (
+            -candidate["development"]["raw"]["accuracy"],
+            candidate["development"]["raw"]["nll"],
+            candidate["development"]["raw"]["brier"],
+            candidate["paired"]["selection_objective"],
+            candidate["storage"]["estimated_complete_packed_parameters_bytes"],
+        ))
+    return min(eligible, key=lambda candidate: (
+        candidate["paired"]["selection_objective"],
+        candidate["storage"]["estimated_complete_packed_parameters_bytes"],
+    ))
+
+
 def run_experiment(model_name, data_dir, output_dir, *, device="cuda", dtype="bf16", source_dir=None,
+                   checkpoint_dir=None,
                    bits=4, group_size=128, activation_search=True, export=True, seed=20261001,
-                   fisher_enabled=False, fisher_records=32, reuse_baseline=None):
+                   fisher_enabled=False, fisher_records=32, reuse_baseline=None,
+                   s1q2_enabled=False, include_rtn_candidate=False,
+                   reservoir_blend=0.5, max_reservoir_rows=32,
+                   decision_weighting="teacher", selection_policy="decision_preservation",
+                   checkpoint_manifest=None):
+    if decision_weighting != "teacher" and not fisher_enabled:
+        raise ValueError("Decision-weighted Fisher requires fisher_enabled=True")
     out=Path(output_dir)
     if (out/"summary.json").exists():
         raise FileExistsError("Completed experiment exists; use a fresh output directory")
     out.mkdir(parents=True,exist_ok=True)
     torch.manual_seed(seed); torch.set_num_threads(4)
     print(json.dumps({"stage":"load","model":model_name}),flush=True)
-    adapter=load_model(model_name,device=device,dtype=dtype,source_dir=source_dir)
+    adapter=load_model(model_name,device=device,dtype=dtype,source_dir=source_dir,
+                       checkpoint_dir=checkpoint_dir,checkpoint_manifest=checkpoint_manifest)
     adapter.model.eval()
     packages={}
     for pkg in ("torch","transformers","peft","datasets","huggingface-hub","numpy"):
@@ -188,7 +224,8 @@ def run_experiment(model_name, data_dir, output_dir, *, device="cuda", dtype="bf
     if fisher_enabled:
         from .decision_stats import DecisionFisherCollector
         print(json.dumps({"stage":"decision_fisher","records":min(fisher_records,len(eligibility["calibration"]))}),flush=True)
-        with DecisionFisherCollector(adapter,seed=seed,probes_per_record=2,temperature=1.0) as fisher:
+        with DecisionFisherCollector(adapter,seed=seed,probes_per_record=2,temperature=1.0,
+                                     decision_weighting=decision_weighting) as fisher:
             for record in eligibility["calibration"][:fisher_records]: fisher.collect(record)
         fisher_stats=fisher.attach_input_statistics(stats)
         write_json(out/"decision_fisher.json",fisher.metadata())
@@ -202,13 +239,22 @@ def run_experiment(model_name, data_dir, output_dir, *, device="cuda", dtype="bf
     if fisher_enabled:
         profiles += [{"name":"s1q-fisher","method":"s1q","activation_bits":None,"sensitive_fraction":0,"fisher":True},
                      {"name":"s1q-fisher-protected","method":"s1q","activation_bits":None,"sensitive_fraction":.05,"fisher":True}]
+    if s1q2_enabled:
+        profiles.append({"name":"s1q2-local","method":"s1q2","activation_bits":None,"sensitive_fraction":0})
+        if activation_search:
+            profiles += [{"name":"s1q2-a8","method":"s1q2","activation_bits":8,"sensitive_fraction":0},
+                         {"name":"s1q2-a4","method":"s1q2","activation_bits":4,"sensitive_fraction":0}]
+        if fisher_enabled:
+            profiles.append({"name":"s1q2-fisher","method":"s1q2","activation_bits":None,
+                             "sensitive_fraction":0,"fisher":True})
     candidates=[]
     for profile in profiles:
         print(json.dumps({"stage":"candidate","profile":profile["name"]}),flush=True)
         start=time.perf_counter()
         with quantize_model(adapter.backbone,bits=bits,group_size=group_size,statistics=fisher_stats if profile.get("fisher") else stats,
                             method=profile["method"],activation_bits=profile["activation_bits"],
-                            sensitive_fraction=profile["sensitive_fraction"]) as session:
+                            sensitive_fraction=profile["sensitive_fraction"],
+                            reservoir_blend=reservoir_blend,max_reservoir_rows=max_reservoir_rows) as session:
             rows,_,_,_=predict(adapter,eligibility["development"])
             paired=compare(baseline["development"],rows)
             report={"profile":profile,"development":evaluate(rows,{}),"paired":paired,
@@ -217,25 +263,36 @@ def run_experiment(model_name, data_dir, output_dir, *, device="cuda", dtype="bf
             write_json(out/f"candidates/{profile['name']}.json",report)
             write_rows(out/f"candidates/{profile['name']}-development.jsonl",rows)
             candidates.append(report)
-    s1q_candidates=[c for c in candidates if c["profile"]["method"]=="s1q"]
-    # Preserve decisions first. Within 1e-12 ties prefer fewer retained high-bit layers.
-    selected=min(s1q_candidates,key=lambda c:(c["paired"]["selection_objective"],c["storage"]["estimated_complete_packed_parameters_bytes"]))
+    # Preserve decisions first; RTN may win when fallback selection is enabled.
+    selected=select_candidate(candidates,include_rtn_candidate=include_rtn_candidate,
+                              policy=selection_policy)
     selection={"selected":selected["profile"],"bits":bits,"group_size":group_size,
-               "objective":"development boundary-weighted JS + 0.1 harmful flip rate",
+               "objective":("development accuracy descending; NLL, Brier, decision drift and bytes ascending"
+                            if selection_policy=="accuracy_first" else
+                            "development boundary-weighted JS + 0.1 harmful flip rate"),
+               "selection_policy":selection_policy,
+               "rtn_eligible_for_selection":include_rtn_candidate,
+               "s1q2_enabled":s1q2_enabled,"reservoir_blend":reservoir_blend,
+               "max_reservoir_rows":max_reservoir_rows,"decision_weighting":decision_weighting,
                "selected_before_quantized_test":True,
-               "candidates":[{"profile":c["profile"],"objective":c["paired"]["selection_objective"],"development_accuracy":c["development"]["raw"]["accuracy"]} for c in candidates]}
+               "candidates":[{"profile":c["profile"],"objective":c["paired"]["selection_objective"],
+                              "development_accuracy":c["development"]["raw"]["accuracy"],
+                              "development_nll":c["development"]["raw"]["nll"],
+                              "development_brier":c["development"]["raw"]["brier"]}
+                             for c in candidates]}
     write_json(out/"selection.json",selection)
     finals={}
     # Test fixed RTN, unprotected local ablation, and development-selected S1Q only.
     final_profiles=[profiles[0],profiles[1]]
-    if selected["profile"] != profiles[1]: final_profiles.append(selected["profile"])
+    if selected["profile"] not in final_profiles: final_profiles.append(selected["profile"])
     if selected["profile"]["sensitive_fraction"] > 0 or selected["profile"]["activation_bits"] is not None:
         final_profiles.append({**selected["profile"],"name":"rtn-matched","method":"rtn"})
     for profile in final_profiles:
         print(json.dumps({"stage":"final","profile":profile["name"]}),flush=True)
         with quantize_model(adapter.backbone,bits=bits,group_size=group_size,statistics=fisher_stats if profile.get("fisher") else stats,
                             method=profile["method"],activation_bits=profile["activation_bits"],
-                            sensitive_fraction=profile["sensitive_fraction"]) as session:
+                            sensitive_fraction=profile["sensitive_fraction"],
+                            reservoir_blend=reservoir_blend,max_reservoir_rows=max_reservoir_rows) as session:
             temp_rows,_,_,_=predict(adapter,eligibility["temperature_calibration"])
             fitted=fit_temperatures(temp_rows)
             report={"profile":profile,"storage":storage_report(adapter,session),"quantization":session.report(),"splits":{}}

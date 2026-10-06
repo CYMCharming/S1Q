@@ -27,6 +27,7 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor, nn
 
+from .bitpack import packed_nbytes, unpack_signed_codes
 from .quantization import (
     _ACTIVE_ATTRIBUTE,
     _EXECUTION,
@@ -58,7 +59,7 @@ def _validate_record(record: Mapping[str, Any]) -> tuple[tuple[int, int], int, i
     if any(type(dimension) is not int or dimension <= 0 for dimension in raw_shape):
         raise ValueError("Packed weight shape must contain two positive integer dimensions.")
     shape = tuple(raw_shape)
-    bits = _integer_option(record["bits"], (4, 8), "weight bits")
+    bits = _integer_option(record["bits"], (2, 3, 4, 8), "weight bits")
     group_size = record["group_size"]
     if type(group_size) is not int or group_size <= 0:
         raise ValueError("Packed group_size must be a positive integer.")
@@ -66,7 +67,13 @@ def _validate_record(record: Mapping[str, Any]) -> tuple[tuple[int, int], int, i
     if not all(isinstance(value, Tensor) for value in (payload, scales, input_scale)):
         raise ValueError("Packed payload, scales and input_scale must be tensors.")
     numel = math.prod(shape)
-    if bits == 4:
+    if bits in (2, 3):
+        if record.get("bit_order") != "lsb_first_twos_complement":
+            raise ValueError("Low-bit payload must declare LSB-first two's-complement encoding.")
+        if payload.dtype != torch.uint8 or payload.ndim != 1 or payload.numel() != packed_nbytes(numel, bits):
+            raise ValueError(f"Invalid packed {bits}-bit payload dtype, shape or length.")
+        integer = unpack_signed_codes(payload, numel, bits)
+    elif bits == 4:
         if payload.dtype != torch.uint8 or payload.ndim != 1 or payload.numel() != math.ceil(numel / 2):
             raise ValueError("Invalid packed 4-bit payload dtype, shape or length.")
         integer = unpack_int4(payload, numel)
@@ -146,6 +153,10 @@ class PackedLinear(nn.Module):
     def _integer_weight(self) -> Tensor:
         if self.bits == 8:
             return self.qweight
+        if self.bits in (2, 3):
+            count = self.out_features * self.in_features
+            codes = unpack_signed_codes(self.qweight, count, self.bits, validate_padding=False)
+            return codes.reshape(self.out_features, self.in_features)
         # GPU-friendly unpacking: quantization.unpack_int4 intentionally returns
         # CPU codes for artifacts, whereas inference must remain on the device.
         payload = self.qweight.to(torch.int16)
@@ -211,7 +222,7 @@ def apply_packed(model: nn.Module, artifact: Mapping[str, Any] | str | Path) -> 
         artifact = torch.load(artifact, map_location="cpu", weights_only=True)
     if not isinstance(artifact, Mapping):
         raise ValueError("Packed artifact must be a mapping.")
-    if artifact.get("format") != "s1q.packed_linear.v1" or artifact.get("execution") != _EXECUTION:
+    if artifact.get("format") not in ("s1q.packed_linear.v1", "s1q.packed_linear.v2") or artifact.get("execution") != _EXECUTION:
         raise ValueError("Unsupported packed S1Q research artifact format.")
     records = artifact.get("layers")
     if not isinstance(records, Mapping):

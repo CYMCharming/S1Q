@@ -2,6 +2,8 @@
   "kev-0.8b": {"family": "kev", "repo_id": "jaredpalmer/kev-0.8b", "revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e"},
   "kev-4b": {"family": "kev", "repo_id": "jaredpalmer/kev-4b", "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101"},
   "kev-9b": {"family": "kev", "repo_id": "jaredpalmer/kev-9b", "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c"},
+  "kev-27b": {"family": "kev", "repo_id": "jaredpalmer/kev-27b", "revision": "af0e6d551bdc2cc724f3e9d7a8bee1cd4fb8f7bf"},
   "nanojev": {"family": "nanojev", "repo_id": "C-Tianyu/NanoJev", "revision": "047b927b30882a1138fc504821b82ac145a4b81a"},
-  "laya": {"family": "laya", "repo_id": "convaiinnovations/laya", "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"}
+  "laya": {"family": "laya", "repo_id": "convaiinnovations/laya", "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"},
+  "decima-small": {"family": "decima", "repo_id": "amyrmahdy/decima-small", "revision": "9399bf8c5edf2ac0186a38220af277bfc27b4a56"}
 }
