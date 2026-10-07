@@ -1,0 +1,78 @@
+{
+  "schema": "s1q.laya-wildjailbreak-validation.v1",
+  "source_fidelity": {
+    "status": "passed",
+    "source_revision": "3572c8a68b5df5dafe02d0e093989ba8ec0183bc",
+    "official_file_sha256": "2b14e5449850463b530e92493244c4f4a888d91ff4b458130e17f661d2ce8938",
+    "official_file_hash_matches_known_pin": true,
+    "cohort_sha256": "f80c60882870daf0a9fcd5eac85e620799dd2bff9311040f89c0837b1925154d",
+    "native_predictions_sha256": "9c0bf2947ca4bed0e0e1824947c4bca7d625e62e6607c185f099ca5058345ba1",
+    "official_n_requests": 2210,
+    "selected_n_requests": 128,
+    "native_n_decisions": 128,
+    "state_mismatches": 0,
+    "public_question_mismatches": 0,
+    "gold_or_encoded_label_mismatches": 0,
+    "label_origin_mismatches": 0,
+    "candidate_order_mismatches": 0,
+    "gold_distribution": {
+      "harmful": 119,
+      "benign": 9
+    },
+    "predicted_distribution": {
+      "harmful": 5,
+      "benign": 123
+    },
+    "confusion": [
+      {
+        "gold": "benign",
+        "predicted": "benign",
+        "count": 9
+      },
+      {
+        "gold": "harmful",
+        "predicted": "benign",
+        "count": 114
+      },
+      {
+        "gold": "harmful",
+        "predicted": "harmful",
+        "count": 5
+      }
+    ],
+    "accuracy": 0.109375
+  },
+  "official_api_parity": {
+    "status": "passed",
+    "task": "Laya Native WildJailBreak adapter and official API parity",
+    "n_original_requests": 8,
+    "sampling": "fixed SHA256 order with one representative per observed gold/prediction confusion cell then fill to eight; diagnostic only, does not alter evaluation",
+    "source_revision": "6d942c92081fbc139e736bbd9ac0023223c29b7f",
+    "checkpoint_revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "frozen_benchmark_manifest_sha256": "41e4ccc75326baaca3212085dd66e0127fb8bc122d5b06054a170a0a2a0a231d",
+    "official_default_dtype": "torch.bfloat16",
+    "adapter_dtype": "torch.bfloat16",
+    "same_bf16_official_api_used_same_instance": true,
+    "default_api_argmax_disagreements": 0,
+    "default_api_vs_adapter_max_logit_difference": 0,
+    "same_bf16_api_argmax_disagreements": 0,
+    "same_bf16_api_candidate_key_order_disagreements": 0,
+    "saved_vs_adapter_argmax_disagreements": 0,
+    "saved_vs_adapter_max_logit_difference": 0,
+    "saved_vs_same_bf16_api_max_logit_difference": 0,
+    "official_rounded_probability_max_difference": 4.856154918669864e-05,
+    "saved_n_correct": 2,
+    "default_api_n_correct": 2,
+    "same_bf16_api_n_correct": 2
+  },
+  "interpretation": [
+    "Source fidelity compares the frozen 128 requests with their original upstream fields; it does not infer saved logit-axis semantics from missing candidate snapshots.",
+    "Official API parity is an eight-request diagnostic using the same BF16 model instance; it does not add, remove, relabel or resample evaluation requests.",
+    "The 119 harmful / 9 benign distribution describes this screened subset only. All main accuracy results are retained, with supplemental class diagnostics."
+  ],
+  "original_evidence_sha256": {
+    "source_fidelity": "9335129df6005752227b3a91ae3bedb136766f17ea207ccfbf7307feeb032043",
+    "official_api_parity": "3dd34b7b003e46161d9dad903f208d78dd400bb5c3d21158876bdddb671bcd9e"
+  },
+  "raw_states_individual_predictions_and_host_paths_omitted": true
+}

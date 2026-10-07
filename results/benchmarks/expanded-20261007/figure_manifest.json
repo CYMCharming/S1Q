@@ -1,0 +1,83 @@
+{
+  "status": "generated",
+  "suite_id": "expanded-v3-w4a4-22source-20261007",
+  "comparison_group": "all12",
+  "n_models": 10,
+  "n_datasets": 22,
+  "method_order": [
+    "s1q",
+    "s1q-ac",
+    "s1q-margin",
+    "s1q-joint",
+    "s1q2-beta05",
+    "spinquant-had-adapted",
+    "awq-adapted",
+    "s1q-local",
+    "spinquant-nohad-adapted",
+    "smoothquant-adapted",
+    "gptq-blockdiag-adapted",
+    "rtn"
+  ],
+  "outputs": [
+    {
+      "file": "benchmark_ranking.png",
+      "sha256": "822a5662f5a2f364b7cfabe62a69039b5702a3eebdf6226dec9f01ad53a08929",
+      "bytes": 683644
+    },
+    {
+      "file": "benchmark_ranking.svg",
+      "sha256": "3f5f6c302ef4300f737c64bcc014bc7dd4fcd78c182b8363cd86e2d1dd9e5376",
+      "bytes": 93916
+    }
+  ],
+  "probability_method_order": [
+    "s1q",
+    "s1q-ac",
+    "s1q-margin",
+    "s1q-joint",
+    "s1q2-beta05",
+    "spinquant-had-adapted",
+    "awq-adapted",
+    "s1q-local",
+    "spinquant-nohad-adapted",
+    "smoothquant-adapted",
+    "gptq-blockdiag-adapted",
+    "rtn"
+  ],
+  "probability_panels_scope": "all main comparison methods; identical fixed coverage and accuracy-rank order",
+  "accuracy_uncertainty": {
+    "schema": "s1q.conditional-macro-accuracy-uncertainty.v1",
+    "source_file": "accuracy_uncertainty.json",
+    "source_file_sha256": "d0cb0833c0947fdd0cda5808ccceec7d9ee576fca89fbffd59a423833351a05e",
+    "ranking_scopes_sha256": "873a3487ddc263b3c0b5827017a6cff616fc4a15539e72296f0fc4278fe0affe",
+    "rankings_sha256": "fe92f04106c0432e7bfc644da4dbb187c676ba77a9d629cad595557ce296dec9",
+    "suite_id": "expanded-v3-w4a4-22source-20261007",
+    "comparison_group": "all12",
+    "n_models": 10,
+    "n_datasets": 22,
+    "method_ids": [
+      "rtn",
+      "s1q-local",
+      "s1q2-beta05",
+      "smoothquant-adapted",
+      "awq-adapted",
+      "gptq-blockdiag-adapted",
+      "spinquant-nohad-adapted",
+      "spinquant-had-adapted",
+      "s1q-joint",
+      "s1q-ac",
+      "s1q-margin",
+      "s1q"
+    ],
+    "bootstrap_samples": 2000,
+    "bootstrap_seed": 20261007,
+    "point_validation_absolute_tolerance": 1e-10,
+    "interpretation": [
+      "Conditional 95% evaluated-sample intervals for the fixed admitted models and source suites; models and sources are not resampled.",
+      "Whole clusters are resampled within each source with shared draws across models and methods; source/model cells retain equal weight.",
+      "Paired differences require the shared-draw paired intervals, not subtraction of marginal bar intervals; no multiple-comparisons adjustment or universal winner claim."
+    ]
+  },
+  "ranking_scopes_sha256": "873a3487ddc263b3c0b5827017a6cff616fc4a15539e72296f0fc4278fe0affe",
+  "rankings_sha256": "fe92f04106c0432e7bfc644da4dbb187c676ba77a9d629cad595557ce296dec9"
+}

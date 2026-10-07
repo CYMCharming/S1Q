@@ -1,6 +1,6 @@
 # S1Q: Low-Bit Quantization for System One Decision Models
 
-[中文说明](README.zh-CN.md) · [Method](docs/method.md) · [Current reproduction](docs/reproduce-current.md) · [Expanded benchmark](docs/expanded-benchmarks.md) · [Historical aggregate](results/benchmarks/historical-20261006/README.md) · [Related work](docs/related-work.md) · [Model audit](docs/model-audit.md) · [Legacy results](docs/results.md) · [Packed artifacts](docs/artifacts.md)
+[中文说明](README.zh-CN.md) · [Method](docs/method.md) · [Current reproduction](docs/reproduce-current.md) · [Expanded results](results/benchmarks/expanded-20261007/README.md) · [Expanded protocol](docs/expanded-benchmarks.md) · [Historical aggregate](results/benchmarks/historical-20261006/README.md) · [Related work](docs/related-work.md) · [Model audit](docs/model-audit.md) · [Legacy results](docs/results.md) · [Packed artifacts](docs/artifacts.md)
 
 **S1Q now denotes the current decision-margin-aware, activation-compensated method.** Its October 2026 experiment identifier was `s1q-mac`; that identifier remains supported to reproduce frozen runs. The public method name is **S1Q**. Earlier S1Q and S1Q2 recipes remain available as historical controls.
 
@@ -16,21 +16,53 @@ S1Q combines three calibration steps:
 
 The gradient statistic is a **margin-Jacobian token proxy, not a categorical Fisher matrix**. [GuidedQuant](https://proceedings.mlr.press/v267/kim25d.html) already uses end-loss gradients to guide reconstruction, and [RSQ](https://openreview.net/pdf?id=kBezrKXHVS) already prioritizes important tokens in quantization. Ridge-based activation-error compensation has close prior art in [ERQ (ICML 2024)](https://proceedings.mlr.press/v235/zhong24a.html), and matching native outputs has close prior art in [GPTAQ](https://arxiv.org/abs/2504.02692). Gradient guidance, token importance, scaling, clipping and compensation are not individually new. The research contribution being evaluated is their concrete decision-aware integration across native typed-decision architectures. See the exact formulas, assumptions and limitations in [Method](docs/method.md).
 
-## Expanded benchmark status (October 7)
+## Expanded benchmark results (October 7)
 
-**The new 22-source evaluation is running; its accuracy values and method ranking are pending.** The frozen preparation contains 2,565 complete upstream requests and 2,871 decisions before model-specific admission. It preserves the source questions and candidates, excludes calibration and previously evaluated request/scenario identities, and keeps the old Mixed Dev cohort outside the new source average. The 22 sources comprise 18 standard dataset sources, two authored scenario/rule suites and two domain decision suites. JevBench contributes only 48 new easy tasks; ToolACE evaluates tool-choice classification, and WildJailBreak evaluates harmful/benign classification. Typed Decisions is excluded because of teacher labels and the length bound. See [the frozen protocol and source counts](docs/expanded-benchmarks.md).
+**Completed: 10 text decision models × 22 source suites × 12 quantization methods at W4A4, plus Native references.** Every model admitted the same 2,565 requests and 2,871 decisions, confirmed against its frozen source scope. Models are Kev-0.8B/4B/9B, Laya, Intern-Decision-0.8B/2B/4B and StartLux-Decision-0.8B/2B/4B. **Kev-27B and NanoJev are not in this new matrix.** Accuracy averages sources equally within each model, then models equally; it is not pooled decision accuracy.
 
-The new principal group contains 12 methods, including a separately measured **SmoothQuant*** control in addition to the original 11. The recipes remain frozen during the new evaluation. SmoothQuant*, AWQ*, GPTQ-block* and SpinQuant* are repository adaptations; W/A accuracy uses floating-point QDQ execution. No new winner or integer-kernel speedup is asserted before completed matched results are available.
+Current **S1Q ranks first in accuracy, Brier and ECE15 among these 12 implementations**; S1Q-AC has the lowest NLL. S1Q reaches **54.11%**, versus RTN's 35.09%, a **+19.01 percentage-point** gain. Native averages 76.38%: the remaining **22.27-point accuracy loss** rules out a lossless-quantization claim. This is a fixed-scope result, not superiority over official baseline implementations or every model/dataset.
 
-The [historical October 6 aggregate](results/benchmarks/historical-20261006/README.md) is now available as **537 completed aggregate rows**: 321 from the original optimization batch and 216 from the six new Intern-Decision / StartLux-Decision models. It includes [metrics CSV](results/benchmarks/historical-20261006/metrics.csv), [JSON](results/benchmarks/historical-20261006/metrics.json), [scoped rankings](results/benchmarks/historical-20261006/rankings.csv), [coverage and sample counts](results/benchmarks/historical-20261006/ranking_scopes.json), and [source hashes](results/benchmarks/historical-20261006/provenance.json). Its eight declared scopes keep precision, model coverage and evaluation groups explicit. The historical principal group contains 11 measured methods; SmoothQuant is not retroactively inserted.
+| Accuracy rank | Method | Accuracy % ↑ | NLL ↓ | Brier ↓ | ECE15 ↓ |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| — | Native reference | 76.38 | 0.734 | 0.345 | 0.131 |
+| 1 | S1Q (current) | **54.11** | 1.079 | **0.581** | **0.166** |
+| 2 | S1Q-AC | 53.20 | **1.075** | 0.586 | 0.168 |
+| 3 | S1Q-Margin | 52.61 | 1.095 | 0.591 | 0.167 |
+| 4 | S1Q-Joint | 52.16 | 1.103 | 0.595 | 0.168 |
+| 5 | S1Qv2 | 42.52 | 1.319 | 0.702 | 0.206 |
+| 6 | SpinQuant Had* | 42.28 | 1.312 | 0.700 | 0.206 |
+| 7 | AWQ* | 42.19 | 1.305 | 0.702 | 0.208 |
+| 8 | S1Qv1 | 41.60 | 1.332 | 0.709 | 0.211 |
+| 9 | SpinQuant no-Had* | 37.15 | 1.485 | 0.776 | 0.249 |
+| 10 | SmoothQuant* | 36.57 | 1.478 | 0.783 | 0.256 |
+| 11 | GPTQ-block* | 35.22 | 1.666 | 0.840 | 0.304 |
+| 12 | RTN | 35.09 | 1.669 | 0.843 | 0.302 |
 
-The figure below displays the **historical W4A4 three-cohort snapshot**, with nine models shared by all 11 methods. It does not display the pending 22-source experiment. [Vector figure](results/benchmarks/historical-20261006/benchmark_ranking.svg) · [Figure provenance](results/benchmarks/historical-20261006/figure_manifest.json).
+Bold marks the best displayed quantized value, including ties; Native is an unranked reference. [All metric ranks and paired differences](docs/expanded-benchmarks.md#completed-expanded-comparison) · [Per-model/source accuracy tables](results/benchmarks/expanded-20261007/accuracy_table.md) · [Unrounded rankings CSV](results/benchmarks/expanded-20261007/rankings.csv).
+
+The shared-cluster conditional paired 95% intervals for current S1Q's accuracy gains are **+19.014 [18.010, 19.998] pp versus RTN**, **+0.909 [0.253, 1.614] pp versus S1Q-AC**, and **+1.495 [0.811, 2.217] pp versus S1Q-Margin**. These intervals exclude zero under the fixed evaluated-sample protocol; they have no multiple-comparisons adjustment and do not establish a universal winner. [Interval evidence](results/benchmarks/expanded-20261007/accuracy-uncertainty/accuracy_uncertainty.md) · [Reproduce the CI pipeline](docs/expanded-benchmarks.md#conditional-accuracy-intervals).
+
+![Completed W4A4 accuracy with conditional intervals, family ranks and all twelve methods' probability metrics](results/benchmarks/expanded-20261007/benchmark_ranking.png)
+
+[Vector figure](results/benchmarks/expanded-20261007/benchmark_ranking.svg) · [Figure provenance](results/benchmarks/expanded-20261007/figure_manifest.json) · [Aggregate report](results/benchmarks/expanded-20261007/README.md) · [Supplemental class diagnostics](results/benchmarks/expanded-20261007/classification-diagnostics/classification_diagnostics.md).
+
+Supplemental [source breakdowns (6,240 rows)](results/benchmarks/expanded-20261007/metrics_by_source.csv) and [cohort-wise paired comparisons (34,080 rows)](results/benchmarks/expanded-20261007/paired_by_cohort.csv) have a [hash/interpretation manifest](results/benchmarks/expanded-20261007/supplemental_table_manifest.json). Subtypes are not extra datasets; old development breakdowns stay outside the main ranking. Cohort-wise intervals (seed 20261004) differ from the fixed 22-source global intervals (seed 20261007). [Native control gate](results/benchmarks/expanded-20261007/audits/native-control-evidence.json) · [220-cell Native/source audit](results/benchmarks/expanded-20261007/audits/native-source-binding-10models.json).
+
+The 22 screened, short-request sources comprise 18 standard dataset sources, two authored scenario/rule suites and two domain decision suites; they are bounded subsets, not complete upstream leaderboard evaluations. JevBench contributes only 48 new easy tasks; ToolACE measures tool-choice classification, and WildJailBreak measures harmful/benign classification. Typed Decisions was excluded because of teacher labels and the length bound. Source selection preserved questions/candidates, excluded recorded calibration and earlier evaluation identities, and kept old Mixed Dev outside the new average. The 520 supplemental class-diagnostic cells cover four audited semantic-class sources and do not change the main ranking. See [source roles, filtering and ordering-contract limitations](docs/expanded-benchmarks.md).
+
+The original eleven-method runs and independent SmoothQuant* control were combined only after native-equivalence and scope checks; neither original run was changed. * SmoothQuant, AWQ, GPTQ-block and SpinQuant denote repository adaptations/proxies. Accuracy uses floating-point QDQ; this batch establishes no integer-kernel speedup or measured packed-checkpoint compression. StartLux uses the recorded `STARTLUX_ALLOW_SLOW=1` reference runtime.
+
+## Historical three-cohort snapshot
+
+The [historical October 6 aggregate](results/benchmarks/historical-20261006/README.md) retains **537 completed aggregate rows**: 321 from the original optimization batch and 216 from the six new Intern-Decision / StartLux-Decision models. It includes [metrics CSV](results/benchmarks/historical-20261006/metrics.csv), [JSON](results/benchmarks/historical-20261006/metrics.json), [scoped rankings](results/benchmarks/historical-20261006/rankings.csv), [coverage and sample counts](results/benchmarks/historical-20261006/ranking_scopes.json), and [source hashes](results/benchmarks/historical-20261006/provenance.json). Its eight declared scopes keep precision, model coverage and evaluation groups explicit. The historical principal group contains 11 measured methods; SmoothQuant is not retroactively inserted.
+
+The figure below displays the **historical W4A4 three-cohort snapshot**, with nine models shared by all 11 methods. It is separate from the completed 22-source protocol and its average. [Vector figure](results/benchmarks/historical-20261006/benchmark_ranking.svg) · [Figure provenance](results/benchmarks/historical-20261006/figure_manifest.json).
 
 ![Historical W4A4 common-coverage accuracy, family ranks and probability metrics](results/benchmarks/historical-20261006/benchmark_ranking.png)
 
 ## Current evidence
 
-The frozen October 4 batch contains five models, W4A4 and two-model W3A4 stress tests, ablations and adapted quantization controls. Representative **development** accuracy (%):
+The following is **historical October 4 development evidence**, separate from the completed expanded comparison. That frozen batch contains five models, W4A4 and two-model W3A4 stress tests, ablations and adapted quantization controls. Representative **development** accuracy (%):
 
 | Model | Precision | Native | RTN | Earlier S1Q2 | Current S1Q |
 |---|---|---:|---:|---:|---:|

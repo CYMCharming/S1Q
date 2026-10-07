@@ -224,7 +224,8 @@
           "prepared_n_requests": 66,
           "prepared_n_decisions": 132
         }
-      }
+      },
+      "show_all_probability_methods": true
     }
   ],
   "plot_suite_id": "expanded-v3-w4a4-22source-20261007"

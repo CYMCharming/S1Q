@@ -1,0 +1,46 @@
+{
+  "schema": "s1q.combined-public-audit-manifest.v1",
+  "status": "passed",
+  "n_models": 10,
+  "files": [
+    {
+      "filename": "laya-wildjailbreak-validation.json",
+      "sha256": "26a7e82fbf51504a53d2072f199c10eedd7b4b6993d1839c5394b0ee1270a489",
+      "bytes": 3389
+    },
+    {
+      "filename": "native-control-evidence.json",
+      "sha256": "cfd9d611f71e1f0acaead1953d208ae6d7d32d6bb88cb810383a5c3c73b7bdda",
+      "bytes": 24115
+    },
+    {
+      "filename": "native-source-binding-10models.json",
+      "sha256": "ef68e2230ea62011f7deb04e95cacc7c2a4e8e7c0276fd19410b7777be6a948b",
+      "bytes": 168050
+    },
+    {
+      "filename": "runtime-startlux-decision-0.8b.json",
+      "sha256": "2dac786f02baba1c73d1625dba18b77b3566a161931a2ae9651e8349b7c1ef4f",
+      "bytes": 1593
+    },
+    {
+      "filename": "runtime-startlux-decision-2b.json",
+      "sha256": "18f64d38b04b1561eb226c0c667274828af689cd8ceaff67af4a536657cf7366",
+      "bytes": 1591
+    },
+    {
+      "filename": "runtime-startlux-decision-4b.json",
+      "sha256": "31c531f2da9ed050e5e5d44fc7bafdf257adab41b19afe6fc4f2fe24a8399e0a",
+      "bytes": 1591
+    }
+  ],
+  "source_metadata_manifest_sha256": "3319858865bf0e33cf13257752fa7c850092a6341f7f235131e6bef509b7924e",
+  "source_metadata_builder_sha256": "5706604a8de9fa2d60574d9921a9ced10967dd2df3d82d5d45a1239c6ea92f29",
+  "provenance": [
+    "Four native/control and StartLux runtime documents were copied byte-for-byte from the verified public metadata pack.",
+    "The final ten-model source-binding audit is copied from its aggregate-only final audit; Laya API validation is a sanitized combination with both original evidence hashes recorded in that document."
+  ],
+  "host_absolute_paths": 0,
+  "raw_questions_individual_labels_predictions_or_bootstrap_arrays": false,
+  "metadata_only": true
+}

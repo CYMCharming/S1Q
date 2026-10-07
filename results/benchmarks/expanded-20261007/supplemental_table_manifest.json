@@ -1,0 +1,25 @@
+{
+  "schema": "s1q.supplemental-aggregate-tables.v1",
+  "status": "audited",
+  "files": [
+    {
+      "file": "metrics_by_source.csv",
+      "sha256": "f2b0c78d505366c5515eb10c1ebbf3b92db580c5e9d49b20ec249228d4b73ac7",
+      "rows": 6240,
+      "source_file": "by-source.csv"
+    },
+    {
+      "file": "paired_by_cohort.csv",
+      "sha256": "0640b0b9b52da65fb61d8a90441e80de3ecdc9796f5bd2710f8d7560676eb8ef",
+      "rows": 34080,
+      "source_file": "paired.csv"
+    }
+  ],
+  "interpretation": [
+    "All rows are aggregate source/cohort comparisons recomputed by the raw prediction auditor with zero audit errors.",
+    "The development cohort is an old exploratory diagnostic, excluded from every new 22-source rank.",
+    "paired_by_cohort.csv intervals use within-cohort paired cluster bootstraps (2000 draws, seed20261004). They are not the fixed-22-source global intervals; those are in accuracy-uncertainty/.",
+    "Execution durations are quantization-process measurements, not integer-kernel inference speed benchmarks."
+  ],
+  "raw_requests_predictions_checkpoints_and_paper_omitted": true
+}

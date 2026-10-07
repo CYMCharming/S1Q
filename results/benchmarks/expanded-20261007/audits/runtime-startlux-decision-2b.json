@@ -1,0 +1,21 @@
+{
+  "schema": "s1q.public-runtime-evidence.v1",
+  "model": "startlux-decision-2b",
+  "main_run_slow_fallback_enabled": true,
+  "observed_at_unix": 1791378201.4790087,
+  "original_runtime_evidence_sha256": "d58b7c868bc223483ef90956f1103f98d13648b799ac82bc5a158d3057272d9d",
+  "frozen_manifest_sha256": "41e4ccc75326baaca3212085dd66e0127fb8bc122d5b06054a170a0a2a0a231d",
+  "native_merge_audit_sha256": "ee521744e3dc41416ac41bd8aecdcbd0e176569593e92a02b537eca72d656d39",
+  "main_implementation_sha256": {
+    "src/s1q/optimization.py": "7029a103ee93626aaa9c28cae035bbe48ed1b36cf4d0af9b2e765e1e0bac8919",
+    "src/s1q/quantization.py": "f9ad16b88f7ecd7fca57477e7dde5d607bcd5d4555e25aaf6e510277594cbb1f",
+    "src/s1q/baselines.py": "6a5f10445809731ef372e6c49dd8ee1bc121caec362145b28bc2f20d0f6596f3",
+    "src/s1q/decision_margin.py": "9a9c5f7ebabf4ce194f15d08fe1acb32b357dc51fc58de5cd9691c0d02662fe0",
+    "src/s1q/activation_compensation.py": "b7ebdf2e58180614a16cd463001570f9ecab69ce11b11c75f7a3e1799d0ab9f4",
+    "src/s1q/optimized_quantization.py": "e6c74a66cadc2ec185d5107d3ca23ce6027ab7cc09e454e96d3450185b328c57",
+    "src/s1q/decision_repair.py": "92b022d3ab4d2cb0779af7f19eed2158b6bf73b0e57c5804837d5f97f6e820b0",
+    "src/s1q/models.py": "eb3b7d637472f809092d63f935e30384f9b2edcee85cdfa2b4d8781efdece2c3",
+    "src/s1q/spinquant_proxy.py": "5993836f0473b09f8eb886bc3d556f0fd0a3cc4656a39cbe99a473dd2bf41b42"
+  },
+  "interpretation": "Official slow fallback explicitly enabled for the main StartLux accuracy run. These scores provide no inference-speed evidence."
+}

@@ -21,6 +21,7 @@ import argparse
 from collections import defaultdict
 import csv
 import hashlib
+import io
 import json
 import math
 from pathlib import Path
@@ -250,6 +251,10 @@ def build_rankings(rows: list[dict], settings: dict) -> tuple[list[dict], list[d
                 "accuracy_table_enabled": suite.get("include_accuracy_table", bool(suite.get("dataset_metadata"))),
                 "sample_counts": [{"model": model, "dataset_id": dataset, "n": index[(model, dataset, methods[0])]["n"], "n_clusters": index[(model, dataset, methods[0])]["n_clusters"]} for model in complete for dataset in dataset_ids],
             }
+            if "show_all_probability_methods" in suite:
+                if type(suite["show_all_probability_methods"]) is not bool:
+                    raise ValueError("show_all_probability_methods must be an explicit boolean")
+                details["show_all_probability_methods"] = suite["show_all_probability_methods"]
             scopes.append(details)
             if not complete:
                 continue
@@ -301,7 +306,131 @@ def figure_scope_notes(scope: dict) -> list[str]:
     return notes
 
 
-def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_id: str) -> dict:
+def serialized_json(data) -> bytes:
+    """Match Path.write_text, including the platform's newline handling."""
+    buffer = io.BytesIO()
+    writer = io.TextIOWrapper(buffer, encoding="utf-8")
+    writer.write(json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
+    writer.flush()
+    return buffer.getvalue()
+
+
+def serialized_csv(rows: list[dict]) -> bytes:
+    buffer = io.StringIO(newline="")
+    writer = csv.DictWriter(buffer, fieldnames=list(dict.fromkeys(key for row in rows for key in row)), lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(rows)
+    return buffer.getvalue().encode("utf-8")
+
+
+def validate_accuracy_uncertainty(path: Path, output: Path, rankings: list[dict], scopes: list[dict],
+                                  scope_document: dict, suite_id: str) -> dict:
+    """Admit conditional intervals only for an unchanged prior public export."""
+    payload = path.read_bytes()
+    document = json.loads(payload.decode("utf-8-sig"), parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f"Non-finite CI JSON: {value}")))
+    if not isinstance(document, dict) or document.get("schema") != "s1q.conditional-macro-accuracy-uncertainty.v1" or document.get("status") != "passed":
+        raise ValueError("Unsupported or failed accuracy uncertainty report")
+    matches = [scope for scope in scopes if scope["suite_id"] == suite_id and scope["is_primary_comparison"]]
+    if len(matches) != 1:
+        raise ValueError("Accuracy uncertainty requires one primary plotted scope")
+    scope = matches[0]
+    for field in ("suite_id", "comparison_group", "precision", "included_models", "dataset_ids", "method_ids", "n_models", "n_datasets", "n_cells", "aggregation"):
+        if type(document.get(field)) is not type(scope[field]) or document.get(field) != scope[field]:
+            raise ValueError(f"Accuracy uncertainty scope mismatch: {field}")
+    if not scope["included_models"]:
+        raise ValueError("Accuracy uncertainty requires complete common coverage")
+    expected = {"ranking_scopes.json": serialized_json(scope_document), "rankings.csv": serialized_csv(rankings)}
+    hashes = {}
+    for name, data in expected.items():
+        file = output / name
+        if not file.is_file() or file.read_bytes() != data:
+            raise ValueError(f"Accuracy uncertainty requires the unchanged prior public export: {name}")
+        hashes[name] = hashlib.sha256(data).hexdigest()
+    provenance = document.get("provenance", {})
+    if not isinstance(provenance, dict):
+        raise ValueError("Invalid accuracy uncertainty provenance")
+    if provenance.get("ranking_scopes_sha256") != hashes["ranking_scopes.json"]:
+        raise ValueError("Accuracy uncertainty ranking scope SHA mismatch")
+    check = document.get("public_point_check", {})
+    if not isinstance(check, dict):
+        raise ValueError("Invalid accuracy uncertainty public point check")
+    if check.get("provided") is not True or check.get("sha256") != hashes["rankings.csv"]:
+        raise ValueError("Accuracy uncertainty requires a matching public point ranking SHA")
+    for field in ("maximum_absolute_difference", "tolerance"):
+        value = check.get(field)
+        if type(value) not in (int, float) or not math.isfinite(value) or not 0 <= value <= 1e-10:
+            raise ValueError("Invalid accuracy uncertainty public point check")
+    bootstrap = document.get("bootstrap", {})
+    if not isinstance(bootstrap, dict):
+        raise ValueError("Invalid accuracy uncertainty bootstrap metadata")
+    required_bootstrap = {
+        "interval": "percentile 95% (2.5%, 97.5%)",
+        "resampling_unit": "whole saved cluster_id within each source",
+        "shared_draws": "same source-union cluster multiplicities across all models and methods",
+        "models_resampled": False, "sources_resampled": False,
+        "zero_denominator_model_source_draws": 0,
+        "zero_denominator_policy": "fail; never silently replace a draw",
+    }
+    if any(bootstrap.get(field) != value or type(bootstrap.get(field)) is not type(value) for field, value in required_bootstrap.items()):
+        raise ValueError("Accuracy uncertainty requires fixed models/sources and shared within-source cluster draws")
+    if type(bootstrap.get("samples")) is not int or bootstrap["samples"] <= 0 or type(bootstrap.get("seed")) is not int:
+        raise ValueError("Invalid accuracy uncertainty bootstrap sample count or seed")
+    cells = document.get("sample_counts", [])
+    if not isinstance(cells, list) or any(not isinstance(cell, dict) or any(not isinstance(cell.get(field), str) for field in ("model", "dataset_id")) for cell in cells):
+        raise ValueError("Invalid accuracy uncertainty sample counts")
+    indexed_counts = {(cell.get("model"), cell.get("dataset_id")): cell for cell in cells}
+    wanted_counts = {(cell["model"], cell["dataset_id"]): cell for cell in scope["sample_counts"]}
+    if len(indexed_counts) != len(cells) or set(indexed_counts) != set(wanted_counts):
+        raise ValueError("Accuracy uncertainty sample count coverage differs")
+    for identity, cell in indexed_counts.items():
+        if any(type(cell.get(field)) is not int or cell[field] != wanted_counts[identity][expected_field] for field, expected_field in (("n_decisions", "n"), ("n_clusters", "n_clusters"))):
+            raise ValueError("Accuracy uncertainty admitted denominators differ")
+    records = document.get("method_accuracy", [])
+    if not isinstance(records, list) or any(not isinstance(record, dict) or not isinstance(record.get("method"), str) for record in records):
+        raise ValueError("Invalid accuracy uncertainty method intervals")
+    indexed = {record.get("method"): record for record in records}
+    allowed = set(scope["method_ids"]) | ({"native"} if "native" in indexed else set())
+    if len(indexed) != len(records) or set(indexed) != allowed:
+        raise ValueError("Accuracy uncertainty must contain every quantized method exactly once")
+    points = {row["method"]: row for row in rankings if row["suite_id"] == suite_id and row["comparison_group"] == scope["comparison_group"] and row["family"] == "All"}
+    if set(points) != set(scope["method_ids"]):
+        raise ValueError("Accuracy uncertainty primary point methods differ")
+    intervals = {}
+    for method, record in indexed.items():
+        if record.get("ranked") is not (method != "native"):
+            raise ValueError("Native must be a reference, not a ranked quantizer")
+        for field in ("accuracy", "lower_95", "upper_95"):
+            value = record.get(field)
+            if type(value) not in (int, float) or not math.isfinite(value) or not 0 <= value <= 1:
+                raise ValueError(f"Invalid bounded accuracy uncertainty value: {method}/{field}")
+            percent = record.get(f"{field}_percent")
+            if type(percent) not in (int, float) or not math.isfinite(percent) or not math.isclose(percent, value * 100, rel_tol=0, abs_tol=1e-8):
+                raise ValueError("Accuracy uncertainty fractional and percent values differ")
+        if record["lower_95"] > record["upper_95"]:
+            raise ValueError("Accuracy uncertainty interval bounds are reversed")
+        if method != "native":
+            if not math.isclose(record["accuracy"], points[method]["accuracy"], rel_tol=0, abs_tol=1e-10):
+                raise ValueError(f"Accuracy uncertainty unrounded point differs: {method}")
+            intervals[method] = {field: record[field] * 100 for field in ("lower_95", "upper_95")}
+    interpretation = [
+        "Conditional 95% evaluated-sample intervals for the fixed admitted models and source suites; models and sources are not resampled.",
+        "Whole clusters are resampled within each source with shared draws across models and methods; source/model cells retain equal weight.",
+        "Paired differences require the shared-draw paired intervals, not subtraction of marginal bar intervals; no multiple-comparisons adjustment or universal winner claim.",
+    ]
+    return {"method_intervals": intervals, "manifest": {
+        "schema": document["schema"], "source_file": path.name,
+        "source_file_sha256": hashlib.sha256(payload).hexdigest(),
+        "ranking_scopes_sha256": hashes["ranking_scopes.json"], "rankings_sha256": hashes["rankings.csv"],
+        "suite_id": suite_id, "comparison_group": scope["comparison_group"],
+        "n_models": scope["n_models"], "n_datasets": scope["n_datasets"],
+        "method_ids": scope["method_ids"], "bootstrap_samples": bootstrap["samples"],
+        "bootstrap_seed": bootstrap["seed"], "point_validation_absolute_tolerance": 1e-10,
+        "interpretation": interpretation,
+    }}
+
+
+def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_id: str,
+                  accuracy_uncertainty: dict | None = None) -> dict:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -317,8 +446,9 @@ def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11, "axes.titlesize": 13, "axes.labelsize": 11,
                          "text.color": INK, "axes.labelcolor": INK, "xtick.color": INK, "ytick.color": INK,
                          "axes.edgecolor": "#A9B0B7", "axes.linewidth": 0.7, "svg.fonttype": "none", "svg.hashsalt": "s1q-public-benchmark-v1", "savefig.facecolor": "white"})
-    figure = plt.figure(figsize=(15.8, 10.3), facecolor="white")
-    grid = figure.add_gridspec(2, 6, height_ratios=(2.4, 1), left=.145, right=.965, top=.83, bottom=.155, hspace=.48, wspace=1.1)
+    show_all_probability_methods = scope.get("show_all_probability_methods", False)
+    figure = plt.figure(figsize=(15.8, 13.6 if show_all_probability_methods else 10.3), facecolor="white")
+    grid = figure.add_gridspec(2, 6, height_ratios=(1.4, 1) if show_all_probability_methods else (2.4, 1), left=.145, right=.965, top=.83, bottom=.155, hspace=.35 if show_all_probability_methods else .48, wspace=1.1)
     bars = figure.add_subplot(grid[0, :3])
     heatmap = figure.add_subplot(grid[0, 3:])
     figure.text(.025, .955, "S1Q  |  QUANTIZATION BENCHMARK", fontsize=21, weight="bold", va="top", color=INK)
@@ -328,9 +458,16 @@ def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_
     positions = np.arange(len(points))
     colors = [GOLD if row["method"] == "s1q" else BLUE if row["method"] in S1Q_METHODS else GREY for row in points]
     bars.barh(positions, [row["accuracy_percent"] for row in points], height=.63, color=colors)
+    intervals = accuracy_uncertainty["method_intervals"] if accuracy_uncertainty else {}
+    if intervals:
+        for i, row in enumerate(points):
+            low, high = (intervals[row["method"]][field] for field in ("lower_95", "upper_95"))
+            bars.hlines(i, low, high, color=INK, linewidth=1.15)
+            bars.vlines((low, high), i - .12, i + .12, color=INK, linewidth=1.15)
+            bars.plot(row["accuracy_percent"], i, marker="o", markersize=3, color=INK)
     bars.set_yticks(positions, [row["method_label"] for row in points])
     bars.invert_yaxis()
-    bars.set_xlim(0, max(row["accuracy_percent"] for row in points) * 1.18)
+    bars.set_xlim(0, max(max(row["accuracy_percent"], intervals.get(row["method"], {}).get("upper_95", 0)) for row in points) * 1.18)
     bars.set_xlabel("Mean decision accuracy (%)  ↑")
     bars.set_title("A   Common-coverage accuracy", loc="left", pad=14)
     bars.grid(axis="x", color="#E8ECEF", linewidth=.65)
@@ -338,7 +475,8 @@ def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_
     bars.spines[["top", "right"]].set_visible(False)
     bars.tick_params(axis="y", length=0)
     for i, row in enumerate(points):
-        bars.text(row["accuracy_percent"] + .55, i, f"{row['accuracy_percent']:.2f}", va="center", fontsize=10.5, weight="bold" if row["rank_accuracy"] == 1 else "normal")
+        label_x = max(row["accuracy_percent"], intervals.get(row["method"], {}).get("upper_95", 0)) + .55
+        bars.text(label_x, i, f"{row['accuracy_percent']:.2f}", va="center", fontsize=10.5, weight="bold" if row["rank_accuracy"] == 1 else "normal")
     families = sorted({row["family"] for row in rankings if row["suite_id"] == suite_id and row["comparison_group"] == comparison_group and row["family"] != "All"})
     cells = {(row["family"], row["method"]): row for row in rankings if row["suite_id"] == suite_id and row["comparison_group"] == comparison_group}
     matrix = np.asarray([[cells[(name, row["method"])]["rank_accuracy"] for name in families] for row in points])
@@ -355,7 +493,7 @@ def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_
     heatmap.set_yticks(np.arange(-.5, len(points), 1), minor=True)
     heatmap.grid(which="minor", color="white", linewidth=2)
     heatmap.tick_params(which="minor", bottom=False, left=False)
-    candidates = [row for row in points if row["method"] in ("s1q-margin", "s1q", "s1q-ac", "s1q-joint", "rtn")]
+    candidates = points if show_all_probability_methods else [row for row in points if row["method"] in ("s1q-margin", "s1q", "s1q-ac", "s1q-joint", "rtn")]
     for column, metric, title in ((0, "nll", "C   NLL  ↓"), (2, "brier", "D   Brier score  ↓"), (4, "ece_15", "E   Calibration error (ECE15)  ↓")):
         ax = figure.add_subplot(grid[1, column:column+2])
         values = [row[metric] for row in candidates]
@@ -381,6 +519,13 @@ def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_
         "* Repository baseline adaptations, not official reproductions. Floating-point QDQ accuracy experiments; no integer-kernel speedup claim.",
         "Ranks are descriptive point estimates. Subset sizes and excluded models are in ranking_scopes.json; these comparisons do not establish statistical superiority.",
     ])
+    if show_all_probability_methods:
+        wrapped.append("All three probability panels show every main comparison method, in the same order as the accuracy ranking.")
+    if accuracy_uncertainty:
+        wrapped.extend([
+            "Accuracy whiskers: conditional 95% evaluated-sample intervals for fixed models/sources; shared within-source whole-cluster draws.",
+            "No multiple-comparisons adjustment or universal winner claim. Paired intervals use shared draws, not differences of marginal bar intervals.",
+        ])
     footer_top = .028 + .019 * (len(wrapped) - 1)
     grid.update(bottom=max(.155, footer_top + .065))
     for i, line in enumerate(wrapped):
@@ -391,7 +536,13 @@ def plot_rankings(output: Path, rankings: list[dict], scopes: list[dict], suite_
         figure.savefig(target, dpi=220, metadata={"Software": "S1Q aggregate benchmark exporter"} if suffix == "png" else {"Date": None, "Creator": "S1Q aggregate benchmark exporter"})
         outputs.append({"file": target.name, "sha256": sha256(target), "bytes": target.stat().st_size})
     plt.close(figure)
-    return {"status": "generated", "suite_id": suite_id, "comparison_group": comparison_group, "n_models": scope["n_models"], "n_datasets": scope["n_datasets"], "method_order": [row["method"] for row in points], "outputs": outputs}
+    manifest = {"status": "generated", "suite_id": suite_id, "comparison_group": comparison_group, "n_models": scope["n_models"], "n_datasets": scope["n_datasets"], "method_order": [row["method"] for row in points], "outputs": outputs}
+    if show_all_probability_methods:
+        manifest["probability_method_order"] = [row["method"] for row in candidates]
+        manifest["probability_panels_scope"] = "all main comparison methods; identical fixed coverage and accuracy-rank order"
+    if accuracy_uncertainty:
+        manifest["accuracy_uncertainty"] = accuracy_uncertainty["manifest"]
+    return manifest
 
 
 def report_text(rankings: list[dict], scopes: list[dict], plot: dict) -> str:
@@ -410,6 +561,8 @@ def report_text(rankings: list[dict], scopes: list[dict], plot: dict) -> str:
             text.extend(["", "Excluded incomplete models: " + ", ".join(scope["excluded_models"]) + ". Missing cells are recorded explicitly in `ranking_scopes.json`."])
     if plot.get("status") == "generated":
         text.extend(["", "## Visualization", "", f"The figure displays `{plot['suite_id']}` only.", "", "![Common-coverage accuracy, family rankings and probability metrics](benchmark_ranking.png)", "", "[Vector export](benchmark_ranking.svg)"])
+        if plot.get("accuracy_uncertainty"):
+            text.extend(["", "Accuracy whiskers are conditional 95% intervals for evaluated samples of the fixed admitted models and source suites, using shared within-source whole-cluster draws. Models and sources are not resampled. Intervals have no multiple-comparisons adjustment and do not establish a universal winner. Paired differences use shared-draw paired intervals; marginal bar intervals must not be independently subtracted. The CI file SHA and interpretation are recorded in `figure_manifest.json`."])
     if any(scope["accuracy_table_enabled"] and scope["is_primary_comparison"] for scope in scopes):
         text.extend(["", "## Accuracy by model and dataset", "", "[Complete accuracy tables](accuracy_table.md) · [Aggregate cells CSV](accuracy_by_dataset.csv) · [Table provenance](accuracy_table_manifest.json). Tables contain every declared source, Native reference rows and the same complete common method/model coverage as the primary scope."])
     text.extend(["", "## Files", "", "- `metrics.csv` and `metrics.json`: all supplied aggregate rows, including legacy enhancement variants and separate protocols.", "- `rankings.csv`: exact equal-weight rankings with coverage, probability metrics and family slices.", "- `model_scores.csv`: each model's equally weighted dataset averages for every declared comparison group.", "- `ranking_scopes.json`: exact scope, required datasets, per-cell sample sizes and exclusions.", "- `provenance.json`: input hashes, row counts and sanitized checkpoint / quantization identities.", "- `figure_manifest.json`: figure-to-scope binding and output hashes.", ""])
@@ -504,7 +657,10 @@ def main() -> None:
     parser.add_argument("--dataset-list", type=Path, help="JSON ranking_suites with explicit batch IDs, precision, and required dataset_ids")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--no-plot", action="store_true")
+    parser.add_argument("--accuracy-uncertainty", type=Path, help="Optional conditional CI JSON; first export this exact scope/rankings and generate CI with --rankings-csv, then rerun with this flag")
     args = parser.parse_args()
+    if args.accuracy_uncertainty and args.no_plot:
+        parser.error("--accuracy-uncertainty requires plotting")
     rows, sources, batches = [], [], set()
     for argument in args.input:
         batch, separator, directory = argument.partition("=")
@@ -517,19 +673,24 @@ def main() -> None:
     settings = json.loads(args.dataset_list.read_text(encoding="utf-8-sig")) if args.dataset_list else default_scopes(rows)
     rankings, scopes, model_scores = build_rankings(rows, settings)
     output = args.output_dir
+    scope_document = {"schema": "s1q.public-ranking-scopes.v1", "declared_settings": settings, "computed_scopes": scopes}
+    plot_suite_id = settings.get("plot_suite_id") or settings["ranking_suites"][0]["suite_id"]
+    uncertainty = validate_accuracy_uncertainty(args.accuracy_uncertainty, output, rankings, scopes, scope_document, plot_suite_id) if args.accuracy_uncertainty else None
     output.mkdir(parents=True, exist_ok=True)
     write_csv(output / "metrics.csv", rows)
     write_json(output / "metrics.json", {"schema": "s1q.public-aggregate-metrics.v1", "rows": rows})
     write_csv(output / "rankings.csv", rankings)
     write_csv(output / "model_scores.csv", model_scores)
-    write_json(output / "ranking_scopes.json", {"schema": "s1q.public-ranking-scopes.v1", "declared_settings": settings, "computed_scopes": scopes})
+    write_json(output / "ranking_scopes.json", scope_document)
+    if uncertainty and any(sha256(output / name) != uncertainty["manifest"][field] for name, field in (("ranking_scopes.json", "ranking_scopes_sha256"), ("rankings.csv", "rankings_sha256"))):
+        raise ValueError("Scope/rankings bytes changed while adding accuracy uncertainty")
     write_json(output / "provenance.json", {"schema": "s1q.public-aggregate-provenance.v1", "script_sha256": sha256(Path(__file__)), "input_sources": sources, "aggregate_rows": len(rows), "privacy": "aggregate_only; no source questions or individual predictions", "execution": "floating_point_QDQ", "methods_are_repository_adaptations": True})
     accuracy_rows, accuracy_text, accuracy_scopes = build_accuracy_tables(rows, scopes)
     if accuracy_scopes:
         write_csv(output / "accuracy_by_dataset.csv", accuracy_rows)
         (output / "accuracy_table.md").write_text(accuracy_text, encoding="utf-8")
         write_json(output / "accuracy_table_manifest.json", {"schema": "s1q.public-accuracy-tables.v1", "scopes": accuracy_scopes, "aggregation": "equal_source_mean_over_all_declared_sources; split_parts_do_not_change_Avg", "bold_rule": "best_quantized_displayed_value_including_rounding_ties;_native_plain", "accuracy_csv_sha256": sha256(output / "accuracy_by_dataset.csv"), "accuracy_table_sha256": sha256(output / "accuracy_table.md"), "ranking_scopes_sha256": sha256(output / "ranking_scopes.json"), "metrics_sha256": sha256(output / "metrics.csv")})
-    plot = {"status": "not_requested"} if args.no_plot else plot_rankings(output, rankings, scopes, settings.get("plot_suite_id") or settings["ranking_suites"][0]["suite_id"])
+    plot = {"status": "not_requested"} if args.no_plot else plot_rankings(output, rankings, scopes, plot_suite_id, uncertainty)
     plot["ranking_scopes_sha256"] = sha256(output / "ranking_scopes.json")
     plot["rankings_sha256"] = sha256(output / "rankings.csv")
     write_json(output / "figure_manifest.json", plot)

@@ -5,6 +5,8 @@ No fixture is an actual S1Q result or intended for publication.
 from __future__ import annotations
 
 import importlib.util
+from copy import deepcopy
+import json
 from pathlib import Path
 
 import pytest
@@ -131,3 +133,138 @@ def test_historical_scopes_do_not_add_expanded_accuracy_tables(report_builder):
     _, scopes, _ = report_builder.build_rankings(rows, fixture_settings(report_builder))
     cells, _, manifests = report_builder.build_accuracy_tables(rows, scopes)
     assert cells == [] and manifests == []
+
+
+def uncertainty_fixture(builder, tmp_path):
+    settings = fixture_settings(builder, expanded=True)
+    rankings, scopes, _ = builder.build_rankings(fixture_rows(builder), settings)
+    scope_document = {"schema": "s1q.public-ranking-scopes.v1", "declared_settings": settings, "computed_scopes": scopes}
+    builder.write_json(tmp_path / "ranking_scopes.json", scope_document)
+    builder.write_csv(tmp_path / "rankings.csv", rankings)
+    scope = next(item for item in scopes if item["is_primary_comparison"])
+    fields = ("suite_id", "comparison_group", "precision", "included_models", "dataset_ids", "method_ids", "n_models", "n_datasets", "n_cells", "aggregation")
+    document = {"schema": "s1q.conditional-macro-accuracy-uncertainty.v1", "status": "passed", **{field: deepcopy(scope[field]) for field in fields},
+        "bootstrap": {"seed": 7, "samples": 10, "interval": "percentile 95% (2.5%, 97.5%)",
+            "resampling_unit": "whole saved cluster_id within each source",
+            "shared_draws": "same source-union cluster multiplicities across all models and methods",
+            "models_resampled": False, "sources_resampled": False, "zero_denominator_model_source_draws": 0,
+            "zero_denominator_policy": "fail; never silently replace a draw"},
+        "provenance": {"ranking_scopes_sha256": builder.sha256(tmp_path / "ranking_scopes.json")},
+        "public_point_check": {"provided": True, "sha256": builder.sha256(tmp_path / "rankings.csv"), "maximum_absolute_difference": 0., "tolerance": 1e-10},
+        "sample_counts": [{"model": row["model"], "dataset_id": row["dataset_id"], "n_decisions": row["n"], "n_clusters": row["n_clusters"]} for row in scope["sample_counts"]],
+        "method_accuracy": [{"method": method, "ranked": method != "native", "accuracy": .75 if method == "native" else .5,
+            "lower_95": .6 if method == "native" else .3, "upper_95": .9 if method == "native" else .7,
+            "accuracy_percent": 75. if method == "native" else 50., "lower_95_percent": 60. if method == "native" else 30.,
+            "upper_95_percent": 90. if method == "native" else 70.} for method in ("native", *scope["method_ids"])]}
+    path = tmp_path / "accuracy_uncertainty.json"
+    builder.write_json(path, document)
+    return path, document, rankings, scopes, scope_document
+
+
+def test_ci_serialization_matches_unchanged_public_files(report_builder, tmp_path):
+    path, _, rankings, scopes, document = uncertainty_fixture(report_builder, tmp_path)
+    assert report_builder.serialized_json(document) == (tmp_path / "ranking_scopes.json").read_bytes()
+    assert report_builder.serialized_csv(rankings) == (tmp_path / "rankings.csv").read_bytes()
+    checked = report_builder.validate_accuracy_uncertainty(path, tmp_path, rankings, scopes, document, "synthetic_fixture_only")
+    assert len(checked["method_intervals"]) == 12 and "native" not in checked["method_intervals"]
+    assert checked["manifest"]["source_file_sha256"] == report_builder.sha256(path)
+
+
+@pytest.mark.parametrize("field,value", [
+    ("suite_id", "wrong"), ("comparison_group", "all11"), ("precision", "W3A4"),
+    ("included_models", ["wrong-model"]), ("dataset_ids", ["wrong-source"]), ("method_ids", ["rtn"]),
+    ("n_models", 2), ("n_datasets", 2), ("n_cells", 2), ("aggregation", "pooled"),
+    ("n_models", True), ("n_datasets", 1.),
+])
+def test_ci_rejects_scope_mismatch(report_builder, tmp_path, field, value):
+    path, ci, rankings, scopes, document = uncertainty_fixture(report_builder, tmp_path)
+    ci[field] = value
+    report_builder.write_json(path, ci)
+    with pytest.raises(ValueError, match="scope mismatch"):
+        report_builder.validate_accuracy_uncertainty(path, tmp_path, rankings, scopes, document, "synthetic_fixture_only")
+
+
+@pytest.mark.parametrize("target", ["scope_sha", "ranking_sha", "missing_point_check", "prior_scope_bytes", "prior_ranking_bytes"])
+def test_ci_rejects_stale_hashes_and_changed_prior_export(report_builder, tmp_path, target):
+    path, ci, rankings, scopes, document = uncertainty_fixture(report_builder, tmp_path)
+    if target == "scope_sha":
+        ci["provenance"]["ranking_scopes_sha256"] = "0" * 64
+    elif target == "ranking_sha":
+        ci["public_point_check"]["sha256"] = "0" * 64
+    elif target == "missing_point_check":
+        ci["public_point_check"]["provided"] = False
+    else:
+        changed = tmp_path / ("ranking_scopes.json" if target == "prior_scope_bytes" else "rankings.csv")
+        changed.write_bytes(changed.read_bytes() + b"\n")
+    report_builder.write_json(path, ci)
+    before = {name: (tmp_path / name).read_bytes() for name in ("rankings.csv", "ranking_scopes.json")}
+    with pytest.raises(ValueError, match="SHA|prior public export"):
+        report_builder.validate_accuracy_uncertainty(path, tmp_path, rankings, scopes, document, "synthetic_fixture_only")
+    assert before == {name: (tmp_path / name).read_bytes() for name in before}
+
+
+def test_ci_rejects_different_unrounded_point_even_with_same_display(report_builder, tmp_path):
+    path, ci, rankings, scopes, document = uncertainty_fixture(report_builder, tmp_path)
+    row = ci["method_accuracy"][1]
+    row["accuracy"] += 1e-7
+    row["accuracy_percent"] = 100 * row["accuracy"]
+    assert f"{row['accuracy_percent']:.2f}" == "50.00"
+    report_builder.write_json(path, ci)
+    with pytest.raises(ValueError, match="unrounded point differs"):
+        report_builder.validate_accuracy_uncertainty(path, tmp_path, rankings, scopes, document, "synthetic_fixture_only")
+
+
+@pytest.mark.parametrize("target", ["duplicate", "missing", "reversed", "percent", "native_ranked", "resample_models", "independent_draws", "denominator"])
+def test_ci_rejects_invalid_intervals_or_resampling(report_builder, tmp_path, target):
+    path, ci, rankings, scopes, document = uncertainty_fixture(report_builder, tmp_path)
+    if target == "duplicate":
+        ci["method_accuracy"].append(deepcopy(ci["method_accuracy"][1]))
+    elif target == "missing":
+        ci["method_accuracy"].pop()
+    elif target == "reversed":
+        ci["method_accuracy"][1].update(lower_95=.8, lower_95_percent=80.)
+    elif target == "percent":
+        ci["method_accuracy"][1]["upper_95_percent"] = 7.
+    elif target == "native_ranked":
+        ci["method_accuracy"][0]["ranked"] = True
+    elif target == "resample_models":
+        ci["bootstrap"]["models_resampled"] = True
+    elif target == "independent_draws":
+        ci["bootstrap"]["shared_draws"] = "independent draws"
+    else:
+        ci["sample_counts"][0]["n_decisions"] += 1
+    report_builder.write_json(path, ci)
+    with pytest.raises(ValueError):
+        report_builder.validate_accuracy_uncertainty(path, tmp_path, rankings, scopes, document, "synthetic_fixture_only")
+
+
+def test_ci_plot_has_only_aggregate_provenance_and_conditional_caption(report_builder, tmp_path):
+    path, _, rankings, scopes, document = uncertainty_fixture(report_builder, tmp_path)
+    checked = report_builder.validate_accuracy_uncertainty(path, tmp_path, rankings, scopes, document, "synthetic_fixture_only")
+    figure = report_builder.plot_rankings(tmp_path, rankings, scopes, "synthetic_fixture_only", checked)
+    assert figure["accuracy_uncertainty"]["source_file_sha256"] == report_builder.sha256(path)
+    assert "native" not in figure["method_order"]
+    assert "replicates" not in json.dumps(figure) and "input_file_hashes" not in json.dumps(figure)
+    svg = (tmp_path / "benchmark_ranking.svg").read_text(encoding="utf-8")
+    assert "conditional 95% evaluated-sample" in svg and "shared within-source whole-cluster draws" in svg
+    assert "No multiple-comparisons adjustment or universal winner claim" in svg
+    text = report_builder.report_text(rankings, scopes, figure)
+    assert "marginal bar intervals must not be independently subtracted" in text
+
+
+def test_ci_cli_reexport_keeps_point_outputs_byte_identical(report_builder, tmp_path, monkeypatch):
+    import sys
+    settings = fixture_settings(report_builder, expanded=True)
+    settings_path = tmp_path / "scope-settings.json"
+    report_builder.write_json(settings_path, settings)
+    monkeypatch.setattr(report_builder, "audited_input", lambda *args: (fixture_rows(report_builder), {"fixture": "synthetic_only"}))
+    monkeypatch.setattr(sys, "argv", ["report", "--input", "synthetic_fixture_only=synthetic", "--dataset-list", str(settings_path), "--output-dir", str(tmp_path), "--no-plot"])
+    report_builder.main()
+    path, _, _, _, _ = uncertainty_fixture(report_builder, tmp_path)
+    unchanged = ("metrics.csv", "rankings.csv", "ranking_scopes.json", "model_scores.csv")
+    before = {name: (tmp_path / name).read_bytes() for name in unchanged}
+    monkeypatch.setattr(sys, "argv", ["report", "--input", "synthetic_fixture_only=synthetic", "--dataset-list", str(settings_path), "--output-dir", str(tmp_path), "--accuracy-uncertainty", str(path)])
+    report_builder.main()
+    assert before == {name: (tmp_path / name).read_bytes() for name in unchanged}
+    manifest = json.loads((tmp_path / "figure_manifest.json").read_text())
+    assert manifest["accuracy_uncertainty"]["source_file_sha256"] == report_builder.sha256(path)
