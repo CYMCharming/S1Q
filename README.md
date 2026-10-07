@@ -1,6 +1,6 @@
 # S1Q: Low-Bit Quantization for System One Decision Models
 
-[中文说明](README.zh-CN.md) · [Method](docs/method.md) · [Current reproduction](docs/reproduce-current.md) · [Related work](docs/related-work.md) · [Model audit](docs/model-audit.md) · [Legacy results](docs/results.md) · [Packed artifacts](docs/artifacts.md)
+[中文说明](README.zh-CN.md) · [Method](docs/method.md) · [Current reproduction](docs/reproduce-current.md) · [Expanded benchmark](docs/expanded-benchmarks.md) · [Historical aggregate](results/benchmarks/historical-20261006/README.md) · [Related work](docs/related-work.md) · [Model audit](docs/model-audit.md) · [Legacy results](docs/results.md) · [Packed artifacts](docs/artifacts.md)
 
 **S1Q now denotes the current decision-margin-aware, activation-compensated method.** Its October 2026 experiment identifier was `s1q-mac`; that identifier remains supported to reproduce frozen runs. The public method name is **S1Q**. Earlier S1Q and S1Q2 recipes remain available as historical controls.
 
@@ -15,6 +15,18 @@ S1Q combines three calibration steps:
 3. Fit a bounded ridge correction for activation error before quantizing weights. Select corrected or uncorrected candidates using a separate half of the saved token reservoir.
 
 The gradient statistic is a **margin-Jacobian token proxy, not a categorical Fisher matrix**. [GuidedQuant](https://proceedings.mlr.press/v267/kim25d.html) already uses end-loss gradients to guide reconstruction, and [RSQ](https://openreview.net/pdf?id=kBezrKXHVS) already prioritizes important tokens in quantization. Ridge-based activation-error compensation has close prior art in [ERQ (ICML 2024)](https://proceedings.mlr.press/v235/zhong24a.html), and matching native outputs has close prior art in [GPTAQ](https://arxiv.org/abs/2504.02692). Gradient guidance, token importance, scaling, clipping and compensation are not individually new. The research contribution being evaluated is their concrete decision-aware integration across native typed-decision architectures. See the exact formulas, assumptions and limitations in [Method](docs/method.md).
+
+## Expanded benchmark status (October 7)
+
+**The new 22-source evaluation is running; its accuracy values and method ranking are pending.** The frozen preparation contains 2,565 complete upstream requests and 2,871 decisions before model-specific admission. It preserves the source questions and candidates, excludes calibration and previously evaluated request/scenario identities, and keeps the old Mixed Dev cohort outside the new source average. The 22 sources comprise 18 standard dataset sources, two authored scenario/rule suites and two domain decision suites. JevBench contributes only 48 new easy tasks; ToolACE evaluates tool-choice classification, and WildJailBreak evaluates harmful/benign classification. Typed Decisions is excluded because of teacher labels and the length bound. See [the frozen protocol and source counts](docs/expanded-benchmarks.md).
+
+The new principal group contains 12 methods, including a separately measured **SmoothQuant*** control in addition to the original 11. The recipes remain frozen during the new evaluation. SmoothQuant*, AWQ*, GPTQ-block* and SpinQuant* are repository adaptations; W/A accuracy uses floating-point QDQ execution. No new winner or integer-kernel speedup is asserted before completed matched results are available.
+
+The [historical October 6 aggregate](results/benchmarks/historical-20261006/README.md) is now available as **537 completed aggregate rows**: 321 from the original optimization batch and 216 from the six new Intern-Decision / StartLux-Decision models. It includes [metrics CSV](results/benchmarks/historical-20261006/metrics.csv), [JSON](results/benchmarks/historical-20261006/metrics.json), [scoped rankings](results/benchmarks/historical-20261006/rankings.csv), [coverage and sample counts](results/benchmarks/historical-20261006/ranking_scopes.json), and [source hashes](results/benchmarks/historical-20261006/provenance.json). Its eight declared scopes keep precision, model coverage and evaluation groups explicit. The historical principal group contains 11 measured methods; SmoothQuant is not retroactively inserted.
+
+The figure below displays the **historical W4A4 three-cohort snapshot**, with nine models shared by all 11 methods. It does not display the pending 22-source experiment. [Vector figure](results/benchmarks/historical-20261006/benchmark_ranking.svg) · [Figure provenance](results/benchmarks/historical-20261006/figure_manifest.json).
+
+![Historical W4A4 common-coverage accuracy, family ranks and probability metrics](results/benchmarks/historical-20261006/benchmark_ranking.png)
 
 ## Current evidence
 
@@ -79,7 +91,7 @@ The exported artifact contains packed selected linear weights and their scales, 
 - The reservoir fit/selection split separates token rows from the same calibration requests. It is not an independent request-level validation set. Layer fitting uses native teacher inputs; it does not replay accumulated quantized upstream inputs.
 - No INT4 throughput, new-method GPU-memory reduction, universally improved confidence calibration, or first-ever System One quantization claim is made.
 
-The historical [v0.1.0 release](https://github.com/CYMCharming/S1Q/releases/tag/v0.1.0), packed artifacts, [results](docs/results.md) and [method document](docs/legacy-method-v0.1.md) describe earlier recipes. `s1q run` retains that legacy workflow. Manuscripts and their tables/figures are **not included in this code update**. No new model weights, raw datasets or raw prediction cohorts are redistributed.
+The historical [v0.1.0 release](https://github.com/CYMCharming/S1Q/releases/tag/v0.1.0), packed artifacts, [results](docs/results.md) and [method document](docs/legacy-method-v0.1.md) describe earlier recipes. `s1q run` retains that legacy workflow. Manuscripts remain private; public benchmark figures are generated from released aggregate metrics. No new model weights, raw datasets or raw prediction cohorts are redistributed.
 
 ## Attribution and citation
 

@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "n_dataset_files_identical": 22,
+  "frozen_exclusion_registry_used": true,
+  "recipe": "expanded-native-decision-20261007-v2, seed20261007, count128/WANLI256"
+}

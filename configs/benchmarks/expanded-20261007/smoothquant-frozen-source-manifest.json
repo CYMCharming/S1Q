@@ -1,0 +1,28 @@
+{
+  "source_commit": "7ec6d6c3baba4bd378d485ae4431ebe2ce04639b",
+  "quantizer_recipe_changed": false,
+  "files": {
+    "src/s1q/activation_compensation.py": "b7ebdf2e58180614a16cd463001570f9ecab69ce11b11c75f7a3e1799d0ab9f4",
+    "src/s1q/api.py": "abc1fa0e15e9a08ee73fc228baca007d81b688ae35398208af4e34ce08eab24b",
+    "src/s1q/baselines.py": "6a5f10445809731ef372e6c49dd8ee1bc121caec362145b28bc2f20d0f6596f3",
+    "src/s1q/bitpack.py": "501cc13dbcca57257150baa871e6c3f2d655db62693dd75990aabba2a5b52271",
+    "src/s1q/cli.py": "dc36a48bceb59da613ae18927006fea6ad1d143e4e07117b95cca7a8808b9d82",
+    "src/s1q/data.py": "2b6fe792bba6c05348f94baf6b4517da8dd8d33ea9f5765e616cce22b7373546",
+    "src/s1q/decision_margin.py": "9a9c5f7ebabf4ce194f15d08fe1acb32b357dc51fc58de5cd9691c0d02662fe0",
+    "src/s1q/decision_repair.py": "92b022d3ab4d2cb0779af7f19eed2158b6bf73b0e57c5804837d5f97f6e820b0",
+    "src/s1q/decision_stats.py": "3edacd0d660137d472cca6ecaeaedbb54714688b1b8e8811d95b09d8ae97960e",
+    "src/s1q/experiment.py": "80d04b6ff3e0d26d1a64581fa0c2fb5fd19040e05c87e74ebffecf5d729a00d2",
+    "src/s1q/metrics.py": "71d67c824e1cdca51de08967c20e7a620ee94ba143cc83aacc50387c1b04f76e",
+    "src/s1q/models.py": "eb3b7d637472f809092d63f935e30384f9b2edcee85cdfa2b4d8781efdece2c3",
+    "src/s1q/optimization.py": "7029a103ee93626aaa9c28cae035bbe48ed1b36cf4d0af9b2e765e1e0bac8919",
+    "src/s1q/optimized_quantization.py": "e6c74a66cadc2ec185d5107d3ca23ce6027ab7cc09e454e96d3450185b328c57",
+    "src/s1q/packed.py": "ef0e67c04177c078469b4487c4549adea939b2d2fa3a7689c349b43e296e1258",
+    "src/s1q/quantization.py": "f9ad16b88f7ecd7fca57477e7dde5d607bcd5d4555e25aaf6e510277594cbb1f",
+    "src/s1q/spinquant_proxy.py": "5993836f0473b09f8eb886bc3d556f0fd0a3cc4656a39cbe99a473dd2bf41b42",
+    "src/s1q/__init__.py": "1ecc5ded5e4f823a610a36555a633676cd6d3fd002e901e42239fe1135ec8f67",
+    "scripts/run_expanded_benchmarks.py": "032bca893686a6b106a19ec5b9084e1b3248ff4b758d3850ed7235bff716f66c",
+    "scripts/run_expanded_smoothquant.py": "bedcaf153c363681a54d1bfbb67d97bb552dcdb9290f4a3cd688e33b3214a0d7"
+  },
+  "zip_sha256": "3b401ae1e240a3bf7a19dbf560858622b7916675dd30551ca9333b7401194baf",
+  "control": "smoothquant-adapted; fixed smooth_alpha 0.5; math unchanged"
+}

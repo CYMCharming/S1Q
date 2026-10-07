@@ -1,0 +1,258 @@
+{
+  "status": "passed",
+  "manifest_sha256": "41e4ccc75326baaca3212085dd66e0127fb8bc122d5b06054a170a0a2a0a231d",
+  "datasets": [
+    {
+      "dataset_id": "agnews",
+      "requests": 120,
+      "decisions": 360,
+      "question_types": {
+        "choice": 120,
+        "noul": 240
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "amazon",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "score": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "arc",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "choice": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "boolq",
+      "requests": 120,
+      "decisions": 120,
+      "question_types": {
+        "noul": 120
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "csqa",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "choice": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "emotion",
+      "requests": 120,
+      "decisions": 120,
+      "question_types": {
+        "choice": 120
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "imdb",
+      "requests": 53,
+      "decisions": 53,
+      "question_types": {
+        "noul": 53
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "jevbench",
+      "requests": 48,
+      "decisions": 48,
+      "question_types": {
+        "choice": 36,
+        "noul": 12
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "mmlu",
+      "requests": 99,
+      "decisions": 99,
+      "question_types": {
+        "choice": 99
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "mnli",
+      "requests": 122,
+      "decisions": 122,
+      "question_types": {
+        "choice": 122
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "openbookqa",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "choice": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "paws",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "noul": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "qnli",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "noul": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "sciq",
+      "requests": 92,
+      "decisions": 92,
+      "question_types": {
+        "choice": 92
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "semif",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "choice": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "sst5",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "score": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "toolace",
+      "requests": 68,
+      "decisions": 68,
+      "question_types": {
+        "choice": 68
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "trec",
+      "requests": 121,
+      "decisions": 121,
+      "question_types": {
+        "choice": 121
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "tweet-offensive",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "noul": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "wanli",
+      "requests": 256,
+      "decisions": 256,
+      "question_types": {
+        "choice": 256
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "wildjailbreak",
+      "requests": 128,
+      "decisions": 128,
+      "question_types": {
+        "choice": 128
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    },
+    {
+      "dataset_id": "yelp",
+      "requests": 66,
+      "decisions": 132,
+      "question_types": {
+        "score": 66,
+        "noul": 66
+      },
+      "hash_verified": true,
+      "request_and_gold_preserved": true,
+      "calibration_and_previous_eval_disjoint": true
+    }
+  ],
+  "n_datasets": 22,
+  "n_requests": 2565,
+  "n_decisions": 2871,
+  "jevbench_old_tasks": 85,
+  "jevbench_new_tasks": 48,
+  "jevbench_overlap_ids_states_groups": 0,
+  "limits": "This checks exact state/scenario/request reuse and stored prior inference; it does not certify model pretraining decontamination or unseen external publications."
+}

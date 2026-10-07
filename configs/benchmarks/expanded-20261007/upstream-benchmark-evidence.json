@@ -1,0 +1,163 @@
+{
+  "verified_on": "2026-10-07",
+  "official_sources": {
+    "kev": {
+      "repository": "https://github.com/jaredpalmer/kev",
+      "local_commit": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91",
+      "local_root": "work/model-audit/kev",
+      "note": "Local frozen revision; current upstream README has subsequent releases. Do not silently change model or suite versions."
+    },
+    "intern": {
+      "repository": "https://github.com/InternLM/Intern-Decision",
+      "commit": "3572c8a68b5df5dafe02d0e093989ba8ec0183bc",
+      "evaluation_url": "https://github.com/InternLM/Intern-Decision/blob/3572c8a68b5df5dafe02d0e093989ba8ec0183bc/docs/EVALUATION.md",
+      "manifest_url": "https://raw.githubusercontent.com/InternLM/Intern-Decision/3572c8a68b5df5dafe02d0e093989ba8ec0183bc/benchmarks/accuracy-v1/manifest.json"
+    },
+    "startlux": {
+      "model_card": "https://huggingface.co/startlux-models/StartLux-Decision-0.8B",
+      "note": "Reports the same seven Intern-Decision suites plus Decision Index editions 0.2 and 0.2.1. Those editions are composite protocols, not independent datasets."
+    }
+  },
+  "intern_manifest": {
+    "revision": "accuracy-v1",
+    "purpose": "evaluation_only",
+    "training_ready": false,
+    "datasets": {
+      "jevbench-easy": {
+        "path": "jevbench/easy.jsonl",
+        "rows": 48,
+        "decisions": 48,
+        "upstream": [
+          "https://github.com/fstandhartinger/jevbench"
+        ],
+        "upstream_license_metadata": [
+          "MIT"
+        ]
+      },
+      "jevbench-original": {
+        "path": "jevbench/original.jsonl",
+        "rows": 72,
+        "decisions": 72,
+        "upstream": [
+          "https://github.com/fstandhartinger/jevbench"
+        ],
+        "upstream_license_metadata": [
+          "MIT"
+        ]
+      },
+      "jevbench-hard": {
+        "path": "jevbench/hard.jsonl",
+        "rows": 111,
+        "decisions": 111,
+        "upstream": [
+          "https://github.com/fstandhartinger/jevbench"
+        ],
+        "upstream_license_metadata": [
+          "MIT"
+        ]
+      },
+      "agnews-test": {
+        "path": "agnews/test.jsonl",
+        "rows": 7600,
+        "decisions": 7600,
+        "upstream": [
+          "fancyzhx/ag_news"
+        ],
+        "upstream_license_metadata": [
+          "unknown"
+        ]
+      },
+      "toolace-test": {
+        "path": "toolace/test.jsonl",
+        "rows": 310,
+        "decisions": 310,
+        "upstream": [
+          "Team-ACE/ToolACE"
+        ],
+        "upstream_license_metadata": [
+          "apache-2.0"
+        ]
+      },
+      "typed_decisions-test": {
+        "path": "typed_decisions/test.jsonl",
+        "rows": 400,
+        "decisions": 2000,
+        "upstream": [
+          "LocalLLaMA/typed-decisions"
+        ],
+        "upstream_license_metadata": [
+          "Apache-2.0"
+        ]
+      },
+      "wildjailbreak-test": {
+        "path": "wildjailbreak/test.jsonl",
+        "rows": 2210,
+        "decisions": 2210,
+        "upstream": [
+          "allenai/wildjailbreak"
+        ],
+        "upstream_license_metadata": [
+          "Apache-2.0"
+        ]
+      }
+    },
+    "files": {
+      "jevbench/easy.jsonl": "3b8afa6e55e4decf1c8e116910443215690951dd51e15b7a6e4b813bc83c1eae",
+      "jevbench/original.jsonl": "157c355d5d07fba47d516acdb048607a5ee4ef14347bbf87cf67dac73d1a193e",
+      "jevbench/hard.jsonl": "5ed49f0a43a468993747a22b007fe65fc1187ed433d3c3a95ff9b69a293a8e34",
+      "agnews/test.jsonl": "4ff1cad1531f29cbfce572e3ddb73666626fd19663691ea3cb4093f46e1edd08",
+      "toolace/test.jsonl": "259a600d06c616c6b8bcc2138ec1e96be9eda0eb1817e871e57509c1be94ab2b",
+      "typed_decisions/test.jsonl": "fa43c0389d9dbdf18cf1afe75c73f320d7620f3bb2a8be19e7cca7df5e78588f",
+      "wildjailbreak/test.jsonl": "2b14e5449850463b530e92493244c4f4a888d91ff4b458130e17f661d2ce8938"
+    },
+    "note": "Model evidence, field/option ordering, hard labels and scoring distributions match the evaluated records. Internal provenance metadata is excluded.",
+    "rows": 10751,
+    "decisions": 12351
+  },
+  "label_audit": {
+    "typed_decisions": {
+      "rows": 400,
+      "decisions": 2000,
+      "label_origin_counts": {
+        "teacher_agreement": 2000
+      },
+      "ranking_role": "teacher agreement auxiliary diagnostic; exclude from native-label main accuracy macro",
+      "git_blob_sha": "f45120db1c33ce9ca6ab04564c9924ca209f536b"
+    },
+    "wildjailbreak": {
+      "rows": 2210,
+      "decisions": 2210,
+      "label_origin_counts": {
+        "native_annotation": 2210
+      },
+      "ranking_role": "native-reference harmful/benign classification",
+      "git_blob_sha": "7c2bc88f51b75f1c641a7c7a57b738247965165e"
+    },
+    "toolace": {
+      "rows": 310,
+      "decisions": 310,
+      "label_origin_counts": {
+        "native_annotation": 310
+      },
+      "ranking_role": "native-reference tool-choice classification; not tool-execution success",
+      "git_blob_sha": "8b35206829c55d596ecc76af3711e30afb90f36f"
+    },
+    "agnews": {
+      "rows": 7600,
+      "decisions": 7600,
+      "label_origin_counts": {
+        "native_annotation": 7600
+      },
+      "ranking_role": "native-reference topic classification; source metadata license unknown",
+      "git_blob_sha": "7f372cf5473697c00dd42148f00ffff067bdae0e"
+    }
+  },
+  "scope_notes": [
+    "Seven Intern suites represent five source families: JevBench (three difficulties), Typed Decisions, ToolACE, AG News, WildJailBreak.",
+    "Known-distribution pilot: 96 cases/48 paired settings; exact reference probabilities, score separately, not ordinary label accuracy.",
+    "Public JevBench is a development diagnostic, not fresh independent held-out leaderboard evidence.",
+    "The bundled Intern accuracy suites are text-only (no image dataset); demos do not constitute multimodal evaluation.",
+    "Banking77/DBpedia14 native class counts can exceed StartLux's 26 limit and shared10-option policy; do not silently remove candidates.",
+    "Kev breadth-v1 frozen rows are not local in this checkout (only manifest/overlap); several original sources impose different redistribution terms. Publish manifests, downloader, metrics, not raw source rows."
+  ]
+}

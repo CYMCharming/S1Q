@@ -1,0 +1,1259 @@
+{
+  "schema": "s1q.public-ranking-scopes.v1",
+  "declared_settings": {
+    "ranking_suites": [
+      {
+        "suite_id": "original-w4a4-threecohort-20261004",
+        "experiment_batch_ids": [
+          "optimization-20261004"
+        ],
+        "precision": "W4A4",
+        "dataset_ids": [
+          "development",
+          "wanli",
+          "mmlu-pro"
+        ],
+        "note": "Original full-budget experiment; exploratory Dev plus fixed external subsets."
+      },
+      {
+        "suite_id": "newfamily-w4a4-threecohort-20261006",
+        "experiment_batch_ids": [
+          "decision-extension-20261006"
+        ],
+        "precision": "W4A4",
+        "dataset_ids": [
+          "development",
+          "wanli",
+          "mmlu-pro"
+        ],
+        "note": "Six new models; frozen quantizer recipe; previously inspected request cohorts."
+      },
+      {
+        "suite_id": "historical-w4a4-threecohort-20261006",
+        "experiment_batch_ids": [
+          "optimization-20261004",
+          "decision-extension-20261006"
+        ],
+        "precision": "W4A4",
+        "dataset_ids": [
+          "development",
+          "wanli",
+          "mmlu-pro"
+        ],
+        "note": "Historical three-cohort snapshot; explicitly combined old and new model batches."
+      },
+      {
+        "suite_id": "original-w3a4-dev-stress-20261004",
+        "experiment_batch_ids": [
+          "optimization-20261004"
+        ],
+        "precision": "W3A4",
+        "dataset_ids": [
+          "development"
+        ],
+        "note": "Exploratory W3A4 stress evaluation on Mixed Dev only."
+      }
+    ],
+    "plot_suite_id": "historical-w4a4-threecohort-20261006"
+  },
+  "computed_scopes": [
+    {
+      "suite_id": "original-w4a4-threecohort-20261004",
+      "comparison_group": "all11",
+      "experiment_batch_ids": [
+        "optimization-20261004"
+      ],
+      "is_primary_comparison": true,
+      "precision": "W4A4",
+      "dataset_ids": [
+        "development",
+        "wanli",
+        "mmlu-pro"
+      ],
+      "method_ids": [
+        "rtn",
+        "s1q-local",
+        "s1q2-beta05",
+        "awq-adapted",
+        "gptq-blockdiag-adapted",
+        "spinquant-nohad-adapted",
+        "spinquant-had-adapted",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "kev-0.8b",
+        "kev-4b",
+        "laya"
+      ],
+      "excluded_models": {
+        "kev-9b": [
+          {
+            "dataset_id": "development",
+            "method": "spinquant-nohad-adapted"
+          },
+          {
+            "dataset_id": "development",
+            "method": "spinquant-had-adapted"
+          },
+          {
+            "dataset_id": "wanli",
+            "method": "spinquant-nohad-adapted"
+          },
+          {
+            "dataset_id": "wanli",
+            "method": "spinquant-had-adapted"
+          },
+          {
+            "dataset_id": "mmlu-pro",
+            "method": "spinquant-nohad-adapted"
+          },
+          {
+            "dataset_id": "mmlu-pro",
+            "method": "spinquant-had-adapted"
+          }
+        ]
+      },
+      "n_models": 3,
+      "n_datasets": 3,
+      "n_cells": 9,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Original full-budget experiment; exploratory Dev plus fixed external subsets.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "wanli": {
+          "name": "WANLI subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "mmlu-pro": {
+          "name": "MMLU-Pro short subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "laya",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "laya",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "laya",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        }
+      ]
+    },
+    {
+      "suite_id": "original-w4a4-threecohort-20261004",
+      "comparison_group": "s1q6",
+      "experiment_batch_ids": [
+        "optimization-20261004"
+      ],
+      "is_primary_comparison": false,
+      "precision": "W4A4",
+      "dataset_ids": [
+        "development",
+        "wanli",
+        "mmlu-pro"
+      ],
+      "method_ids": [
+        "s1q-local",
+        "s1q2-beta05",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "kev-0.8b",
+        "kev-4b",
+        "kev-9b",
+        "laya"
+      ],
+      "excluded_models": {},
+      "n_models": 4,
+      "n_datasets": 3,
+      "n_cells": 12,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Original full-budget experiment; exploratory Dev plus fixed external subsets.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "wanli": {
+          "name": "WANLI subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "mmlu-pro": {
+          "name": "MMLU-Pro short subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-9b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-9b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-9b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "laya",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "laya",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "laya",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        }
+      ]
+    },
+    {
+      "suite_id": "newfamily-w4a4-threecohort-20261006",
+      "comparison_group": "all11",
+      "experiment_batch_ids": [
+        "decision-extension-20261006"
+      ],
+      "is_primary_comparison": true,
+      "precision": "W4A4",
+      "dataset_ids": [
+        "development",
+        "wanli",
+        "mmlu-pro"
+      ],
+      "method_ids": [
+        "rtn",
+        "s1q-local",
+        "s1q2-beta05",
+        "awq-adapted",
+        "gptq-blockdiag-adapted",
+        "spinquant-nohad-adapted",
+        "spinquant-had-adapted",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "intern-decision-0.8b",
+        "intern-decision-2b",
+        "intern-decision-4b",
+        "startlux-decision-0.8b",
+        "startlux-decision-2b",
+        "startlux-decision-4b"
+      ],
+      "excluded_models": {},
+      "n_models": 6,
+      "n_datasets": 3,
+      "n_cells": 18,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Six new models; frozen quantizer recipe; previously inspected request cohorts.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "wanli": {
+          "name": "WANLI subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "mmlu-pro": {
+          "name": "MMLU-Pro short subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        }
+      ]
+    },
+    {
+      "suite_id": "newfamily-w4a4-threecohort-20261006",
+      "comparison_group": "s1q6",
+      "experiment_batch_ids": [
+        "decision-extension-20261006"
+      ],
+      "is_primary_comparison": false,
+      "precision": "W4A4",
+      "dataset_ids": [
+        "development",
+        "wanli",
+        "mmlu-pro"
+      ],
+      "method_ids": [
+        "s1q-local",
+        "s1q2-beta05",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "intern-decision-0.8b",
+        "intern-decision-2b",
+        "intern-decision-4b",
+        "startlux-decision-0.8b",
+        "startlux-decision-2b",
+        "startlux-decision-4b"
+      ],
+      "excluded_models": {},
+      "n_models": 6,
+      "n_datasets": 3,
+      "n_cells": 18,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Six new models; frozen quantizer recipe; previously inspected request cohorts.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "wanli": {
+          "name": "WANLI subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "mmlu-pro": {
+          "name": "MMLU-Pro short subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        }
+      ]
+    },
+    {
+      "suite_id": "historical-w4a4-threecohort-20261006",
+      "comparison_group": "all11",
+      "experiment_batch_ids": [
+        "optimization-20261004",
+        "decision-extension-20261006"
+      ],
+      "is_primary_comparison": true,
+      "precision": "W4A4",
+      "dataset_ids": [
+        "development",
+        "wanli",
+        "mmlu-pro"
+      ],
+      "method_ids": [
+        "rtn",
+        "s1q-local",
+        "s1q2-beta05",
+        "awq-adapted",
+        "gptq-blockdiag-adapted",
+        "spinquant-nohad-adapted",
+        "spinquant-had-adapted",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "intern-decision-0.8b",
+        "intern-decision-2b",
+        "intern-decision-4b",
+        "kev-0.8b",
+        "kev-4b",
+        "laya",
+        "startlux-decision-0.8b",
+        "startlux-decision-2b",
+        "startlux-decision-4b"
+      ],
+      "excluded_models": {
+        "kev-9b": [
+          {
+            "dataset_id": "development",
+            "method": "spinquant-nohad-adapted"
+          },
+          {
+            "dataset_id": "development",
+            "method": "spinquant-had-adapted"
+          },
+          {
+            "dataset_id": "wanli",
+            "method": "spinquant-nohad-adapted"
+          },
+          {
+            "dataset_id": "wanli",
+            "method": "spinquant-had-adapted"
+          },
+          {
+            "dataset_id": "mmlu-pro",
+            "method": "spinquant-nohad-adapted"
+          },
+          {
+            "dataset_id": "mmlu-pro",
+            "method": "spinquant-had-adapted"
+          }
+        ]
+      },
+      "n_models": 9,
+      "n_datasets": 3,
+      "n_cells": 27,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Historical three-cohort snapshot; explicitly combined old and new model batches.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "wanli": {
+          "name": "WANLI subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "mmlu-pro": {
+          "name": "MMLU-Pro short subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "laya",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "laya",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "laya",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        }
+      ]
+    },
+    {
+      "suite_id": "historical-w4a4-threecohort-20261006",
+      "comparison_group": "s1q6",
+      "experiment_batch_ids": [
+        "optimization-20261004",
+        "decision-extension-20261006"
+      ],
+      "is_primary_comparison": false,
+      "precision": "W4A4",
+      "dataset_ids": [
+        "development",
+        "wanli",
+        "mmlu-pro"
+      ],
+      "method_ids": [
+        "s1q-local",
+        "s1q2-beta05",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "intern-decision-0.8b",
+        "intern-decision-2b",
+        "intern-decision-4b",
+        "kev-0.8b",
+        "kev-4b",
+        "kev-9b",
+        "laya",
+        "startlux-decision-0.8b",
+        "startlux-decision-2b",
+        "startlux-decision-4b"
+      ],
+      "excluded_models": {},
+      "n_models": 10,
+      "n_datasets": 3,
+      "n_cells": 30,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Historical three-cohort snapshot; explicitly combined old and new model batches.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "wanli": {
+          "name": "WANLI subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        },
+        "mmlu-pro": {
+          "name": "MMLU-Pro short subset",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "intern-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "kev-9b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-9b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "kev-9b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "laya",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "laya",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "laya",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-0.8b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-2b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "wanli",
+          "n": 256,
+          "n_clusters": 256
+        },
+        {
+          "model": "startlux-decision-4b",
+          "dataset_id": "mmlu-pro",
+          "n": 156,
+          "n_clusters": 156
+        }
+      ]
+    },
+    {
+      "suite_id": "original-w3a4-dev-stress-20261004",
+      "comparison_group": "all11",
+      "experiment_batch_ids": [
+        "optimization-20261004"
+      ],
+      "is_primary_comparison": true,
+      "precision": "W3A4",
+      "dataset_ids": [
+        "development"
+      ],
+      "method_ids": [
+        "rtn",
+        "s1q-local",
+        "s1q2-beta05",
+        "awq-adapted",
+        "gptq-blockdiag-adapted",
+        "spinquant-nohad-adapted",
+        "spinquant-had-adapted",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "kev-0.8b",
+        "kev-4b"
+      ],
+      "excluded_models": {},
+      "n_models": 2,
+      "n_datasets": 1,
+      "n_cells": 2,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Exploratory W3A4 stress evaluation on Mixed Dev only.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        }
+      ]
+    },
+    {
+      "suite_id": "original-w3a4-dev-stress-20261004",
+      "comparison_group": "s1q6",
+      "experiment_batch_ids": [
+        "optimization-20261004"
+      ],
+      "is_primary_comparison": false,
+      "precision": "W3A4",
+      "dataset_ids": [
+        "development"
+      ],
+      "method_ids": [
+        "s1q-local",
+        "s1q2-beta05",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "included_models": [
+        "kev-0.8b",
+        "kev-4b"
+      ],
+      "excluded_models": {},
+      "n_models": 2,
+      "n_datasets": 1,
+      "n_cells": 2,
+      "aggregation": "equal_dataset_within_model_then_equal_model; unrounded inputs; not pooled decision accuracy",
+      "uncertainty": "Descriptive point ranks; no aggregate confidence intervals or significance claim",
+      "note": "Exploratory W3A4 stress evaluation on Mixed Dev only.",
+      "dataset_metadata": {
+        "development": {
+          "name": "Mixed Dev (exploratory)",
+          "source_category": "evaluated_dataset_or_cohort"
+        }
+      },
+      "figure_scope_note": "",
+      "accuracy_table_enabled": false,
+      "sample_counts": [
+        {
+          "model": "kev-0.8b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        },
+        {
+          "model": "kev-4b",
+          "dataset_id": "development",
+          "n": 311,
+          "n_clusters": 184
+        }
+      ]
+    }
+  ]
+}

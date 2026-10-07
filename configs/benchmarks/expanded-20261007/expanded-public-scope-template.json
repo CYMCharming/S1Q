@@ -1,0 +1,231 @@
+{
+  "ranking_suites": [
+    {
+      "suite_id": "expanded-v3-w4a4-22source-20261007",
+      "experiment_batch_ids": [
+        "expanded-20261007-v3"
+      ],
+      "precision": "W4A4",
+      "comparison_group": "all12",
+      "methods": [
+        "rtn",
+        "s1q-local",
+        "s1q2-beta05",
+        "smoothquant-adapted",
+        "awq-adapted",
+        "gptq-blockdiag-adapted",
+        "spinquant-nohad-adapted",
+        "spinquant-had-adapted",
+        "s1q-joint",
+        "s1q-ac",
+        "s1q-margin",
+        "s1q"
+      ],
+      "dataset_ids": [
+        "agnews",
+        "amazon",
+        "arc",
+        "boolq",
+        "csqa",
+        "emotion",
+        "imdb",
+        "jevbench",
+        "mmlu",
+        "mnli",
+        "openbookqa",
+        "paws",
+        "qnli",
+        "sciq",
+        "semif",
+        "sst5",
+        "toolace",
+        "trec",
+        "tweet-offensive",
+        "wanli",
+        "wildjailbreak",
+        "yelp"
+      ],
+      "note": "Frozen expanded protocol; unchanged native requests; old Mixed Dev excluded; bounded source subsets.",
+      "figure_scope_note": "Scope: 22 frozen source suites (18 standard datasets, 2 authored suites, 2 domain decision suites); per-cell counts: ranking_scopes.json.",
+      "dataset_metadata": {
+        "agnews": {
+          "name": "AG News",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 120,
+          "prepared_n_decisions": 360
+        },
+        "amazon": {
+          "name": "Amazon Reviews",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "arc": {
+          "name": "ARC",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "boolq": {
+          "name": "BoolQ",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 120,
+          "prepared_n_decisions": 120
+        },
+        "csqa": {
+          "name": "CommonsenseQA",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "emotion": {
+          "name": "Emotion",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 120,
+          "prepared_n_decisions": 120
+        },
+        "imdb": {
+          "name": "IMDb",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 53,
+          "prepared_n_decisions": 53
+        },
+        "jevbench": {
+          "name": "JevBench new eligible public tasks",
+          "label_kind": "authored_scenario_gold",
+          "source_category": "authored_scenario_suite",
+          "figure_note": "JevBench: authored easy scenarios only",
+          "prepared_n_requests": 48,
+          "prepared_n_decisions": 48
+        },
+        "mmlu": {
+          "name": "MMLU",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 99,
+          "prepared_n_decisions": 99
+        },
+        "mnli": {
+          "name": "MNLI",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 122,
+          "prepared_n_decisions": 122
+        },
+        "openbookqa": {
+          "name": "OpenBookQA",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "paws": {
+          "name": "PAWS",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "qnli": {
+          "name": "QNLI",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "sciq": {
+          "name": "SciQ",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 92,
+          "prepared_n_decisions": 92
+        },
+        "semif": {
+          "name": "SemIf authored",
+          "label_kind": "authored_scenario_gold",
+          "source_category": "authored_rule_suite",
+          "figure_note": "SemIf: authored rules",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "sst5": {
+          "name": "SST-5",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "toolace": {
+          "name": "ToolACE tool-choice classification",
+          "label_kind": "native_annotation",
+          "source_category": "domain_decision_suite",
+          "figure_note": "ToolACE: tool choice",
+          "prepared_n_requests": 68,
+          "prepared_n_decisions": 68
+        },
+        "trec": {
+          "name": "TREC",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 121,
+          "prepared_n_decisions": 121
+        },
+        "tweet-offensive": {
+          "name": "TweetEval Offensive",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "wanli": {
+          "name": "WANLI",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 256,
+          "prepared_n_decisions": 256
+        },
+        "wildjailbreak": {
+          "name": "WildJailBreak harmful/benign classification",
+          "label_kind": "native_annotation",
+          "source_category": "domain_decision_suite",
+          "figure_note": "WildJailBreak: harmful/benign decisions",
+          "prepared_n_requests": 128,
+          "prepared_n_decisions": 128
+        },
+        "yelp": {
+          "name": "Yelp",
+          "label_kind": "upstream_dataset_gold",
+          "source_category": "standard_dataset",
+          "figure_note": "",
+          "prepared_n_requests": 66,
+          "prepared_n_decisions": 132
+        }
+      }
+    }
+  ],
+  "plot_suite_id": "expanded-v3-w4a4-22source-20261007"
+}

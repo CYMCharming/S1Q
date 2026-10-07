@@ -1,0 +1,707 @@
+{
+  "kev_commit": "0fe8fc97c2bcc247fa3efb6e5c32af4e99770e91",
+  "inventories": [
+    {
+      "local_path": "work\\model-audit\\kev\\evals\\public-pool-v6\\test.jsonl",
+      "upstream_path": "evals/public-pool-v6/test.jsonl",
+      "sha256": "ea63dfe433d05ce9548399ac770a87c6b427f47662bd68121f0091ac9119493a",
+      "requests": 1328,
+      "sources": [
+        {
+          "source": "agnews",
+          "requests": 116,
+          "decisions": 300,
+          "repos": [
+            "fancyzhx/ag_news"
+          ],
+          "revisions": [
+            "eb185aade064a813bc0b7f42de02595523103ca4"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 184,
+            "4": 104,
+            "5": 12
+          },
+          "question_types": {
+            "choice": 116,
+            "noul": 184
+          }
+        },
+        {
+          "source": "amazon",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "SetFit/amazon_reviews_multi_en"
+          ],
+          "revisions": [
+            "ec73b665e4be0f567b69d39425355401cfe0d29b"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "5": 80
+          },
+          "question_types": {
+            "score": 80
+          }
+        },
+        {
+          "source": "arc",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "allenai/ai2_arc"
+          ],
+          "revisions": [
+            "210d026faf9955653af8916fad021475a3f00453"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "3": 2,
+            "4": 101,
+            "5": 13
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "banking77",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "legacy-datasets/banking77"
+          ],
+          "revisions": [
+            "f54121560de48f2852f90be299010d1d6dc612ec"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "77": 104,
+            "78": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "boolq",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "google/boolq"
+          ],
+          "revisions": [
+            "35b264d03638db9f4ce671b711558bf7ff0f80d5"
+          ],
+          "native_splits": [
+            "validation"
+          ],
+          "candidate_counts": {
+            "2": 80
+          },
+          "question_types": {
+            "noul": 80
+          }
+        },
+        {
+          "source": "csqa",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "tau/commonsense_qa"
+          ],
+          "revisions": [
+            "94630fe30dad47192a8546eb75f094926d47e155"
+          ],
+          "native_splits": [
+            "validation"
+          ],
+          "candidate_counts": {
+            "5": 104,
+            "6": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "dbpedia14",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "fancyzhx/dbpedia_14"
+          ],
+          "revisions": [
+            "9abd46cf7fc8b4c64290f26993c540b92aa145ac"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "14": 104,
+            "15": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "imdb",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "stanfordnlp/imdb"
+          ],
+          "revisions": [
+            "e6281661ce1c48d982bc483cf8a173c1bbeb5d31"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 80
+          },
+          "question_types": {
+            "noul": 80
+          }
+        },
+        {
+          "source": "mnli",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "nyu-mll/multi_nli"
+          ],
+          "revisions": [
+            "da70db2af9d09693783c3320c4249840212ee221"
+          ],
+          "native_splits": [
+            "validation_matched"
+          ],
+          "candidate_counts": {
+            "3": 104,
+            "4": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "openbookqa",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "allenai/openbookqa"
+          ],
+          "revisions": [
+            "388097ea7776314e93a529163e0fea805b8a6454"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "4": 104,
+            "5": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "sst5",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "SetFit/sst5"
+          ],
+          "revisions": [
+            "e51bdcd8cd3a30da231967c1a249ba59361279a3"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "5": 80
+          },
+          "question_types": {
+            "score": 80
+          }
+        },
+        {
+          "source": "trec",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "CogComp/trec"
+          ],
+          "revisions": [
+            "65752bf53af25bc935a0dce92fb5b6c930728450"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "6": 104,
+            "7": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "yelp",
+          "requests": 80,
+          "decisions": 160,
+          "repos": [
+            "Yelp/yelp_review_full"
+          ],
+          "revisions": [
+            "c1f9ee939b7d05667af864ee1cb066393154bf85"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 80,
+            "5": 80
+          },
+          "question_types": {
+            "score": 80,
+            "noul": 80
+          }
+        }
+      ]
+    },
+    {
+      "local_path": "work\\model-audit\\kev\\evals\\v7\\decision-v7\\test.jsonl",
+      "upstream_path": "evals/v7/decision-v7/test.jsonl",
+      "sha256": "cd7d129a84232e0c7a4e92b4840a6dfe14c8bb93c5d1904b526fa8c085325d2d",
+      "requests": 1176,
+      "sources": [
+        {
+          "source": "agnews",
+          "requests": 116,
+          "decisions": 300,
+          "repos": [
+            "fancyzhx/ag_news"
+          ],
+          "revisions": [
+            "eb185aade064a813bc0b7f42de02595523103ca4"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 184,
+            "4": 104,
+            "5": 12
+          },
+          "question_types": {
+            "choice": 116,
+            "noul": 184
+          }
+        },
+        {
+          "source": "amazon",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "SetFit/amazon_reviews_multi_en"
+          ],
+          "revisions": [
+            "ec73b665e4be0f567b69d39425355401cfe0d29b"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "5": 80
+          },
+          "question_types": {
+            "score": 80
+          }
+        },
+        {
+          "source": "banking77",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "legacy-datasets/banking77"
+          ],
+          "revisions": [
+            "f54121560de48f2852f90be299010d1d6dc612ec"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "77": 104,
+            "78": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "boolq",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "google/boolq"
+          ],
+          "revisions": [
+            "35b264d03638db9f4ce671b711558bf7ff0f80d5"
+          ],
+          "native_splits": [
+            "validation"
+          ],
+          "candidate_counts": {
+            "2": 80
+          },
+          "question_types": {
+            "noul": 80
+          }
+        },
+        {
+          "source": "contrastive",
+          "requests": 196,
+          "decisions": 196,
+          "repos": [],
+          "revisions": [],
+          "native_splits": [
+            "generated"
+          ],
+          "candidate_counts": {
+            "2": 80,
+            "3": 104,
+            "4": 12
+          },
+          "question_types": {
+            "noul": 80,
+            "choice": 116
+          }
+        },
+        {
+          "source": "dbpedia14",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "fancyzhx/dbpedia_14"
+          ],
+          "revisions": [
+            "9abd46cf7fc8b4c64290f26993c540b92aa145ac"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "14": 104,
+            "15": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "imdb",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "stanfordnlp/imdb"
+          ],
+          "revisions": [
+            "e6281661ce1c48d982bc483cf8a173c1bbeb5d31"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 80
+          },
+          "question_types": {
+            "noul": 80
+          }
+        },
+        {
+          "source": "mnli",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "nyu-mll/multi_nli"
+          ],
+          "revisions": [
+            "da70db2af9d09693783c3320c4249840212ee221"
+          ],
+          "native_splits": [
+            "validation_matched"
+          ],
+          "candidate_counts": {
+            "3": 104,
+            "4": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "sst5",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "SetFit/sst5"
+          ],
+          "revisions": [
+            "e51bdcd8cd3a30da231967c1a249ba59361279a3"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "5": 80
+          },
+          "question_types": {
+            "score": 80
+          }
+        },
+        {
+          "source": "trec",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "CogComp/trec"
+          ],
+          "revisions": [
+            "65752bf53af25bc935a0dce92fb5b6c930728450"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "6": 104,
+            "7": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "yelp",
+          "requests": 80,
+          "decisions": 160,
+          "repos": [
+            "Yelp/yelp_review_full"
+          ],
+          "revisions": [
+            "c1f9ee939b7d05667af864ee1cb066393154bf85"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 80,
+            "5": 80
+          },
+          "question_types": {
+            "score": 80,
+            "noul": 80
+          }
+        }
+      ]
+    },
+    {
+      "local_path": "work\\model-audit\\kev\\evals\\v4\\transfer-v4\\test.jsonl",
+      "upstream_path": "evals/v4/transfer-v4/test.jsonl",
+      "sha256": "c30a91274f9b483aac9e4f02ada5dea953b3f1a2829456e0bc07806c4e73b517",
+      "requests": 764,
+      "sources": [
+        {
+          "source": "composition_holdout",
+          "requests": 96,
+          "decisions": 96,
+          "repos": [],
+          "revisions": [],
+          "native_splits": [],
+          "candidate_counts": {
+            "2": 96
+          },
+          "question_types": {
+            "choice": 96
+          }
+        },
+        {
+          "source": "contrastive",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [],
+          "revisions": [],
+          "native_splits": [
+            "generated"
+          ],
+          "candidate_counts": {
+            "2": 40,
+            "3": 40
+          },
+          "question_types": {
+            "noul": 40,
+            "score": 40
+          }
+        },
+        {
+          "source": "emotion",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "dair-ai/emotion"
+          ],
+          "revisions": [
+            "cab853a1dbdf4c42c2b3ef2173804746df8825fe"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "6": 104,
+            "7": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "mmlu",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "cais/mmlu"
+          ],
+          "revisions": [
+            "c30699e8356da336a370243923dbaf21066bb9fe"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "4": 104,
+            "5": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "paws",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "google-research-datasets/paws"
+          ],
+          "revisions": [
+            "161ece9501cf0a11f3e48bd356eaa82de46d6a09"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 80
+          },
+          "question_types": {
+            "noul": 80
+          }
+        },
+        {
+          "source": "qnli",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "nyu-mll/glue"
+          ],
+          "revisions": [
+            "bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c"
+          ],
+          "native_splits": [
+            "validation"
+          ],
+          "candidate_counts": {
+            "2": 80
+          },
+          "question_types": {
+            "noul": 80
+          }
+        },
+        {
+          "source": "sciq",
+          "requests": 116,
+          "decisions": 116,
+          "repos": [
+            "allenai/sciq"
+          ],
+          "revisions": [
+            "2c94ad3e1aafab77146f384e23536f97a4849815"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "4": 104,
+            "5": 12
+          },
+          "question_types": {
+            "choice": 116
+          }
+        },
+        {
+          "source": "tweet_offensive",
+          "requests": 80,
+          "decisions": 80,
+          "repos": [
+            "cardiffnlp/tweet_eval"
+          ],
+          "revisions": [
+            "b3a375baf0f409c77e6bc7aa35102b7b3534f8be"
+          ],
+          "native_splits": [
+            "test"
+          ],
+          "candidate_counts": {
+            "2": 80
+          },
+          "question_types": {
+            "noul": 80
+          }
+        }
+      ]
+    },
+    {
+      "local_path": "work\\model-audit\\kev\\evals\\external\\wanli-v2\\test.jsonl",
+      "upstream_path": "evals/external/wanli-v2/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": 0,
+      "sources": []
+    },
+    {
+      "local_path": "work\\model-audit\\kev\\evals\\external\\typesafe-v1\\test.jsonl",
+      "upstream_path": "evals/external/typesafe-v1/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": 0,
+      "sources": []
+    },
+    {
+      "local_path": "work\\model-audit\\kev\\evals\\external\\semif-v1\\test.jsonl",
+      "upstream_path": "evals/external/semif-v1/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": 0,
+      "sources": []
+    }
+  ],
+  "note": "Sources can recur across suite versions; do not double-count them as independent datasets. These inventories do not assert disjointness from prior S1Q calibration or evaluation."
+}
