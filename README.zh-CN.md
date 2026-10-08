@@ -1,6 +1,6 @@
 # S1Q：面向 System One 决策模型的低比特量化
 
-[English](README.md) · [方法](docs/method.md) · [最新方法复现](docs/reproduce-current.md) · [扩展评测结果](results/benchmarks/expanded-20261007/README.md) · [扩展评测协议](docs/expanded-benchmarks.md) · [历史聚合结果](results/benchmarks/historical-20261006/README.md) · [相关工作](docs/related-work.md) · [历史结果](docs/results.md) · [权重使用](docs/artifacts.md)
+[English](README.md) · [方法](docs/method.md) · [最新方法复现](docs/reproduce-current.md) · [组件消融图](results/benchmarks/components-20261008/README.md) · [扩展评测结果](results/benchmarks/expanded-20261007/README.md) · [扩展评测协议](docs/expanded-benchmarks.md) · [历史聚合结果](results/benchmarks/historical-20261006/README.md) · [相关工作](docs/related-work.md) · [历史结果](docs/results.md) · [权重使用](docs/artifacts.md)
 
 **最新方法统一称为 S1Q。** 2026 年 10 月批次里的 `s1q-mac` 是历史实验标识，继续兼容用于复现；公开名称不改为 S1Q-MAC。旧 S1Q 与 S1Q2 作为历史对照保留。
 
@@ -9,6 +9,27 @@ S1Q 面向 Kev、NanoJev、Laya、Intern-Decision 和 StartLux-Decision 等开�
 最新 S1Q 用无标签校准实现三个步骤：分别计算原精度模型第一名与第二名候选的分数差梯度，按有界 token 敏感度采样；用实际 W/A 量化后的层输出误差联合选择通道缩放与裁剪；在权重量化前，用有界岭回归修正激活量化误差，并在另一半 token 储存池上选择修正或不修正候选。
 
 **敏感度是 margin-Jacobian 的 token 代理，不是完整 Fisher 矩阵。** [GuidedQuant](https://proceedings.mlr.press/v267/kim25d.html) 已用最终损失梯度指导量化重构，[RSQ](https://openreview.net/pdf?id=kBezrKXHVS) 已利用重要 token 改进量化。岭回归补偿与 [ERQ（ICML 2024）](https://proceedings.mlr.press/v235/zhong24a.html) 直接相关，原精度输出匹配与 [GPTAQ](https://arxiv.org/abs/2504.02692) 也有相关性。梯度引导、token 重要性、缩放、裁剪与补偿各自都不是新发明；目前研究的是这些机制在原生有类型决策模型中的具体结合与效果。[方法文档](docs/method.md) 给出实现一致的公式和局限。
+
+## 10 月 8 日组件消融
+
+[完整组件分析](results/benchmarks/components-20261008/README.md)已覆盖 **10 个模型 × 22 个来源套件，统一 W4A4**。比较四种已有组件配置，先对来源等权平均，再对模型等权平均；未挑选有利的模型或来源子集。
+
+| 配置 | Margin 采样 | 激活补偿 | 每层候选数 | 准确率 % ↑ |
+| --- | ---: | ---: | ---: | ---: |
+| S1Q-Joint | 否 | 否 | 22 | 52.16 |
+| S1Q-AC | 否 | 是 | 44 | 53.20 |
+| S1Q-Margin | 是 | 否 | 22 | 52.61 |
+| S1Q（最新） | 是 | 是 | 44 | **54.11** |
+
+S1Q 相对 Joint 在 **6/10 个模型平均分上提高**，其余四个负结果完整保留。激活补偿将搜索预算从**每层 22 个候选增加到 44 个**，因此这是组件与配方对比，不能视为等计算量的因果隔离或协同作用检验。S1Q-AC 的总体 NLL 仍然最好。新增 OmniQuant/AdaRound/HQQ 的矩阵尚未全部完成，下方已完成的十二方法排名继续保留。
+
+与同样使用**每层 44 个候选**的 S1Q-AC 相比，S1Q 提高 **0.909 个百分点**（条件配对 95% 区间 [0.253, 1.614]）。新增 Margin 采样需要反向传播，候选数相同不代表总计算量相同。这里沿用固定范围的共享 cluster 区间，未作多重比较修正。
+
+![完整 W4A4 组件对比与每个模型的增益](results/benchmarks/components-20261008/ablation_overview.png)
+
+[矢量图](results/benchmarks/components-20261008/ablation_overview.svg) · [全部 220 个模型/来源增益](results/benchmarks/components-20261008/source_robustness.png) · [完整十二方法对比](results/benchmarks/components-20261008/overall_comparison.png) · [组件/来源完整 CSV](results/benchmarks/components-20261008/component_by_source.csv) · [模型/配置 CSV](results/benchmarks/components-20261008/component_accuracy.csv) · [配对区间](results/benchmarks/components-20261008/component_paired_ci.csv) · [图的来源清单](results/benchmarks/components-20261008/figure_manifest.json)。
+
+PNG/PDF/SVG 与 TikZ 文件是独立公开的评测图，论文仍保持私有。先运行 `python -m pip install -e '.[plots]'` 安装绘图依赖，再[用已发布聚合结果重新生成](scripts/build_component_analysis.py)：`python scripts/build_component_analysis.py --source-root results/benchmarks/expanded-20261007 --output-dir work/component-figures`（输出目录需尚不存在）。
 
 ## 10 月 7 日扩展评测结果
 

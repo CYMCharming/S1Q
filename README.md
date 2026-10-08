@@ -1,6 +1,6 @@
 # S1Q: Low-Bit Quantization for System One Decision Models
 
-[中文说明](README.zh-CN.md) · [Method](docs/method.md) · [Current reproduction](docs/reproduce-current.md) · [Expanded results](results/benchmarks/expanded-20261007/README.md) · [Expanded protocol](docs/expanded-benchmarks.md) · [Historical aggregate](results/benchmarks/historical-20261006/README.md) · [Related work](docs/related-work.md) · [Model audit](docs/model-audit.md) · [Legacy results](docs/results.md) · [Packed artifacts](docs/artifacts.md)
+[中文说明](README.zh-CN.md) · [Method](docs/method.md) · [Current reproduction](docs/reproduce-current.md) · [Component figures](results/benchmarks/components-20261008/README.md) · [Expanded results](results/benchmarks/expanded-20261007/README.md) · [Expanded protocol](docs/expanded-benchmarks.md) · [Historical aggregate](results/benchmarks/historical-20261006/README.md) · [Related work](docs/related-work.md) · [Model audit](docs/model-audit.md) · [Legacy results](docs/results.md) · [Packed artifacts](docs/artifacts.md)
 
 **S1Q now denotes the current decision-margin-aware, activation-compensated method.** Its October 2026 experiment identifier was `s1q-mac`; that identifier remains supported to reproduce frozen runs. The public method name is **S1Q**. Earlier S1Q and S1Q2 recipes remain available as historical controls.
 
@@ -15,6 +15,27 @@ S1Q combines three calibration steps:
 3. Fit a bounded ridge correction for activation error before quantizing weights. Select corrected or uncorrected candidates using a separate half of the saved token reservoir.
 
 The gradient statistic is a **margin-Jacobian token proxy, not a categorical Fisher matrix**. [GuidedQuant](https://proceedings.mlr.press/v267/kim25d.html) already uses end-loss gradients to guide reconstruction, and [RSQ](https://openreview.net/pdf?id=kBezrKXHVS) already prioritizes important tokens in quantization. Ridge-based activation-error compensation has close prior art in [ERQ (ICML 2024)](https://proceedings.mlr.press/v235/zhong24a.html), and matching native outputs has close prior art in [GPTAQ](https://arxiv.org/abs/2504.02692). Gradient guidance, token importance, scaling, clipping and compensation are not individually new. The research contribution being evaluated is their concrete decision-aware integration across native typed-decision architectures. See the exact formulas, assumptions and limitations in [Method](docs/method.md).
+
+## Component ablation (October 8)
+
+The [complete component analysis](results/benchmarks/components-20261008/README.md) now covers **all 10 models × all 22 source suites at W4A4**. It compares the four available component configurations using the same source-then-model average; no favorable model or source subset is selected.
+
+| Configuration | Margin sampling | Activation compensation | Candidates/layer | Accuracy % ↑ |
+| --- | ---: | ---: | ---: | ---: |
+| S1Q-Joint | No | No | 22 | 52.16 |
+| S1Q-AC | No | Yes | 44 | 53.20 |
+| S1Q-Margin | Yes | No | 22 | 52.61 |
+| S1Q (current) | Yes | Yes | 44 | **54.11** |
+
+S1Q improves over Joint on **6/10 model averages**; all four negative results remain visible. Activation compensation increases the search budget from **22 to 44 candidates per layer**, so this is a component/recipe comparison rather than an equal-compute causal isolation or a synergy test. S1Q-AC retains the best overall NLL. The new OmniQuant/AdaRound/HQQ matrix remains incomplete and does not replace the completed twelve-method ranking below.
+
+Against S1Q-AC, which also evaluates **44 candidates/layer**, S1Q gains **+0.909 pp** (conditional paired 95% CI [0.253, 1.614]). The added margin sampling requires backward passes: matched candidate counts do not mean equal total computation. These are the existing fixed-scope shared-cluster intervals, without a multiple-comparisons adjustment.
+
+![Complete W4A4 component comparison and gains for every model](results/benchmarks/components-20261008/ablation_overview.png)
+
+[Vector figure](results/benchmarks/components-20261008/ablation_overview.svg) · [All 220 model/source gains](results/benchmarks/components-20261008/source_robustness.png) · [All twelve methods](results/benchmarks/components-20261008/overall_comparison.png) · [Complete component/source CSV](results/benchmarks/components-20261008/component_by_source.csv) · [Model/configuration CSV](results/benchmarks/components-20261008/component_accuracy.csv) · [Paired intervals](results/benchmarks/components-20261008/component_paired_ci.csv) · [Figure provenance](results/benchmarks/components-20261008/figure_manifest.json).
+
+The PNG/PDF/SVG and TikZ outputs are standalone public benchmark figures; the manuscript remains private. [Regenerate from published aggregates](scripts/build_component_analysis.py): install dependencies with `python -m pip install -e '.[plots]'`, then run `python scripts/build_component_analysis.py --source-root results/benchmarks/expanded-20261007 --output-dir work/component-figures` (requires a fresh output directory).
 
 ## Expanded benchmark results (October 7)
 

@@ -1,0 +1,47 @@
+\begin{tikzpicture}
+\begin{axis}[width=.96\textwidth,height=8cm,xbar,xmin=0,xmax=86,
+ytick={0,1,2,3,4,5,6,7,8,9,10,11,12},
+yticklabels={Native reference,S1Q,S1Q-AC,S1Q-Margin,S1Q-Joint,S1Qv2,SpinQuant Had$^*$,AWQ$^*$,S1Qv1,SpinQuant no-Had$^*$,SmoothQuant$^*$,GPTQ-block$^*$,RTN},
+xlabel={Accuracy (\%)},bar width=7pt,ymin=-.6,ymax=12.6,axis lines*=left,
+xmajorgrids,grid style={gray!15},tick label style={font=\scriptsize},label style={font=\footnotesize}]
+\addplot+[xbar,bar shift=0pt,fill=gray!55,draw=none,forget plot] coordinates {(76.38046864,0)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(75.42959238,0) (77.28561379,0)};
+\node[anchor=west,font=\scriptsize] at (axis cs:78.28561379,0) {76.38};
+\addplot+[xbar,bar shift=0pt,fill=orange!75!black,draw=none,forget plot] coordinates {(54.10809808,1)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(53.27918296,1) (54.92899487,1)};
+\node[anchor=west,font=\scriptsize] at (axis cs:55.92899487,1) {54.11};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(53.19947306,2)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(52.35108045,2) (54.00817559,2)};
+\node[anchor=west,font=\scriptsize] at (axis cs:55.00817559,2) {53.20};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(52.61337101,3)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(51.84614557,3) (53.43975127,3)};
+\node[anchor=west,font=\scriptsize] at (axis cs:54.43975127,3) {52.61};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(52.16047020,4)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(51.31933651,4) (52.99264392,4)};
+\node[anchor=west,font=\scriptsize] at (axis cs:53.99264392,4) {52.16};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(42.51560394,5)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(41.81509625,5) (43.25499024,5)};
+\node[anchor=west,font=\scriptsize] at (axis cs:44.25499024,5) {42.52};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(42.28084886,6)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(41.62845533,6) (42.95527478,6)};
+\node[anchor=west,font=\scriptsize] at (axis cs:43.95527478,6) {42.28};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(42.19075848,7)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(41.50662351,7) (42.92389646,7)};
+\node[anchor=west,font=\scriptsize] at (axis cs:43.92389646,7) {42.19};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(41.60091774,8)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(40.92509827,8) (42.34974417,8)};
+\node[anchor=west,font=\scriptsize] at (axis cs:43.34974417,8) {41.60};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(37.15307966,9)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(36.52849471,9) (37.81141103,9)};
+\node[anchor=west,font=\scriptsize] at (axis cs:38.81141103,9) {37.15};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(36.57006812,10)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(35.91308913,10) (37.23253427,10)};
+\node[anchor=west,font=\scriptsize] at (axis cs:38.23253427,10) {36.57};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(35.21859282,11)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(34.59965251,11) (35.88315578,11)};
+\node[anchor=west,font=\scriptsize] at (axis cs:36.88315578,11) {35.22};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(35.09426376,12)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(34.45896162,12) (35.71031635,12)};
+\node[anchor=west,font=\scriptsize] at (axis cs:36.71031635,12) {35.09};
+\end{axis}
+\end{tikzpicture}

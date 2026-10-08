@@ -1,0 +1,46 @@
+\begin{tikzpicture}
+\begin{axis}[width=.45\textwidth,height=6.6cm,xbar,xmin=0,xmax=62,
+ytick={0,1,2,3},yticklabels={Joint,+AC,+Margin,S1Q},xlabel={Accuracy (\%)},
+bar width=11pt,ymin=-.6,ymax=3.6,axis lines*=left,xmajorgrids,grid style={gray!15},
+tick label style={font=\footnotesize},label style={font=\footnotesize},title={(a) All 10 models, 22 sources},title style={font=\small}]
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(52.16047020,0)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(51.31933651,0) (52.99264392,0)};
+\node[anchor=west,font=\scriptsize] at (axis cs:53.99264392,0) {52.16};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(53.19947306,1)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(52.35108045,1) (54.00817559,1)};
+\node[anchor=west,font=\scriptsize] at (axis cs:55.00817559,1) {53.20};
+\addplot+[xbar,bar shift=0pt,fill=blue!45!gray,draw=none,forget plot] coordinates {(52.61337101,2)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(51.84614557,2) (53.43975127,2)};
+\node[anchor=west,font=\scriptsize] at (axis cs:54.43975127,2) {52.61};
+\addplot+[xbar,bar shift=0pt,fill=orange!75!black,draw=none,forget plot] coordinates {(54.10809808,3)};
+\addplot+[sharp plot,black,mark=none,forget plot] coordinates {(53.27918296,3) (54.92899487,3)};
+\node[anchor=west,font=\scriptsize] at (axis cs:55.92899487,3) {54.11};
+\end{axis}
+\begin{axis}[at={(.54\textwidth,0)},anchor=south west,width=.45\textwidth,height=6.6cm,
+xmin=-3,xmax=10,ymin=-.6,ymax=9.6,ytick={0,1,2,3,4,5,6,7,8,9},
+yticklabels={Kev 0.8B,Kev 4B,Kev 9B,Laya,Intern 0.8B,Intern 2B,Intern 4B,StartLux 0.8B,StartLux 2B,StartLux 4B},
+xlabel={S1Q $-$ Joint (pp)},axis lines*=left,clip=false,xmajorgrids,grid style={gray!15},
+tick label style={font=\scriptsize},label style={font=\footnotesize},title={(b) Every model; descriptive gains},title style={font=\small}]
+\addplot[gray,dashed] coordinates {(0,-.5) (0,9.5)};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(-0.21898050,0)};
+\node[anchor=west,font=\scriptsize] at (axis cs:-0.06898050,0) {-0.22};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(1.37510348,1)};
+\node[anchor=west,font=\scriptsize] at (axis cs:1.52510348,1) {+1.38};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(2.83934607,2)};
+\node[anchor=west,font=\scriptsize] at (axis cs:2.98934607,2) {+2.84};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(0.01654805,3)};
+\node[anchor=west,font=\scriptsize] at (axis cs:0.16654805,3) {+0.02};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(-0.79389644,4)};
+\node[anchor=west,font=\scriptsize] at (axis cs:-0.64389644,4) {-0.79};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(5.09835557,5)};
+\node[anchor=west,font=\scriptsize] at (axis cs:5.24835557,5) {+5.10};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(4.83617987,6)};
+\node[anchor=west,font=\scriptsize] at (axis cs:4.98617987,6) {+4.84};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(-0.51430200,7)};
+\node[anchor=west,font=\scriptsize] at (axis cs:-0.36430200,7) {-0.51};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(-1.45539837,8)};
+\node[anchor=west,font=\scriptsize] at (axis cs:-1.30539837,8) {-1.46};
+\addplot[orange!75!black,only marks,mark=*] coordinates {(8.29332313,9)};
+\node[anchor=west,font=\scriptsize] at (axis cs:8.44332313,9) {+8.29};
+\end{axis}
+\end{tikzpicture}
