@@ -31,6 +31,19 @@ S1Q 相对 Joint 在 **6/10 个模型平均分上提高**，其余四个负结�
 
 PNG/PDF/SVG 与 TikZ 文件是独立公开的评测图，论文仍保持私有。先运行 `python -m pip install -e '.[plots]'` 安装绘图依赖，再[用已发布聚合结果重新生成](scripts/build_component_analysis.py)：`python scripts/build_component_analysis.py --source-root results/benchmarks/expanded-20261007 --output-dir work/component-figures`（输出目录需尚不存在）。
 
+### 评测后选择的示例
+
+[组件正向案例](results/benchmarks/component-cases-20261008/README.md)展示有利的结果，并完整列出四种配置：
+
+| 案例与平均范围 | Joint | +AC | +Margin | S1Q | S1Q 相对最强替代配置提高（百分点） |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| StartLux-Decision-4B；全部 22 来源 | 56.80 | 60.86 | 60.80 | **65.10** | +4.24 |
+| SST-5；全部 10 模型 | 31.41 | 30.86 | 30.08 | **35.55** | +4.14 |
+
+表中为 W4A4 准确率百分数。案例属于**评测后的选择**：分别在全部 10 个模型平均分、全部 22 个来源平均分中，选取 S1Q 相对最强 Joint/+AC/+Margin 替代配置差距最大的案例。链接中的材料同时公开**全部 32 个候选的排名和完整负结果细分**。它们只作说明，不替代上方完整 10 模型/22 来源主证据；不提供所选案例的置信区间或显著性结论。上方对组件搜索预算的说明同样适用。
+
+![评测后选取的组件示例，保留四种配置](results/benchmarks/component-cases-20261008/case_studies.png)
+
 ## 10 月 7 日扩展评测结果
 
 **已完成：10 个文本决策模型 × 22 个来源套件 × 12 种量化方法，统一 W4A4，另列 Native 参考行。** 按冻结来源范围核验，每个模型实际准入均为 **2,565 个请求、2,871 个决策**。模型包括 Kev-0.8B/4B/9B、Laya、Intern-Decision-0.8B/2B/4B 和 StartLux-Decision-0.8B/2B/4B；**本轮新矩阵不含 Kev-27B、NanoJev**。先对每模型的 22 个来源等权平均，再对 10 个模型等权平均，不按决策总数混池计算。

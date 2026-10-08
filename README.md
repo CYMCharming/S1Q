@@ -37,6 +37,19 @@ Against S1Q-AC, which also evaluates **44 candidates/layer**, S1Q gains **+0.909
 
 The PNG/PDF/SVG and TikZ outputs are standalone public benchmark figures; the manuscript remains private. [Regenerate from published aggregates](scripts/build_component_analysis.py): install dependencies with `python -m pip install -e '.[plots]'`, then run `python scripts/build_component_analysis.py --source-root results/benchmarks/expanded-20261007 --output-dir work/component-figures` (requires a fresh output directory).
 
+### Illustrative cases selected after evaluation
+
+The [selected component cases](results/benchmarks/component-cases-20261008/README.md) show favorable outcomes while retaining all four configurations:
+
+| Case and averaging scope | Joint | +AC | +Margin | S1Q | S1Q gain over best alternative (pp) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| StartLux-Decision-4B; all 22 sources | 56.80 | 60.86 | 60.80 | **65.10** | +4.24 |
+| SST-5; all 10 models | 31.41 | 30.86 | 30.08 | **35.55** | +4.14 |
+
+Values are accuracy percentages at W4A4. Selection is **post hoc**: separately among all 10 model averages and all 22 source averages, these cases have the largest S1Q gap over the strongest Joint/+AC/+Margin alternative. The linked bundle publishes **all 32 candidate rankings and the complete negative breakdown**. These examples do not replace the complete 10-model/22-source primary evidence above; no selected-case confidence intervals or significance claims are made. The component search-budget qualifications above still apply.
+
+![Post hoc illustrative component cases with all four configurations](results/benchmarks/component-cases-20261008/case_studies.png)
+
 ## Expanded benchmark results (October 7)
 
 **Completed: 10 text decision models × 22 source suites × 12 quantization methods at W4A4, plus Native references.** Every model admitted the same 2,565 requests and 2,871 decisions, confirmed against its frozen source scope. Models are Kev-0.8B/4B/9B, Laya, Intern-Decision-0.8B/2B/4B and StartLux-Decision-0.8B/2B/4B. **Kev-27B and NanoJev are not in this new matrix.** Accuracy averages sources equally within each model, then models equally; it is not pooled decision accuracy.
