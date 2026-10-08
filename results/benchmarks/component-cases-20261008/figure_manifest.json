@@ -18,7 +18,7 @@
   "input_sha256": {
     "expanded-20261007/accuracy_by_dataset.csv": "482d373cf50b558cf2881246f59f3ec790f89c15ec8c5320fdc6fe683c7de024"
   },
-  "author_script_sha256": "270b845269b5050875f52b0f5a34e29f9d5718c3525723359bc9318ef5eedfd9",
+  "author_script_sha256": "2f6e93cc0992f288f3c657de6f77bcc6fcccaaa3c045a17eaa8154c82e6483ad",
   "selected": [
     {
       "case_axis": "single_model",
@@ -84,7 +84,7 @@
     "case_studies.pdf": "df4259eb80b138b5391e77666634a71ae4a914e85fcb27db451ae2c5396f75d2",
     "case_studies.png": "3b6ddafff9482e802b0442d3f92dbb197c757b898324cade3dcc48359da52316",
     "case_studies.svg": "63bffd8f28de84438c99f66c3336871ca972e552152b271fcf1950234c1cac14",
-    "case_studies.tikz.tex": "5be61ce62c3dae5ed1af0f6cf4aa015a8bdc2c9209af6b7cd6c36b17ca7eb3ed",
+    "case_studies.tikz.tex": "ceb1213f03dd92d7d4590ddde056b86aa5328ac827dfdf1256369433df3bf4d8",
     "case_studies_table.tex": "6a1c154b73878be9cf265419ef765e4b0ddcd135c37661f5802a5b3455228833",
     "README.md": "413137924c3d41119cbcd0568bc564e16ea636b83e52214c1fbed561709ae8c7",
     "selected_cases.csv": "78faefa39f1470f803ff71b07dbff4b3e7accdbf5157ba241569413a58b5aa7c",

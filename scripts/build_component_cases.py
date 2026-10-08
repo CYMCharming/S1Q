@@ -122,7 +122,7 @@ def figures(root, selected):
             value = getattr(row, ACCURACY[method])
             color = f"casecolor{i}{j}"
             tikz += [rf"\definecolor{{{color}}}{{HTML}}{{{COLORS[method][1:]}}}",
-                     rf"\addplot+[xbar,bar shift=0pt,fill={color},draw=none,forget plot] coordinates {{({value:.10f},{y})}};",
+                     rf"\addplot+[xbar,mark=none,bar shift=0pt,fill={color},draw=none,forget plot] coordinates {{({value:.10f},{y})}};",
                      rf"\node[anchor=west,font=\scriptsize] at (axis cs:{value+.8:.10f},{y}) {{{value:.2f}}};"]
         scope = "All 22 sources; one model" if row.case_axis == "single_model" else "All 10 models; one source"
         tikz += [rf"\node[anchor=north,font=\scriptsize] at (rel axis cs:.5,-.23) {{{scope}}};",
